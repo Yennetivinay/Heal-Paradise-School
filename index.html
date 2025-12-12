@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Heal Paradise School</title>
+    <meta name="title" content="Heal School - CBSE Affiliated Residential School | 100% Scholarship" />
+    <meta name="description" content="Heal Paradise School is a compassionate, world-class CBSE school dedicated to uplifting under-privileged children, single-parent families, and orphans — providing full scholarship and residential care." />
+    <meta name="keywords" content="CBSE school, residential school, scholarship, underprivileged children, single parent families, orphans, education, Heal Paradise School" />
+    <meta name="author" content="Heal Paradise School" />
+    <meta name="language" content="English" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#2563eb" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://healparadiseschool.edu/" />
+    <meta property="og:title" content="Heal Paradise School - CBSE Affiliated Residential School" />
+    <meta property="og:description" content="A compassionate, world-class CBSE school dedicated to uplifting under-privileged children, single-parent families, and orphans — providing full scholarship and residential care." />
+    <meta property="og:image" content="/logo.png" />
+    <meta property="og:site_name" content="Heal Paradise School" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://healparadiseschool.edu/" />
+    <meta name="twitter:title" content="Heal Paradise School - CBSE Affiliated Residential School" />
+    <meta name="twitter:description" content="A compassionate, world-class CBSE school dedicated to uplifting under-privileged children, single-parent families, and orphans — providing full scholarship and residential care." />
+    <meta name="twitter:image" content="/logo.png" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://healparadiseschool.edu/" />
+    
+    <!-- Preconnect to external domains for faster resource loading -->
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
+    
+    <!-- Preload logo for faster display with high priority -->
+    <link rel="preload" href="/logo.png" as="image" type="image/png" fetchpriority="high">
+    
+    <!-- Prefetch all pages for faster navigation -->
+    <link rel="prefetch" href="/src/pages/LandingPage.jsx" as="script">
+    <link rel="prefetch" href="/src/pages/AboutPage.jsx" as="script">
+    <link rel="prefetch" href="/src/pages/GalleryPage.jsx" as="script">
+    <link rel="prefetch" href="/src/pages/AwardsPage.jsx" as="script">
+    
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="/src/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
+  </head>
+  <body>
+    <!-- Instant logo placeholder - shows before React loads -->
+    <div class="logo-placeholder" id="instant-logo-placeholder">HP</div>
+    <div id="root">
+      <div class="loading">Loading...</div>
+    </div>
+    <script>
+      // Hide placeholder immediately when React starts loading
+      (function() {
+        const placeholder = document.getElementById('instant-logo-placeholder');
+        if (placeholder) {
+          // Hide immediately function
+          const hidePlaceholder = function() {
+            placeholder.style.display = 'none';
+            placeholder.remove();
+          };
+          
+          // Hide as soon as React script loads
+          hidePlaceholder();
+          
+          // Also watch for React mounting
+          const root = document.getElementById('root');
+          if (root) {
+            const observer = new MutationObserver(function() {
+              hidePlaceholder();
+              observer.disconnect();
+            });
+            observer.observe(root, { childList: true, subtree: true });
+            
+            // Fallback: hide after very short delay
+            setTimeout(hidePlaceholder, 200);
+          }
+        }
+      })();
+    </script>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

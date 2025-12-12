@@ -1,0 +1,8 @@
+
+{
+  "rsc": false,
+  "aliases": {
+    "components": "~/components",
+    "utils": "~/lib/utils"
+  }
+}
