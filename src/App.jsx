@@ -15,14 +15,14 @@ import ErrorBoundary from './components/common/ErrorBoundary.jsx'
 import StructuredData from './components/common/StructuredData.jsx'
 
 // Lazy load pages for code splitting with optimized loading
-const AboutPage = lazy(() => import('./Pages/AboutPage'))
-const LandingPage = lazy(() => import('./Pages/LandingPage'))
-const AwardsPage = lazy(() => import('./Pages/AwardsPage'))
-const GalleryPage = lazy(() => import('./Pages/GalleryPage'))
-const AdmissionPage = lazy(() => import('./Pages/AdmissionPage'))
-const ContactPage = lazy(() => import('./Pages/ContactPage'))
-const WorkInProgressPage = lazy(() => import('./Pages/WorkInProgressPage'))
-const NotFoundPage = lazy(() => import('./Pages/NotFoundPage'))
+const AboutPage = lazy(() => import('./pages/AboutPage'))
+const LandingPage = lazy(() => import('./pages/LandingPage'))
+const AwardsPage = lazy(() => import('./pages/AwardsPage'))
+const GalleryPage = lazy(() => import('./pages/GalleryPage'))
+const AdmissionPage = lazy(() => import('./pages/AdmissionPage'))
+const ContactPage = lazy(() => import('./pages/ContactPage'))
+const WorkInProgressPage = lazy(() => import('./pages/WorkInProgressPage'))
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 
 // Minimal loading fallback - empty to avoid showing loading text
 const LoadingFallback = () => null
@@ -52,13 +52,13 @@ const App = () => {
   React.useEffect(() => {
     // Preload admission page immediately if on that route (no delay for critical content)
     if (location.pathname === '/' || location.pathname === '/admission') {
-      import('./Pages/AdmissionPage').catch(() => {});
+      import('./pages/AdmissionPage').catch(() => {});
     }
   }, [location.pathname]);
   
   // Preload admission page on mount for instant loading
   React.useEffect(() => {
-    import('./Pages/AdmissionPage').catch(() => {});
+    import('./pages/AdmissionPage').catch(() => {});
   }, []);
   
   return (
