@@ -4,14 +4,8 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { optimizeAnimations } from './utils/animationOptimizer'
 import { trackWebVitals } from './utils/webVitals'
-
-// Defer CSS loading for faster initial render
-const loadCSS = () => {
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = '/src/index.css';
-  document.head.appendChild(link);
-};
+// Import CSS - Vite will handle bundling correctly in both dev and production
+import './index.css'
 
 // Initialize Lenis lazily after initial render with mobile optimization
 const initLenis = () => {
@@ -53,14 +47,12 @@ root.render(
   </BrowserRouter>
 );
 
-// Load CSS and Lenis after initial render
+// Initialize Lenis after initial render
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
-    loadCSS();
     // Defer Lenis initialization
     setTimeout(initLenis, 100);
   });
 } else {
-  loadCSS();
   setTimeout(initLenis, 100);
 }
