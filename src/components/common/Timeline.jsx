@@ -69,8 +69,8 @@ export const Timeline = ({ data }) => {
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-sky-200/20 rounded-full blur-3xl -mr-48 -mt-48 animate-pulse" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-sky-200/20 to-blue-200/20 rounded-full blur-3xl -ml-48 -mb-48 animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-brand-200/20 to-brand-200/20 rounded-full blur-3xl -mr-48 -mt-48 animate-pulse" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-brand-200/20 to-brand-200/20 rounded-full blur-3xl -ml-48 -mb-48 animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
       <div className="max-w-7xl mx-auto py-6 sm:py-8 md:py-12 px-4 sm:px-6 md:px-8 lg:px-10 relative z-10">
@@ -81,14 +81,14 @@ export const Timeline = ({ data }) => {
           transition={{ duration: 0.6 }}
           className="text-center mb-6 sm:mb-8 md:mb-10"
         >
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur-sm border border-blue-200/50 px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-medium text-blue-700 shadow-sm mb-3 md:mb-4">
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur-sm border border-brand-200/50 px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-medium text-brand-700 shadow-sm mb-3 md:mb-4">
             <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             Our Journey
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-2 sm:mb-3 md:mb-4 px-2 leading-tight">
-            <span className="bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-brand-600 via-brand-600 to-brand-600 bg-clip-text text-transparent">
               Milestones That
             </span>
             <br />
@@ -108,7 +108,7 @@ export const Timeline = ({ data }) => {
               height: heightSpring,
               opacity: opacityTransform,
             }}
-            className="absolute inset-x-0 top-0 w-0.5 bg-gradient-to-b from-blue-600 via-sky-500 to-blue-600 rounded-full shadow-lg"
+            className="absolute inset-x-0 top-0 w-0.5 bg-gradient-to-b from-brand-600 via-brand-500 to-brand-600 rounded-full shadow-lg"
           />
         </div>
         
@@ -119,7 +119,7 @@ export const Timeline = ({ data }) => {
               height: heightSpring,
               opacity: opacityTransform,
             }}
-            className="absolute inset-x-0 top-0 w-0.5 bg-gradient-to-b from-blue-600 via-sky-500 to-blue-600 rounded-full shadow-lg"
+            className="absolute inset-x-0 top-0 w-0.5 bg-gradient-to-b from-brand-600 via-brand-500 to-brand-600 rounded-full shadow-lg"
           />
         </div>
 
@@ -158,7 +158,7 @@ export const Timeline = ({ data }) => {
                         <motion.div
                           initial={{ scale: 0, opacity: 0 }}
                           animate={{ scale: 1, opacity: 1 }}
-                          className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-sky-400/20 rounded-lg sm:rounded-xl md:rounded-2xl blur-lg -z-10"
+                          className="absolute inset-0 bg-gradient-to-br from-brand-400/20 to-brand-400/20 rounded-lg sm:rounded-xl md:rounded-2xl blur-lg -z-10"
                         />
                       )}
                       
@@ -166,19 +166,19 @@ export const Timeline = ({ data }) => {
                       <div className={`
                         relative px-3 py-2 sm:px-4 sm:py-2.5 md:px-6 md:py-4 rounded-lg sm:rounded-xl md:rounded-2xl border-2 transition-all duration-300 w-full md:w-auto
                         ${isActive 
-                          ? 'bg-gradient-to-br from-blue-500 to-sky-500 border-blue-400 shadow-xl sm:shadow-2xl shadow-blue-500/50' 
+                          ? 'bg-gradient-to-br from-brand-500 to-brand-500 border-brand-400 shadow-xl sm:shadow-2xl shadow-brand-500/50' 
                           : isPast
-                          ? 'bg-gradient-to-br from-blue-100 to-sky-100 border-blue-200 shadow-md sm:shadow-lg'
+                          ? 'bg-gradient-to-br from-brand-100 to-brand-100 border-brand-200 shadow-md sm:shadow-lg'
                           : 'bg-white border-slate-200 shadow-sm sm:shadow-md'
                         }
                       `}>
                         <motion.h3
                           animate={{
-                            color: isActive ? '#ffffff' : isPast ? '#1e40af' : '#64748b',
+                            color: isActive ? '#ffffff' : isPast ? '#0098CA' : '#64748b',
                           }}
                           className={`
                             text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-extrabold transition-colors duration-300 text-center md:text-left leading-tight
-                            ${isActive ? 'text-white' : isPast ? 'text-blue-700' : 'text-slate-600'}
+                            ${isActive ? 'text-white' : isPast ? 'text-brand-700' : 'text-slate-600'}
                           `}>
                           {item.title}
                         </motion.h3>
@@ -209,19 +209,19 @@ export const Timeline = ({ data }) => {
                   <div className={`
                     relative group rounded-2xl sm:rounded-3xl overflow-hidden transition-all duration-500 flex flex-col md:flex-row
                     ${isActive 
-                      ? 'bg-white shadow-2xl ring-4 ring-blue-500/20 border-2 border-blue-300/50' 
+                      ? 'bg-white shadow-2xl ring-4 ring-brand-500/20 border-2 border-brand-300/50' 
                       : isPast
-                      ? 'bg-white shadow-xl ring-2 ring-blue-200/30 border-2 border-blue-200/40'
-                      : 'bg-white shadow-lg border-2 border-slate-200/60 hover:shadow-xl hover:ring-2 hover:ring-blue-100/40'
+                      ? 'bg-white shadow-xl ring-2 ring-brand-200/30 border-2 border-brand-200/40'
+                      : 'bg-white shadow-lg border-2 border-slate-200/60 hover:shadow-xl hover:ring-2 hover:ring-brand-100/40'
                     }
                   `}>
                     {/* Animated background gradient */}
                     <motion.div 
                       className={`absolute inset-0 z-0 ${
                         isActive 
-                          ? 'bg-gradient-to-br from-blue-50/50 via-sky-50/30 to-blue-50/50' 
+                          ? 'bg-gradient-to-br from-brand-50/50 via-brand-50/30 to-brand-50/50' 
                           : isPast
-                          ? 'bg-gradient-to-br from-blue-50/30 via-sky-50/20 to-blue-50/30'
+                          ? 'bg-gradient-to-br from-brand-50/30 via-brand-50/20 to-brand-50/30'
                           : 'bg-gradient-to-br from-slate-50/50 to-white'
                       }`}
                       animate={isActive ? {
@@ -281,12 +281,12 @@ export const Timeline = ({ data }) => {
                         
                         {/* Gradient overlay */}
                         <div className="absolute inset-0 bg-gradient-to-l from-black/40 via-black/10 to-transparent z-10 md:rounded-r-2xl rounded-t-2xl"></div>
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-sky-600/10 z-10 md:rounded-r-2xl rounded-t-2xl"></div>
+                        <div className="absolute inset-0 bg-gradient-to-br from-brand-600/10 via-transparent to-brand-600/10 z-10 md:rounded-r-2xl rounded-t-2xl"></div>
                         
                         {/* Animated border glow */}
                         {isActive && (
                           <motion.div 
-                            className="absolute inset-0 border-l-0 md:border-l-4 border-t-4 md:border-t-0 border-blue-400/30 z-20 pointer-events-none md:rounded-r-2xl rounded-t-2xl"
+                            className="absolute inset-0 border-l-0 md:border-l-4 border-t-4 md:border-t-0 border-brand-400/30 z-20 pointer-events-none md:rounded-r-2xl rounded-t-2xl"
                             animate={{
                               opacity: [0.3, 0.6, 0.3],
                             }}
@@ -303,14 +303,14 @@ export const Timeline = ({ data }) => {
                         <motion.div
                           initial={{ scale: 0, opacity: 0 }}
                           animate={{ scale: 1, opacity: 1 }}
-                          className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-400/10 to-sky-400/10 rounded-bl-full z-0"
+                          className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-brand-400/10 to-brand-400/10 rounded-bl-full z-0"
                         />
                         {/* Bottom-left accent */}
                         <motion.div
                           initial={{ scale: 0, opacity: 0 }}
                           animate={{ scale: 1, opacity: 1 }}
                           transition={{ delay: 0.1 }}
-                          className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-sky-400/10 to-blue-400/10 rounded-tr-full z-0"
+                          className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-brand-400/10 to-brand-400/10 rounded-tr-full z-0"
                         />
                       </>
                     )}
@@ -319,9 +319,9 @@ export const Timeline = ({ data }) => {
                     <motion.div
                       className={`absolute bottom-0 left-0 right-0 h-1 ${
                         isActive 
-                          ? 'bg-gradient-to-r from-blue-500 via-sky-500 to-blue-500' 
+                          ? 'bg-gradient-to-r from-brand-500 via-brand-500 to-brand-500' 
                           : isPast
-                          ? 'bg-gradient-to-r from-blue-400 via-sky-400 to-blue-400'
+                          ? 'bg-gradient-to-r from-brand-400 via-brand-400 to-brand-400'
                           : 'bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200'
                       }`}
                       initial={{ scaleX: 0 }}
@@ -347,9 +347,9 @@ export const Timeline = ({ data }) => {
                   className={`
                     w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 rounded-full border-2 sm:border-[2.5px] md:border-[3px] lg:border-4 transition-all duration-300
                     ${isActive 
-                      ? 'bg-gradient-to-br from-blue-500 to-sky-500 border-white' 
+                      ? 'bg-gradient-to-br from-brand-500 to-brand-500 border-white' 
                       : isPast
-                      ? 'bg-gradient-to-br from-blue-400 to-sky-400 border-white'
+                      ? 'bg-gradient-to-br from-brand-400 to-brand-400 border-white'
                       : 'bg-white border-slate-300'
                     }
                   `}

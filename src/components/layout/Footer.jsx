@@ -86,7 +86,7 @@ const Footer = () => {
                 {/* Placeholder logo - renders immediately */}
                 {!logoLoaded && (
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-sky-500 rounded-full flex items-center justify-center text-white font-bold text-xs shadow-md">
+                    <div className="w-8 h-8 bg-gradient-to-br from-brand-600 to-brand-500 rounded-full flex items-center justify-center text-white font-bold text-xs shadow-md">
                       HP
                     </div>
                   </div>
@@ -120,7 +120,7 @@ const Footer = () => {
             </div>
            
             <div className="flex items-center gap-2 text-sm text-slate-400">
-              <GraduationCap className="w-4 h-4 text-sky-400" />
+              <GraduationCap className="w-4 h-4 text-brand-400" />
               <span>CBSE Affiliated</span>
             </div>
           </div>
@@ -169,9 +169,9 @@ const Footer = () => {
                         }, 100);
                       }
                     }}
-                    className="text-slate-300 hover:text-sky-400 transition-colors duration-200 text-sm flex items-center gap-2 group"
+                    className="text-slate-300 hover:text-brand-400 transition-colors duration-200 text-sm flex items-center gap-2 group"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-400 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     {link.label}
                   </Link>
                 </li>
@@ -223,9 +223,9 @@ const Footer = () => {
                         }, 100);
                       }
                     }}
-                    className="text-slate-300 hover:text-sky-400 transition-colors duration-200 text-sm flex items-center gap-2 group"
+                    className="text-slate-300 hover:text-brand-400 transition-colors duration-200 text-sm flex items-center gap-2 group"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-400 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     {link.label}
                   </Link>
                 </li>
@@ -238,7 +238,7 @@ const Footer = () => {
             <h4 className="text-base font-bold mb-3 text-white">Contact Us</h4>
             <ul className="space-y-2">
               <li className="flex items-start gap-3 text-slate-300 text-sm">
-                <MapPin className="w-5 h-5 text-sky-400 shrink-0 mt-0.5" />
+                <MapPin className="w-5 h-5 text-brand-400 shrink-0 mt-0.5" />
                 <span>
                   Heal Paradise School<br />
                   3-118, Thotapalli Village<br />
@@ -247,14 +247,14 @@ const Footer = () => {
                 </span>
               </li>
               <li className="flex items-center gap-3 text-slate-300 text-sm">
-                <Phone className="w-5 h-5 text-sky-400 shrink-0" />
-                <a href="tel:+91XXXXXXXXXX" className="hover:text-sky-400 transition-colors">
+                <Phone className="w-5 h-5 text-brand-400 shrink-0" />
+                <a href="tel:+91XXXXXXXXXX" className="hover:text-brand-400 transition-colors">
                   +91 XXXXXXXXXX
                 </a>
               </li>
               <li className="flex items-center gap-3 text-slate-300 text-sm">
-                <Mail className="w-5 h-5 text-sky-400 shrink-0" />
-                <a href="mailto:info@healparadiseschool.edu" className="hover:text-sky-400 transition-colors break-all">
+                <Mail className="w-5 h-5 text-brand-400 shrink-0" />
+                <a href="mailto:info@healparadiseschool.edu" className="hover:text-brand-400 transition-colors break-all">
                   info@healparadiseschool.edu
                 </a>
               </li>
@@ -273,7 +273,7 @@ const Footer = () => {
                       target={social.href.startsWith('http') ? "_blank" : undefined}
                       rel={social.href.startsWith('http') ? "noopener noreferrer" : undefined}
                       aria-label={social.label}
-                      className="w-10 h-10 rounded-full bg-slate-700/50 hover:bg-sky-500 flex items-center justify-center transition-all duration-200 hover:scale-110 border border-slate-600 hover:border-sky-400"
+                      className="w-10 h-10 rounded-full bg-slate-700/50 hover:bg-brand-500 flex items-center justify-center transition-all duration-200 hover:scale-110 border border-slate-600 hover:border-brand-400"
                     >
                       <Icon className="w-5 h-5" />
                     </a>
@@ -331,16 +331,16 @@ const Footer = () => {
                     }, 100);
                   }
                 }}
-                className="text-slate-400 hover:text-sky-400 transition-colors"
+                className="text-slate-400 hover:text-brand-400 transition-colors"
               >
                 Disclosure
               </Link>
               <span className="text-slate-600">|</span>
-              <a href="#" className="text-slate-400 hover:text-sky-400 transition-colors">
+              <a href="#" className="text-slate-400 hover:text-brand-400 transition-colors">
                 Privacy Policy
               </a>
               <span className="text-slate-600">|</span>
-              <a href="#" className="text-slate-400 hover:text-sky-400 transition-colors">
+              <a href="#" className="text-slate-400 hover:text-brand-400 transition-colors">
                 Terms of Service
               </a>
             </div>

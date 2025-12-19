@@ -1,269 +1,366 @@
-# VPS Deployment Guide for Hostinger Ubuntu Server
+# Ubuntu 24.04 VPS Deployment Guide (MERN Stack)
 
-This guide will help you deploy your Vite React app to a Hostinger VPS running Ubuntu.
+This guide shows how to deploy a **MERN stack** on a Hostinger VPS running **Ubuntu 24.04**:
+
+- **Client**: React (Vite build output)
+- **Server**: Node.js + Express (API)
+- **Database**: MongoDB (recommended: **MongoDB Atlas**; self-host option included)
+- **Process manager**: PM2
+- **Reverse proxy + SSL**: Nginx + Let’s Encrypt
+
+It’s written to fit the most common repo layout:
+
+```text
+your-repo/
+  client/   (React app)
+  server/   (Express API)
+```
+
+If your folders are named differently (e.g. `frontend/`, `backend/`), just substitute paths.
 
 ## Prerequisites
 
-- Ubuntu VPS server (Hostinger)
-- SSH access to your server
-- Domain name (optional, but recommended)
+- Ubuntu 24.04 VPS (Hostinger)
+- SSH access
+- A domain pointing to your VPS IP (recommended for HTTPS)
 
-## Step 1: Update Node.js Version
-
-Your current Node.js version (v18.19.1) is too old. You need v20.19.0 or higher.
-
-### Option A: Using NVM (Recommended)
+## Step 0: Basic server setup (recommended)
 
 ```bash
-# Install NVM (Node Version Manager)
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y git curl ca-certificates ufw
 
-# Reload your shell configuration
+# Firewall
+sudo ufw allow OpenSSH
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+sudo ufw enable
+sudo ufw status
+```
+
+### Create a non-root deploy user (recommended)
+
+```bash
+sudo adduser deploy
+sudo usermod -aG sudo deploy
+```
+
+Then log in as that user:
+
+```bash
+ssh deploy@YOUR_SERVER_IP
+```
+
+## Step 1: Install Node.js (Ubuntu 24.04) — use Node 20.19+ (required)
+
+Your dependencies (Vite / React Router / etc.) require **Node 20.19+**.
+
+### Option A: Install via NVM (recommended)
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 source ~/.bashrc
 
-# Install Node.js v20
 nvm install 20
-
-# Use Node.js v20
 nvm use 20
-
-# Set as default
 nvm alias default 20
 
-# Verify installation
-node -v  # Should show v20.x.x
+node -v  # v20.x.x
 npm -v
 ```
 
-### Option B: Using NodeSource Repository
+### Option B: Install via NodeSource (system-wide)
 
 ```bash
-# Remove old Node.js
-sudo apt remove nodejs npm -y
-
-# Install Node.js 20.x
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt-get install -y nodejs
-
-# Verify installation
-node -v  # Should show v20.x.x
-npm -v
+node -v
 ```
 
-## Step 2: Install Dependencies and Build
+## Step 2: MongoDB setup (choose ONE)
+
+### Option A (recommended): MongoDB Atlas (no server DB install)
+
+1. Create a cluster on Atlas and get your connection string.
+2. Put it into your server `.env` as `MONGODB_URI=...`.
+
+This is the easiest and most reliable way on VPS.
+
+### Option B: Self-host MongoDB using Docker (recommended for self-host)
+
+Docker avoids “which MongoDB apt repo supports Ubuntu 24.04” issues.
 
 ```bash
-# Navigate to your project directory
-cd ~/Heal-Paradise-School
+sudo apt install -y docker.io
+sudo systemctl enable --now docker
 
-# Install dependencies
-npm install
+sudo docker volume create mongo_data
+sudo docker run -d \
+  --name mongodb \
+  --restart unless-stopped \
+  -p 127.0.0.1:27017:27017 \
+  -v mongo_data:/data/db \
+  mongo:7
+```
 
-# Build the production version
+Notes:
+- Binding to `127.0.0.1` keeps MongoDB **private** (not exposed publicly).
+- Use `mongodb://127.0.0.1:27017/your_db_name` in your app.
+
+## Step 3: Get your code onto the server
+
+```bash
+cd ~
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git app
+cd app
+```
+
+If you upload a zip instead of git, extract into `~/app`.
+
+## Step 4: Configure environment variables
+
+### Server `.env` (example)
+
+Create `server/.env` (do not commit this file):
+
+```bash
+nano server/.env
+```
+
+Example keys (adjust to your backend):
+
+```env
+NODE_ENV=production
+PORT=5000
+
+# MongoDB
+MONGODB_URI=mongodb://127.0.0.1:27017/heal_school
+
+# If you use JWT/auth/etc
+JWT_SECRET=replace_with_long_random_secret
+
+# If your client calls the API with a base URL
+CLIENT_ORIGIN=https://your-domain.com
+```
+
+### Client environment (example)
+
+If your React app needs an API base URL at build-time, create `client/.env.production`:
+
+```env
+VITE_API_BASE_URL=/api
+```
+
+Using `/api` is best with Nginx proxying (next steps).
+
+## Step 5: Build the client (React) for production
+
+```bash
+cd ~/app/client
+npm ci
 npm run build
-
-# This creates a `dist` folder with all production files
 ```
 
-## Step 3: Serve the Application
-
-You have two options:
-
-### Option A: Using Vite Preview (Quick Test)
+After this you should have:
 
 ```bash
-# Serve the built files
-npm start
-
-# Or directly:
-npm run serve
-
-# Your app will be available at http://your-server-ip:3000
+ls -la dist
 ```
 
-### Option B: Using Nginx (Production - Recommended)
+## Step 6: Run the server (Express) with PM2
 
-1. **Install Nginx:**
+Install PM2 once:
+
 ```bash
-sudo apt update
-sudo apt install nginx -y
+sudo npm i -g pm2
 ```
 
-2. **Create Nginx Configuration:**
+Then start your API:
+
 ```bash
-sudo nano /etc/nginx/sites-available/heal-paradise-school
+cd ~/app/server
+npm ci
+
+# Start using your package.json start script
+pm2 start npm --name "api" -- start
+pm2 save
 ```
 
-3. **Add this configuration:**
+Enable PM2 on boot:
+
+```bash
+pm2 startup systemd -u $USER --hp $HOME
+# Copy/paste the command PM2 prints (it uses sudo)
+```
+
+Check:
+
+```bash
+pm2 status
+pm2 logs api
+```
+
+## Step 7: Configure Nginx (serve client + proxy /api to server)
+
+Install Nginx:
+
+```bash
+sudo apt install -y nginx
+```
+
+Create a site config:
+
+```bash
+sudo nano /etc/nginx/sites-available/mern-app
+```
+
+Paste and edit `server_name` + paths:
+
 ```nginx
 server {
     listen 80;
     server_name your-domain.com www.your-domain.com;
 
-    root /root/Heal-Paradise-School/dist;
+    # React build output
+    root /home/deploy/app/client/dist;
     index index.html;
 
-    # Gzip compression
-    gzip on;
-    gzip_vary on;
-    gzip_min_length 1024;
-    gzip_types text/plain text/css text/xml text/javascript application/x-javascript application/xml+rss application/javascript application/json;
+    # Proxy API to Node/Express
+    location /api/ {
+        proxy_pass http://127.0.0.1:5000/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
 
-    # SPA routing - all routes go to index.html
+    # SPA routing (React Router)
     location / {
         try_files $uri $uri/ /index.html;
     }
 
     # Cache static assets
-    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ {
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff2?|ttf|eot)$ {
         expires 1y;
         add_header Cache-Control "public, immutable";
     }
-
-    # Security headers
-    add_header X-Frame-Options "SAMEORIGIN" always;
-    add_header X-Content-Type-Options "nosniff" always;
-    add_header X-XSS-Protection "1; mode=block" always;
 }
 ```
 
-4. **Enable the site:**
+Enable it:
+
 ```bash
-sudo ln -s /etc/nginx/sites-available/heal-paradise-school /etc/nginx/sites-enabled/
-sudo nginx -t  # Test configuration
+sudo ln -s /etc/nginx/sites-available/mern-app /etc/nginx/sites-enabled/mern-app
+sudo rm -f /etc/nginx/sites-enabled/default
+sudo nginx -t
 sudo systemctl restart nginx
 ```
 
-5. **Set up SSL with Let's Encrypt (Optional but Recommended):**
+## Step 8: Add HTTPS (Let’s Encrypt)
+
 ```bash
-sudo apt install certbot python3-certbot-nginx -y
+sudo apt install -y certbot python3-certbot-nginx
 sudo certbot --nginx -d your-domain.com -d www.your-domain.com
 ```
 
-### Option C: Using PM2 with serve (Alternative)
+Auto-renew:
 
 ```bash
-# Install serve globally
-npm install -g serve
-
-# Install PM2
-npm install -g pm2
-
-# Start the app with PM2
-pm2 serve dist 3000 --spa --name heal-paradise-school
-
-# Save PM2 configuration
-pm2 save
-
-# Set PM2 to start on boot
-pm2 startup
-# Follow the instructions it provides
+sudo systemctl status certbot.timer
 ```
 
-## Step 4: Firewall Configuration
+## Step 9: Deploy updates (pull → install → build → restart)
+
+Create `~/deploy.sh`:
 
 ```bash
-# Allow HTTP and HTTPS
-sudo ufw allow 80/tcp
-sudo ufw allow 443/tcp
-
-# If using Vite preview, allow port 3000
-sudo ufw allow 3000/tcp
-
-# Enable firewall
-sudo ufw enable
+nano ~/deploy.sh
 ```
 
-## Step 5: Update and Rebuild
-
-Whenever you make changes:
-
 ```bash
-# Pull latest changes (if using git)
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd ~/app
 git pull
 
-# Install any new dependencies
-npm install
+cd server
+npm ci
+pm2 restart api
 
-# Rebuild
+cd ../client
+npm ci
 npm run build
 
-# If using Nginx, no restart needed (it serves static files)
-# If using PM2, restart:
-pm2 restart heal-paradise-school
+sudo systemctl reload nginx
+echo "Deploy complete"
+```
+
+Make executable:
+
+```bash
+chmod +x ~/deploy.sh
+```
+
+Run:
+
+```bash
+~/deploy.sh
 ```
 
 ## Troubleshooting
 
-### Node.js Version Still Wrong
+### Node engine warnings / build failures
+
 ```bash
-# Check current version
 node -v
-
-# If still old, make sure you're using the right Node.js
-which node
-# Should point to NVM's Node.js if using NVM
-
-# Or restart your SSH session
-exit
-# SSH back in
 ```
 
-### Port Already in Use
-```bash
-# Check what's using port 3000
-sudo lsof -i :3000
+If it’s not **20.19+**, fix Node first (Step 1), then reinstall:
 
-# Kill the process or use a different port
-# In package.json, change the port in the serve script
-```
-
-### Build Fails
 ```bash
-# Clear node_modules and reinstall
 rm -rf node_modules package-lock.json
 npm install
-
-# Try building again
-npm run build
 ```
 
-### Nginx 502 Bad Gateway
-- Check that the `dist` folder exists: `ls -la ~/Heal-Paradise-School/dist`
-- Check Nginx error logs: `sudo tail -f /var/log/nginx/error.log`
-- Verify file permissions: `sudo chown -R www-data:www-data /root/Heal-Paradise-School/dist`
+### API not working
 
-## Quick Deployment Script
-
-Save this as `deploy.sh`:
+- Check PM2 logs:
 
 ```bash
-#!/bin/bash
-cd ~/Heal-Paradise-School
-git pull
-npm install
-npm run build
-# If using PM2:
-pm2 restart heal-paradise-school
-# If using Nginx, no restart needed
-echo "Deployment complete!"
+pm2 logs api
 ```
 
-Make it executable:
+- Confirm server is listening locally:
+
 ```bash
-chmod +x deploy.sh
+curl -i http://127.0.0.1:5000/health || true
 ```
 
-Run it:
+(Replace `/health` with a real endpoint.)
+
+### Nginx errors
+
 ```bash
-./deploy.sh
+sudo tail -n 200 /var/log/nginx/error.log
+sudo nginx -t
+sudo systemctl restart nginx
 ```
 
-## Recommended Setup
+### MongoDB connection issues (Docker)
 
-For production, use **Nginx** (Option B) as it's:
-- More efficient for serving static files
-- Better for SSL/HTTPS
-- More reliable and performant
-- Industry standard
+```bash
+sudo docker ps
+sudo docker logs mongodb --tail 200
+```
+
+## Recommended production setup (summary)
+
+- **MongoDB Atlas** (or Docker Mongo bound to localhost)
+- **PM2** for the Express API
+- **Nginx** to serve the React build and proxy `/api`
+- **Certbot** for HTTPS
 

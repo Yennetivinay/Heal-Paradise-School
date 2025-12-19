@@ -212,7 +212,7 @@ const GalleryCollections = ({ images = [], onModalOpen, onModalClose }) => {
             className="mb-4 sm:mb-6 md:mb-8"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-900 mb-2 text-center px-2">
-              Explore Our <span className="bg-gradient-to-r from-blue-600 to-sky-600 bg-clip-text text-transparent">Collections</span>
+              Explore Our <span className="bg-gradient-to-r from-brand-600 to-brand-600 bg-clip-text text-transparent">Collections</span>
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-slate-600 text-center max-w-2xl mx-auto px-2 mt-1">
               Browse through our curated collection of photos and videos showcasing school life, events, and achievements
@@ -235,7 +235,7 @@ const GalleryCollections = ({ images = [], onModalOpen, onModalClose }) => {
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                     selectedCategory === category
-                      ? 'bg-gradient-to-r from-blue-600 to-sky-500 text-white shadow-lg scale-105'
+                      ? 'bg-gradient-to-r from-brand-600 to-brand-500 text-white shadow-lg scale-105'
                       : 'bg-white/90 backdrop-blur-md border border-slate-200/50 text-slate-700 hover:bg-slate-50'
                   }`}
                 >
@@ -256,7 +256,7 @@ const GalleryCollections = ({ images = [], onModalOpen, onModalClose }) => {
                 <button
                   onClick={() => setViewMode('grid')}
                   className={`p-2 rounded-full transition-colors ${
-                    viewMode === 'grid' ? 'bg-blue-600 text-white' : 'text-slate-600 hover:bg-slate-100'
+                    viewMode === 'grid' ? 'bg-brand-600 text-white' : 'text-slate-600 hover:bg-slate-100'
                   }`}
                   aria-label="Grid view"
                 >
@@ -265,7 +265,7 @@ const GalleryCollections = ({ images = [], onModalOpen, onModalClose }) => {
                 <button
                   onClick={() => setViewMode('list')}
                   className={`p-2 rounded-full transition-colors ${
-                    viewMode === 'list' ? 'bg-blue-600 text-white' : 'text-slate-600 hover:bg-slate-100'
+                    viewMode === 'list' ? 'bg-brand-600 text-white' : 'text-slate-600 hover:bg-slate-100'
                   }`}
                   aria-label="List view"
                 >
@@ -341,7 +341,7 @@ const GalleryCollections = ({ images = [], onModalOpen, onModalClose }) => {
                     {viewMode === 'list' && (
                       <div className="flex-1">
                         <h4 className="font-semibold text-slate-900 mb-1">{image.alt}</h4>
-                        <span className="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded-full">{image.category}</span>
+                        <span className="text-xs text-brand-600 bg-brand-50 px-2 py-1 rounded-full">{image.category}</span>
                       </div>
                     )}
                   </motion.div>
@@ -365,7 +365,7 @@ const GalleryCollections = ({ images = [], onModalOpen, onModalClose }) => {
               className="px-2 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 md:py-8"
             >
               <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 mb-4 sm:mb-5 text-center">
-                <span className="bg-gradient-to-r from-blue-600 to-sky-600 bg-clip-text text-transparent">Featured</span> {mediaType === 'images' ? 'Images' : 'Videos'}
+                <span className="bg-gradient-to-r from-brand-600 to-brand-600 bg-clip-text text-transparent">Featured</span> {mediaType === 'images' ? 'Images' : 'Videos'}
               </h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-5 max-w-5xl mx-auto">
                 {featuredImages.map((image, index) => {
@@ -388,7 +388,7 @@ const GalleryCollections = ({ images = [], onModalOpen, onModalClose }) => {
                       }}
                       data-gallery-image="true"
                     >
-                      <div className="relative w-full aspect-square overflow-hidden rounded-2xl shadow-2xl ring-2 ring-blue-500/50 group-hover:ring-blue-500 transition-all duration-300 bg-gradient-to-br from-blue-50 to-sky-50 p-1">
+                      <div className="relative w-full aspect-square overflow-hidden rounded-2xl shadow-2xl ring-2 ring-brand-500/50 group-hover:ring-brand-500 transition-all duration-300 bg-gradient-to-br from-brand-50 to-brand-50 p-1">
                         {image.type === 'video' ? (
                           <video
                             src={image.src}
@@ -408,7 +408,7 @@ const GalleryCollections = ({ images = [], onModalOpen, onModalClose }) => {
                         )}
                         {image.type === 'video' && (
                           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-blue-600 to-sky-500 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-brand-600 to-brand-500 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
                               <Play className="w-6 h-6 sm:w-7 sm:h-7 text-white ml-1" />
                             </div>
                           </div>
@@ -417,7 +417,7 @@ const GalleryCollections = ({ images = [], onModalOpen, onModalClose }) => {
                         <div className="absolute bottom-3 left-3 right-3 text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none drop-shadow-lg">
                           {image.alt}
                         </div>
-                        <div className="absolute top-3 right-3 bg-gradient-to-r from-blue-600 to-sky-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg pointer-events-none flex items-center gap-1">
+                        <div className="absolute top-3 right-3 bg-gradient-to-r from-brand-600 to-brand-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg pointer-events-none flex items-center gap-1">
                           <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
                           Featured
                         </div>
@@ -708,7 +708,7 @@ const GalleryCollections = ({ images = [], onModalOpen, onModalClose }) => {
                         onClick={() => setCurrentImageIndex(index)}
                         className={`w-full flex items-center gap-3 rounded-lg border px-2 py-2 text-left transition-all ${
                           index === currentImageIndex
-                            ? 'border-blue-500 bg-blue-50'
+                            ? 'border-brand-500 bg-brand-50'
                             : 'border-transparent hover:border-slate-300 hover:bg-slate-50'
                         }`}
                         ref={(el) => { thumbnailRefs.current[index] = el; }}

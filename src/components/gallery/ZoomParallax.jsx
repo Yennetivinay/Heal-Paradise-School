@@ -107,7 +107,7 @@ export function ZoomParallax({ images }) {
                 <div className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                 {/* glow */}
-                <div className="pointer-events-none absolute -inset-1 -z-10 rounded-2xl bg-gradient-to-r from-blue-400/20 via-sky-400/20 to-blue-400/20 blur-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="pointer-events-none absolute -inset-1 -z-10 rounded-2xl bg-gradient-to-r from-brand-400/20 via-brand-400/20 to-brand-400/20 blur-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </div>
             </motion.div>
           );

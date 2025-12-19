@@ -57,8 +57,8 @@ const WorkInProgressPage = () => {
           className="mb-8 flex justify-center"
         >
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-sky-400 rounded-full blur-2xl opacity-30 animate-pulse" />
-            <div className="relative w-32 h-32 bg-gradient-to-br from-blue-500 to-sky-500 rounded-full flex items-center justify-center shadow-2xl">
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-400 to-brand-400 rounded-full blur-2xl opacity-30 animate-pulse" />
+            <div className="relative w-32 h-32 bg-gradient-to-br from-brand-500 to-brand-500 rounded-full flex items-center justify-center shadow-2xl">
               <Construction className="w-16 h-16 text-white" />
             </div>
           </div>
@@ -72,7 +72,7 @@ const WorkInProgressPage = () => {
           className="mb-6"
         >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-blue-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-brand-600 via-brand-500 to-brand-600 bg-clip-text text-transparent">
               Work in Progress
             </span>
           </h1>
@@ -91,9 +91,9 @@ const WorkInProgressPage = () => {
           <p className="text-lg md:text-xl text-slate-600 mb-4 max-w-2xl mx-auto leading-relaxed">
             {getPageDescription()}
           </p>
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full border border-blue-200">
-            <Clock className="w-5 h-5 text-blue-600" />
-            <span className="text-sm font-medium text-blue-700">Coming Soon</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-50 rounded-full border border-brand-200">
+            <Clock className="w-5 h-5 text-brand-600" />
+            <span className="text-sm font-medium text-brand-700">Coming Soon</span>
           </div>
         </motion.div>
 
@@ -113,9 +113,9 @@ const WorkInProgressPage = () => {
                 transition={{ duration: 0.3, delay: 0.6 + step * 0.1 }}
                 className="flex items-center gap-2"
               >
-                <div className="w-3 h-3 rounded-full bg-blue-500" />
+                <div className="w-3 h-3 rounded-full bg-brand-500" />
                 {step < 3 && (
-                  <div className="w-8 h-0.5 bg-blue-300" />
+                  <div className="w-8 h-0.5 bg-brand-300" />
                 )}
               </motion.div>
             ))}
@@ -132,14 +132,14 @@ const WorkInProgressPage = () => {
         >
           <Link
             to="/"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-sky-500 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-brand-600 to-brand-500 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
           >
             <Home className="w-5 h-5" />
             <span>Go to Home</span>
           </Link>
           <button
             onClick={() => window.history.back()}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-slate-700 border-2 border-slate-200 rounded-full font-semibold shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 hover:border-blue-500"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-slate-700 border-2 border-slate-200 rounded-full font-semibold shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 hover:border-brand-500"
           >
             <ArrowLeft className="w-5 h-5" />
             <span>Go Back</span>
@@ -157,28 +157,28 @@ const WorkInProgressPage = () => {
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Link
               to="/about"
-              className="text-sm text-blue-600 hover:text-blue-700 hover:underline transition-colors font-medium"
+              className="text-sm text-brand-600 hover:text-brand-700 hover:underline transition-colors font-medium"
             >
               About Us
             </Link>
             <span className="text-slate-300">•</span>
             <Link
               to="/gallery"
-              className="text-sm text-blue-600 hover:text-blue-700 hover:underline transition-colors font-medium"
+              className="text-sm text-brand-600 hover:text-brand-700 hover:underline transition-colors font-medium"
             >
               Gallery
             </Link>
             <span className="text-slate-300">•</span>
             <Link
               to="/admission"
-              className="text-sm text-blue-600 hover:text-blue-700 hover:underline transition-colors font-medium"
+              className="text-sm text-brand-600 hover:text-brand-700 hover:underline transition-colors font-medium"
             >
               Admissions
             </Link>
             <span className="text-slate-300">•</span>
             <Link
               to="/contact"
-              className="text-sm text-blue-600 hover:text-blue-700 hover:underline transition-colors font-medium"
+              className="text-sm text-brand-600 hover:text-brand-700 hover:underline transition-colors font-medium"
             >
               Contact Us
             </Link>

@@ -46,17 +46,17 @@ const ContactPage = () => {
   };
 
   const socialLinks = [
-    { icon: Facebook, href: 'https://www.facebook.com/HealVillage', label: 'Facebook', color: 'from-blue-600 to-blue-700' },
-    { icon: Twitter, href: '#', label: 'Twitter', color: 'from-sky-500 to-sky-600' },
+    { icon: Facebook, href: 'https://www.facebook.com/HealVillage', label: 'Facebook', color: 'from-brand-600 to-brand-700' },
+    { icon: Twitter, href: '#', label: 'Twitter', color: 'from-brand-500 to-brand-600' },
     { icon: Instagram, href: '#', label: 'Instagram', color: 'from-pink-500 to-rose-600' },
     { icon: Youtube, href: '#', label: 'YouTube', color: 'from-red-600 to-red-700' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn', color: 'from-blue-700 to-blue-800' },
+    { icon: Linkedin, href: '#', label: 'LinkedIn', color: 'from-brand-700 to-brand-800' },
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-neutral-50 via-white to-slate-50">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-600 via-sky-500 to-blue-600 text-white py-16 md:py-24 overflow-hidden">
+      <section className="relative bg-gradient-to-r from-brand-600 via-brand-500 to-brand-600 text-white py-16 md:py-24 overflow-hidden">
         {/* Background decorations */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
@@ -112,7 +112,7 @@ const ContactPage = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
                       placeholder="Enter your full name"
                     />
                   </div>
@@ -129,7 +129,7 @@ const ContactPage = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
                         placeholder="your.email@example.com"
                       />
                     </div>
@@ -143,7 +143,7 @@ const ContactPage = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
                         placeholder="+91 XXXXXXXXXX"
                       />
                     </div>
@@ -160,7 +160,7 @@ const ContactPage = () => {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
                       placeholder="What is this regarding?"
                     />
                   </div>
@@ -176,14 +176,14 @@ const ContactPage = () => {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all resize-none"
                       placeholder="Tell us how we can help you..."
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-sky-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2"
+                    className="w-full px-6 py-3 bg-gradient-to-r from-brand-600 to-brand-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2"
                   >
                     <Send className="w-5 h-5" />
                     <span>Send Message</span>
@@ -207,10 +207,10 @@ const ContactPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.1 }}
-                  className="group p-6 rounded-2xl bg-gradient-to-br from-blue-50 to-sky-50 border-2 border-blue-100 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  className="group p-6 rounded-2xl bg-gradient-to-br from-brand-50 to-brand-50 border-2 border-brand-100 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-sky-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br from-brand-500 to-brand-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                       <MapPin className="w-7 h-7 text-white" />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -219,7 +219,7 @@ const ContactPage = () => {
                         href="https://www.google.com/maps/place/HEAL+PARADISE+SECONDARY+SCHOOL/@16.6476137,80.793083,17.08z/data=!4m6!3m5!1s0x3a35e10014e10cf7:0xa8b6e0e50c33ca9a!8m2!3d16.647596!4d80.791592!16s%2Fg%2F11y7fmrmgj?entry=ttu&g_ep=EgoyMDI1MTIwOC4wIKXMDSoASAFQAw%3D%3D"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm text-slate-700 leading-relaxed hover:text-blue-600 transition-colors cursor-pointer block"
+                        className="text-sm text-slate-700 leading-relaxed hover:text-brand-600 transition-colors cursor-pointer block"
                       >
                         Heal Paradise School<br />
                         3-118, Thotapalli Village<br />
@@ -244,8 +244,8 @@ const ContactPage = () => {
                     <div className="flex-1 min-w-0">
                       <h3 className="text-lg font-bold text-slate-900 mb-2">Call Us</h3>
                       <p className="text-sm text-slate-700 leading-relaxed">
-                        <a href="tel:+91XXXXXXXXXX" className="hover:text-blue-600 transition-colors font-medium">+91 XXXXXXXXXX</a><br />
-                        <a href="tel:+91XXXXXXXXXX" className="hover:text-blue-600 transition-colors font-medium">+91 XXXXXXXXXX</a>
+                        <a href="tel:+91XXXXXXXXXX" className="hover:text-brand-600 transition-colors font-medium">+91 XXXXXXXXXX</a><br />
+                        <a href="tel:+91XXXXXXXXXX" className="hover:text-brand-600 transition-colors font-medium">+91 XXXXXXXXXX</a>
                       </p>
                     </div>
                   </div>
@@ -265,8 +265,8 @@ const ContactPage = () => {
                     <div className="flex-1 min-w-0">
                       <h3 className="text-lg font-bold text-slate-900 mb-2">Email Us</h3>
                       <p className="text-sm text-slate-700 leading-relaxed">
-                        <a href="mailto:info@healparadiseschool.edu" className="hover:text-blue-600 transition-colors break-all font-medium">info@healparadiseschool.edu</a><br />
-                        <a href="mailto:admissions@healparadiseschool.edu" className="hover:text-blue-600 transition-colors break-all font-medium">admissions@healparadiseschool.edu</a>
+                        <a href="mailto:info@healparadiseschool.edu" className="hover:text-brand-600 transition-colors break-all font-medium">info@healparadiseschool.edu</a><br />
+                        <a href="mailto:admissions@healparadiseschool.edu" className="hover:text-brand-600 transition-colors break-all font-medium">admissions@healparadiseschool.edu</a>
                       </p>
                     </div>
                   </div>
@@ -304,7 +304,7 @@ const ContactPage = () => {
                 className="p-6 rounded-2xl bg-gradient-to-br from-slate-50 to-white border-2 border-slate-100 shadow-lg"
               >
                 <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-                  <Globe className="w-5 h-5 text-blue-600" />
+                  <Globe className="w-5 h-5 text-brand-600" />
                   Follow Us
                 </h3>
                 <div className="flex flex-wrap items-center gap-3">
@@ -337,11 +337,11 @@ const ContactPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.6 }}
-                className="relative rounded-2xl overflow-hidden border-2 border-blue-100 shadow-lg w-full"
+                className="relative rounded-2xl overflow-hidden border-2 border-brand-100 shadow-lg w-full"
                 style={{ height: '400px', maxHeight: '100%' }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-sky-50 flex items-center justify-center z-0">
-                  <MapPin className="w-16 h-16 sm:w-20 sm:h-20 text-blue-300 animate-pulse" />
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-50 to-brand-50 flex items-center justify-center z-0">
+                  <MapPin className="w-16 h-16 sm:w-20 sm:h-20 text-brand-300 animate-pulse" />
                 </div>
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.091091074091!2d80.791592!3d16.647596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35e10014e10cf7%3A0xa8b6e0e50c33ca9a!2sHEAL%20PARADISE%20SECONDARY%20SCHOOL!5e0!3m2!1sen!2sin!4v1702300000000!5m2!1sen!2sin"

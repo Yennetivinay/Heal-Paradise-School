@@ -3,6 +3,7 @@ import { Menu, X, ChevronDown, Flame } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const navItems = [
+  { id: 0, label: "Home", to: "/" },
   { id: 1, label: "About", to: "/about" },
   { id: 3, label: "Gallery", to: "/gallery" },
   {
@@ -243,11 +244,9 @@ function AppleNavbar() {
         }
       }
       
-      // If on landing page with hash, try to match hash to sections
-      if (pathname === "/" && hash) {
-        // Hash links like #admissions, #vision, #mission don't have direct nav items
-        // So we keep activeNav as null for landing page sections
-        setActiveNav(null);
+      // If on landing page, set Home as active
+      if (pathname === "/") {
+        setActiveNav(0); // Home id
         return;
       }
       
@@ -450,7 +449,7 @@ function AppleNavbar() {
             {/* Placeholder logo - renders immediately */}
             {!logoLoaded.desktop && (
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-sky-500 rounded-full flex items-center justify-center text-white font-bold text-xs shadow-md">
+                <div className="w-8 h-8 bg-gradient-to-br from-brand-500 to-brand-500 rounded-full flex items-center justify-center text-white font-bold text-xs shadow-md">
                   HP
                 </div>
               </div>
@@ -480,7 +479,7 @@ function AppleNavbar() {
 
           <div className="relative">
             <div
-              className="pointer-events-none absolute top-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-blue-600 to-sky-500 shadow-xl backdrop-blur-sm transition-all duration-150 ease-out"
+              className="pointer-events-none absolute top-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-brand-500 to-brand-500 shadow-xl backdrop-blur-sm transition-all duration-150 ease-out"
               style={{
                 left: `${indicatorStyle.left}px`,
                 width: `${indicatorStyle.width}px`,
@@ -508,7 +507,7 @@ function AppleNavbar() {
                     className={`relative z-10 group px-3 xl:px-4 py-2 mx-0.5 rounded-full text-xs xl:text-sm font-medium whitespace-nowrap flex items-center gap-1 transition-colors duration-150 ${
                       isItemActive(item)
                         ? "text-white"
-                        : "text-slate-900 hover:bg-blue-50 hover:text-blue-700 hover:scale-105"
+                        : "text-slate-900 hover:bg-brand-50 hover:text-brand-600 hover:scale-105"
                     }`}
                   >
                     {item.label}
@@ -523,7 +522,7 @@ function AppleNavbar() {
                     className={`relative z-10 group px-3 xl:px-4 py-2 mx-0.5 rounded-full text-xs xl:text-sm font-medium whitespace-nowrap flex items-center gap-1 transition-colors duration-150 ${
                       isItemActive(item)
                         ? "text-white"
-                        : "text-slate-900 hover:bg-blue-50 hover:text-blue-700 hover:scale-105"
+                        : "text-slate-900 hover:bg-brand-50 hover:text-brand-600 hover:scale-105"
                     }`}
                   >
                     {item.label}
@@ -531,7 +530,7 @@ function AppleNavbar() {
                       <ChevronDown
                         size={14}
                         className={`transition-colors duration-300 ${
-                          isItemActive(item) ? "text-white" : "group-hover:text-blue-700"
+                          isItemActive(item) ? "text-white" : "group-hover:text-brand-600"
                         }`}
                       />
                     )}
@@ -559,8 +558,8 @@ function AppleNavbar() {
                             }}
                             className={`block w-full text-left px-4 py-2 text-sm rounded-full transition-colors duration-200 whitespace-nowrap ${
                               activeNav === subItem.id
-                                ? "bg-gradient-to-r from-blue-600 to-sky-500 text-white shadow-lg"
-                                : "text-slate-900 hover:bg-blue-50 hover:text-blue-700"
+                                ? "bg-gradient-to-r from-brand-500 to-brand-500 text-white shadow-lg"
+                                : "text-slate-900 hover:bg-brand-50 hover:text-brand-600"
                             }`}
                           >
                             {subItem.label}
@@ -574,8 +573,8 @@ function AppleNavbar() {
                             }}
                             className={`block w-full text-left px-4 py-2 text-sm rounded-full transition-colors duration-200 whitespace-nowrap ${
                               activeNav === subItem.id
-                                ? "bg-gradient-to-r from-blue-600 to-sky-500 text-white shadow-lg"
-                                : "text-slate-900 hover:bg-blue-50 hover:text-blue-700"
+                                ? "bg-gradient-to-r from-brand-500 to-brand-500 text-white shadow-lg"
+                                : "text-slate-900 hover:bg-brand-50 hover:text-brand-600"
                             }`}
                           >
                             {subItem.label}
@@ -614,7 +613,7 @@ function AppleNavbar() {
            {/* Placeholder logo - renders immediately */}
            {!logoLoaded.mobile && (
              <div className="absolute inset-0 flex items-center justify-center">
-               <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-sky-500 rounded-full flex items-center justify-center text-white font-bold text-xs shadow-md">
+               <div className="w-8 h-8 bg-gradient-to-br from-brand-500 to-brand-500 rounded-full flex items-center justify-center text-white font-bold text-xs shadow-md">
                  HP
                </div>
              </div>
@@ -664,15 +663,15 @@ function AppleNavbar() {
                 {/* FIXED: Move background colors to wrapper div */}
                 <div className={`px-4 py-3 rounded-2xl transition-all duration-300 ${
                   isItemActive(item)
-                    ? "bg-gradient-to-r from-blue-600 to-sky-500 shadow-lg"
-                    : "hover:bg-blue-50"
+                    ? "bg-gradient-to-r from-brand-500 to-brand-500 shadow-lg"
+                    : "hover:bg-brand-50"
                 }`}>
                   <button
                     onClick={() => toggleMobileSubmenu(item.id)}
                     className={`group w-full text-left text-sm font-medium transition-all duration-300 flex items-start justify-between gap-2 ${
                       isItemActive(item)
                         ? "text-white"
-                        : "text-slate-900 hover:text-blue-700"
+                        : "text-slate-900 hover:text-brand-600"
                     }`}
                   >
                     {item.label}
@@ -681,7 +680,7 @@ function AppleNavbar() {
                     )}
                     <ChevronDown
                       size={16}
-                      className={`shrink-0 transition-transform duration-300 ${openSubmenu === item.id ? "rotate-180" : ""} ${isItemActive(item) ? "text-white" : "group-hover:text-blue-700"}`}
+                      className={`shrink-0 transition-transform duration-300 ${openSubmenu === item.id ? "rotate-180" : ""} ${isItemActive(item) ? "text-white" : "group-hover:text-brand-600"}`}
                     />
                   </button>
                 </div>
@@ -706,8 +705,8 @@ function AppleNavbar() {
                           onFocus={() => handleNavHover(subItem.to)}
                           className={`block w-full text-left px-4 py-2 text-sm font-medium rounded-full transition-colors duration-200 whitespace-normal break-words ${
                             activeNav === subItem.id
-                              ? "bg-gradient-to-r from-blue-600 to-sky-500 text-white shadow-lg"
-                              : "text-slate-900 hover:bg-blue-50 hover:text-blue-700"
+                              ? "bg-gradient-to-r from-brand-500 to-brand-500 text-white shadow-lg"
+                              : "text-slate-900 hover:bg-brand-50 hover:text-brand-600"
                           }`}
                         >
                           {subItem.label}
@@ -718,8 +717,8 @@ function AppleNavbar() {
                           onClick={() => handleNavClick(subItem.id)}
                           className={`block w-full text-left px-4 py-2 text-sm font-medium rounded-full transition-colors duration-200 whitespace-normal break-words ${
                             activeNav === subItem.id
-                              ? "bg-gradient-to-r from-blue-600 to-sky-500 text-white shadow-lg"
-                              : "text-slate-900 hover:bg-blue-50 hover:text-blue-700"
+                              ? "bg-gradient-to-r from-brand-500 to-brand-500 text-white shadow-lg"
+                              : "text-slate-900 hover:bg-brand-50 hover:text-brand-600"
                           }`}
                         >
                           {subItem.label}
@@ -733,8 +732,8 @@ function AppleNavbar() {
               // FIXED: Single link items with consistent hover width
               <div className={`px-4 py-3 rounded-2xl transition-all duration-300 ${
                 activeNav === item.id
-                  ? "bg-gradient-to-r from-blue-600 to-sky-500 shadow-lg"
-                  : "hover:bg-blue-50"
+                  ? "bg-gradient-to-r from-brand-500 to-brand-500 shadow-lg"
+                  : "hover:bg-brand-50"
               }`}>
                 <Link
                   to={item.to}
@@ -747,7 +746,7 @@ function AppleNavbar() {
                   className={`block w-full text-left text-sm font-medium transition-all duration-300 whitespace-normal break-words flex items-center gap-2 ${
                     activeNav === item.id
                       ? "text-white"
-                      : "text-slate-900 hover:text-blue-700"
+                      : "text-slate-900 hover:text-brand-600"
                   }`}
                 >
                   {item.label}
@@ -760,15 +759,15 @@ function AppleNavbar() {
               // FIXED: Button items with consistent hover width
               <div className={`px-4 py-3 rounded-2xl transition-all duration-300 ${
                 activeNav === item.id
-                  ? "bg-gradient-to-r from-blue-600 to-sky-500 shadow-lg"
-                  : "hover:bg-blue-50"
+                  ? "bg-gradient-to-r from-brand-500 to-brand-500 shadow-lg"
+                  : "hover:bg-brand-50"
               }`}>
                 <button
                   onClick={() => handleNavClick(item.id, true, item.to)}
                   className={`block w-full text-left text-sm font-medium transition-all duration-300 ${
                     activeNav === item.id
                       ? "text-white"
-                      : "text-slate-900 hover:text-blue-700"
+                      : "text-slate-900 hover:text-brand-600"
                   }`}
                 >
                   {item.label}

@@ -106,9 +106,9 @@ const GalleryPage = () => {
     <main className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50 relative overflow-hidden w-full">
       {/* Global Animated Background for Gallery Page */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 w-full">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-sky-200/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-blue-100/25 via-sky-100/25 to-blue-100/25 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-200/30 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-brand-200/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-brand-100/25 via-brand-100/25 to-brand-100/25 rounded-full blur-3xl" />
       </div>
 
       {/* Single Container for All Gallery Components */}
@@ -129,7 +129,7 @@ const GalleryPage = () => {
               transition={{ duration: 0.8 }}
               className="text-center mb-2"
             >
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur-sm border border-blue-200/50 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-blue-700 shadow-sm mb-2">
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur-sm border border-brand-200/50 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-brand-700 shadow-sm mb-2">
                 <Camera className="w-3 h-3 sm:w-4 sm:h-4 shrink-0" aria-hidden="true" />
                 <span>Photo Gallery</span>
               </div>
@@ -140,7 +140,7 @@ const GalleryPage = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-extrabold mb-2 px-2"
               >
-                <span className="bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-brand-600 via-brand-600 to-brand-600 bg-clip-text text-transparent">
                   Our Gallery
                 </span>
               </motion.h1>
@@ -175,8 +175,8 @@ const GalleryPage = () => {
         <section className="relative py-6 sm:py-8 md:py-10 lg:py-12 w-full overflow-hidden bg-gradient-to-b from-slate-50/50 to-white">
           {/* Animated Background Elements */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-1/4 left-0 w-72 h-72 bg-gradient-to-r from-blue-400/10 to-sky-400/10 rounded-full blur-3xl animate-pulse" />
-            <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-gradient-to-l from-sky-400/10 to-blue-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }} />
+            <div className="absolute top-1/4 left-0 w-72 h-72 bg-gradient-to-r from-brand-400/10 to-brand-400/10 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-gradient-to-l from-brand-400/10 to-brand-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }} />
           </div>
 
           <div className="relative z-10 mx-auto max-w-7xl w-full px-3 sm:px-4 md:px-6 lg:px-8">
@@ -193,13 +193,13 @@ const GalleryPage = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-100 to-sky-100 border border-blue-200/50 px-4 py-2 text-sm font-semibold text-blue-700 shadow-sm mb-3"
+                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-100 to-brand-100 border border-brand-200/50 px-4 py-2 text-sm font-semibold text-brand-700 shadow-sm mb-3"
               >
                 <Star className="w-4 h-4" />
                 <span>Special Articles</span>
               </motion.div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-3">
-                <span className="bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-brand-600 via-brand-600 to-brand-600 bg-clip-text text-transparent">
                   Captured Memories
                 </span>
               </h2>
@@ -218,7 +218,7 @@ const GalleryPage = () => {
                   date: "March 15, 2024",
                   category: "Events",
                   readTime: "5 min read",
-                  gradient: "from-blue-500 to-sky-500",
+                  gradient: "from-brand-500 to-brand-500",
                   image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&h=800&fit=crop&auto=format&q=90",
                   images: [
                     "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&h=800&fit=crop&auto=format&q=90",
@@ -232,7 +232,7 @@ const GalleryPage = () => {
                   date: "February 28, 2024",
                   category: "Sports",
                   readTime: "4 min read",
-                  gradient: "from-sky-500 to-blue-500",
+                  gradient: "from-brand-500 to-brand-500",
                   image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&h=800&fit=crop&auto=format&q=90",
                 },
                 {
@@ -242,7 +242,7 @@ const GalleryPage = () => {
                   date: "February 10, 2024",
                   category: "Academics",
                   readTime: "6 min read",
-                  gradient: "from-blue-600 to-sky-600",
+                  gradient: "from-brand-600 to-brand-600",
                   image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=1200&h=800&fit=crop&auto=format&q=90",
                 },
                 {
@@ -252,7 +252,7 @@ const GalleryPage = () => {
                   date: "January 22, 2024",
                   category: "Events",
                   readTime: "5 min read",
-                  gradient: "from-sky-600 to-blue-600",
+                  gradient: "from-brand-600 to-brand-600",
                   image: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=1200&h=800&fit=crop&auto=format&q=90",
                 },
                 {
@@ -262,7 +262,7 @@ const GalleryPage = () => {
                   date: "May 30, 2024",
                   category: "Academics",
                   readTime: "7 min read",
-                  gradient: "from-blue-500 to-sky-500",
+                  gradient: "from-brand-500 to-brand-500",
                   image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&h=800&fit=crop&auto=format&q=90",
                 },
                 {
@@ -272,7 +272,7 @@ const GalleryPage = () => {
                   date: "April 12, 2024",
                   category: "Events",
                   readTime: "5 min read",
-                  gradient: "from-sky-500 to-blue-500",
+                  gradient: "from-brand-500 to-brand-500",
                   image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1200&h=800&fit=crop&auto=format&q=90",
                 },
               ].map((article, index) => (
@@ -282,7 +282,7 @@ const GalleryPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-50px' }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="group relative overflow-hidden rounded-2xl sm:rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-slate-200/60 hover:border-blue-300/60 flex flex-col md:flex md:flex-row"
+                  className="group relative overflow-hidden rounded-2xl sm:rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-slate-200/60 hover:border-brand-300/60 flex flex-col md:flex md:flex-row"
                   style={{
                     boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05)'
                   }}
@@ -321,7 +321,7 @@ const GalleryPage = () => {
                     </div>
 
                     {/* Article Title */}
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
+                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-3 group-hover:text-brand-600 transition-colors duration-300 leading-tight">
                       {article.title}
                     </h3>
 
@@ -333,7 +333,7 @@ const GalleryPage = () => {
                     {/* Read More Link */}
                     <button
                       onClick={() => setSelectedArticle(article)}
-                      className="mt-auto flex items-center gap-2 text-blue-600 group-hover:gap-3 transition-all duration-300 text-left"
+                      className="mt-auto flex items-center gap-2 text-brand-600 group-hover:gap-3 transition-all duration-300 text-left"
                     >
                       <span className="text-sm font-semibold">Read Full Article</span>
                       <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
@@ -364,25 +364,25 @@ const GalleryPage = () => {
                   icon: <Camera className="w-8 h-8 sm:w-10 sm:h-10" />,
                   number: '500+',
                   label: 'Memories Captured',
-                  color: 'from-blue-500 to-sky-500',
+                  color: 'from-brand-500 to-brand-500',
                 },
                 {
                   icon: <Users className="w-8 h-8 sm:w-10 sm:h-10" />,
                   number: '1000+',
                   label: 'Happy Students',
-                  color: 'from-sky-500 to-blue-500',
+                  color: 'from-brand-500 to-brand-500',
                 },
                 {
                   icon: <Award className="w-8 h-8 sm:w-10 sm:h-10" />,
                   number: '50+',
                   label: 'Events Celebrated',
-                  color: 'from-blue-600 to-sky-600',
+                  color: 'from-brand-600 to-brand-600',
                 },
                 {
                   icon: <Heart className="w-8 h-8 sm:w-10 sm:h-10" />,
                   number: '24/7',
                   label: 'Community Support',
-                  color: 'from-sky-600 to-blue-600',
+                  color: 'from-brand-600 to-brand-600',
                 },
               ].map((stat, index) => (
                 <motion.div
@@ -419,7 +419,7 @@ const GalleryPage = () => {
       {/* Optional: You can add a global modal overlay indicator if needed */}
       {isModalOpen && (
         <div className="fixed inset-0 z-[9998] pointer-events-none">
-          <div className="absolute top-4 right-4 bg-blue-600 text-white text-xs px-3 py-1.5 rounded-full opacity-75">
+          <div className="absolute top-4 right-4 bg-brand-600 text-white text-xs px-3 py-1.5 rounded-full opacity-75">
             Gallery View
           </div>
         </div>

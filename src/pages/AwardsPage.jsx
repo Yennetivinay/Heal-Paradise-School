@@ -64,7 +64,7 @@ const AwardsPage = () => {
       year: '2023',
       category: 'Teaching Excellence',
       icon: Award,
-      gradient: 'from-blue-400 via-sky-500 to-blue-600',
+      gradient: 'from-brand-400 via-brand-500 to-brand-600',
       glowColor: 'rgba(56, 189, 248, 0.4)',
     },
     {
@@ -100,8 +100,8 @@ const AwardsPage = () => {
       year: '2024',
       category: 'Leadership',
       icon: Crown,
-      gradient: 'from-indigo-400 via-blue-500 to-indigo-600',
-      glowColor: 'rgba(99, 102, 241, 0.4)',
+      gradient: 'from-brand-400 via-brand-500 to-brand-600',
+      glowColor: 'rgba(0, 152, 202, 0.4)',
     },
   ];
 
@@ -109,9 +109,9 @@ const AwardsPage = () => {
     <div className="min-h-screen bg-gradient-to-b from-slate-100 via-slate-50 to-slate-100 relative overflow-hidden">
       {/* Animated background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-200/40 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-sky-200/40 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-blue-200/20 via-sky-200/20 to-blue-200/20 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-200/40 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-brand-200/40 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-brand-200/20 via-brand-200/20 to-brand-200/20 rounded-full blur-3xl" />
       </div>
 
       {/* Hero Section */}
@@ -123,7 +123,7 @@ const AwardsPage = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur-sm border border-blue-200/50 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-blue-700 shadow-sm mb-4 sm:mb-6">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur-sm border border-brand-200/50 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-brand-700 shadow-sm mb-4 sm:mb-6">
               <Sparkles className="w-4 h-4 shrink-0" aria-hidden="true" />
               <span>Our Achievements</span>
             </div>
@@ -134,7 +134,7 @@ const AwardsPage = () => {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-extrabold mb-4 sm:mb-6 px-4"
             >
-              <span className="bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-brand-600 via-brand-600 to-brand-600 bg-clip-text text-transparent">
                 Awards &
               </span>
               <br />
@@ -174,7 +174,7 @@ const AwardsPage = () => {
             className="text-center"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-900 mb-3 sm:mb-4 px-4">
-              Featured <span className="bg-gradient-to-r from-blue-600 to-sky-600 bg-clip-text text-transparent">Awards</span>
+              Featured <span className="bg-gradient-to-r from-brand-600 to-brand-600 bg-clip-text text-transparent">Awards</span>
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl mx-auto px-4">
               Our most prestigious recognitions and achievements
@@ -198,7 +198,7 @@ const AwardsPage = () => {
             className="text-center"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-900 mb-3 sm:mb-4 px-4">
-              Explore Our <span className="bg-gradient-to-r from-blue-600 to-sky-600 bg-clip-text text-transparent">Awards</span>
+              Explore Our <span className="bg-gradient-to-r from-brand-600 to-brand-600 bg-clip-text text-transparent">Awards</span>
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl mx-auto px-4">
               Swipe through our collection of achievements and recognitions
@@ -235,7 +235,7 @@ const AwardsPage = () => {
             className="text-center"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-900 mb-3 sm:mb-4 px-4">
-              All <span className="bg-gradient-to-r from-blue-600 to-sky-600 bg-clip-text text-transparent">Achievements</span>
+              All <span className="bg-gradient-to-r from-brand-600 to-brand-600 bg-clip-text text-transparent">Achievements</span>
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl mx-auto px-4">
               A comprehensive collection of our awards and recognitions
@@ -279,7 +279,7 @@ const AwardsPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative rounded-2xl sm:rounded-3xl bg-gradient-to-br from-white via-slate-50/50 to-white backdrop-blur-xl border border-blue-200/50 p-6 sm:p-8 md:p-10 lg:p-12 shadow-2xl"
+            className="relative rounded-2xl sm:rounded-3xl bg-gradient-to-br from-white via-slate-50/50 to-white backdrop-blur-xl border border-brand-200/50 p-6 sm:p-8 md:p-10 lg:p-12 shadow-2xl"
           >
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
               {[
@@ -298,10 +298,10 @@ const AwardsPage = () => {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     className="text-center"
                   >
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-sky-600 mb-4 shadow-lg">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-600 mb-4 shadow-lg">
                       <Icon className="w-8 h-8 text-white" />
                     </div>
-                    <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-sky-600 bg-clip-text text-transparent mb-2">
+                    <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-brand-600 to-brand-600 bg-clip-text text-transparent mb-2">
                       {stat.value}
                     </div>
                     <div className="text-slate-700 text-sm md:text-base font-medium">
@@ -323,11 +323,11 @@ const AwardsPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative rounded-3xl bg-gradient-to-br from-blue-50 via-white to-sky-50/50 backdrop-blur-xl border border-blue-200/50 p-8 md:p-12 text-center overflow-hidden shadow-2xl"
+            className="relative rounded-3xl bg-gradient-to-br from-brand-50 via-white to-brand-50/50 backdrop-blur-xl border border-brand-200/50 p-8 md:p-12 text-center overflow-hidden shadow-2xl"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-200/20 via-transparent to-sky-200/20 animate-pulse" />
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-200/20 via-transparent to-brand-200/20 animate-pulse" />
             <div className="relative z-10">
-              <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-slate-900 via-blue-800 to-slate-900 bg-clip-text text-transparent mb-4">
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-slate-900 via-brand-800 to-slate-900 bg-clip-text text-transparent mb-4">
                 Join Our Award-Winning Community
               </h3>
               <p className="text-xl text-slate-700 mb-8 max-w-2xl mx-auto">
@@ -336,7 +336,7 @@ const AwardsPage = () => {
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
                   to="/admission"
-                  className="group rounded-full bg-gradient-to-r from-blue-600 to-sky-500 px-8 py-4 text-base font-semibold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:from-blue-700 hover:to-sky-600"
+                  className="group rounded-full bg-gradient-to-r from-brand-600 to-brand-500 px-8 py-4 text-base font-semibold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:from-brand-700 hover:to-brand-600"
                 >
                   Apply Now
                 </Link>

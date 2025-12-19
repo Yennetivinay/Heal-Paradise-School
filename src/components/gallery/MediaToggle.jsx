@@ -20,7 +20,7 @@ export function MediaToggle({ value, onChange, className = '' }) {
         {value === 'images' && (
           <motion.div
             layoutId="activeBackground"
-            className="absolute inset-0 bg-gradient-to-r from-blue-600 to-sky-500 rounded-full shadow-lg"
+            className="absolute inset-0 bg-gradient-to-r from-brand-600 to-brand-500 rounded-full shadow-lg"
             transition={{ type: "spring", stiffness: 500, damping: 30 }}
           />
         )}
@@ -45,7 +45,7 @@ export function MediaToggle({ value, onChange, className = '' }) {
         {value === 'videos' && (
           <motion.div
             layoutId="activeBackground"
-            className="absolute inset-0 bg-gradient-to-r from-blue-600 to-sky-500 rounded-full shadow-lg"
+            className="absolute inset-0 bg-gradient-to-r from-brand-600 to-brand-500 rounded-full shadow-lg"
             transition={{ type: "spring", stiffness: 500, damping: 30 }}
           />
         )}

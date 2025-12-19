@@ -28,13 +28,13 @@ import {
   Home,
   CheckCircle,
   MapPin,
+  Quote,
   Handshake,
   UserCheck,
   Eye,
   Phone,
   Mail,
-  Calendar,
-  Quote
+  Calendar
 } from 'lucide-react';
 
 // Custom hook for count-up animation
@@ -149,7 +149,7 @@ const AboutPage = () => {
 
   // Statistics data with numeric values and suffixes
   const stats = [
-    { icon: Users, value: 500, suffix: '+', label: 'Students Enrolled', gradient: 'from-blue-500 to-sky-500' },
+    { icon: Users, value: 500, suffix: '+', label: 'Students Enrolled', gradient: 'from-brand-500 to-brand-500' },
     { icon: GraduationCap, value: 95, suffix: '%', label: 'Pass Rate', gradient: 'from-emerald-500 to-green-500' },
     { icon: Award, value: 50, suffix: '+', label: 'Awards Won', gradient: 'from-amber-500 to-yellow-500' },
     { icon: Heart, value: 100, suffix: '%', label: 'Scholarship Coverage', gradient: 'from-rose-500 to-pink-500' },
@@ -167,7 +167,7 @@ const AboutPage = () => {
       icon: Target,
       title: 'Excellence',
       description: 'We strive for the highest standards in education, continuously improving our programs and facilities to provide world-class learning experiences.',
-      gradient: 'from-blue-500 to-sky-500'
+      gradient: 'from-brand-500 to-brand-500'
     },
     {
       icon: Shield,
@@ -191,7 +191,7 @@ const AboutPage = () => {
       icon: Sparkles,
       title: 'Empowerment',
       description: 'We empower students to discover their potential, build confidence, and become leaders who can make a positive impact on the world.',
-      gradient: 'from-indigo-500 to-blue-500'
+      gradient: 'from-brand-500 to-brand-500'
     },
   ];
 
@@ -211,7 +211,7 @@ const AboutPage = () => {
           <div className="flex items-start gap-4 sm:gap-5">
             <motion.div
               whileHover={{ scale: 1.1, rotate: 5 }}
-              className="w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 rounded-2xl bg-gradient-to-br from-blue-500 to-sky-500 flex items-center justify-center shadow-lg flex-shrink-0 ring-4 ring-blue-100"
+              className="w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-500 flex items-center justify-center shadow-lg flex-shrink-0 ring-4 ring-brand-100"
             >
               <Building2 className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 text-white" />
             </motion.div>
@@ -228,8 +228,8 @@ const AboutPage = () => {
               Our journey began with a simple yet powerful mission: to break the cycle of poverty through education.
             </p>
             <div className="flex flex-wrap gap-2.5 mt-4">
-              <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-blue-500 to-sky-500 text-white text-sm font-bold shadow-md">Vision</span>
-              <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-sky-500 to-blue-500 text-white text-sm font-bold shadow-md">Mission</span>
+              <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-brand-500 to-brand-500 text-white text-sm font-bold shadow-md">Vision</span>
+              <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-brand-500 to-brand-500 text-white text-sm font-bold shadow-md">Mission</span>
             </div>
           </div>
         </motion.div>
@@ -395,7 +395,7 @@ const AboutPage = () => {
       icon: GraduationCap,
       title: 'World-Class Education',
       description: 'CBSE curriculum with experienced faculty and modern teaching methodologies',
-      gradient: 'from-blue-500 to-sky-500'
+      gradient: 'from-brand-500 to-brand-500'
     },
     {
       icon: Heart,
@@ -425,18 +425,18 @@ const AboutPage = () => {
       icon: Globe,
       title: 'Global Perspective',
       description: 'Education that prepares students for success in an interconnected world',
-      gradient: 'from-indigo-500 to-blue-500'
+      gradient: 'from-brand-500 to-brand-500'
     },
   ];
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-blue-50/30 relative z-0 overflow-x-hidden">
+    <main className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-brand-50/30 relative z-0 overflow-x-hidden">
       {/* Hero Section */}
       <header className="relative overflow-hidden pt-24 pb-6 md:pt-28 md:pb-8 z-10 px-4 sm:px-6">
         {/* Enhanced background with multiple layers */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-white to-sky-50/60" />
-        <div className="absolute top-0 right-0 w-72 h-72 md:w-[500px] md:h-[500px] bg-gradient-to-br from-blue-200/40 to-sky-200/40 rounded-full blur-3xl -mr-32 md:-mr-64 -mt-32 md:-mt-64 animate-pulse" />
-        <div className="absolute bottom-0 left-0 w-72 h-72 md:w-[500px] md:h-[500px] bg-gradient-to-tr from-sky-200/40 to-blue-200/40 rounded-full blur-3xl -ml-32 md:-ml-64 -mb-32 md:-mb-64 animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-50/80 via-white to-brand-50/60" />
+        <div className="absolute top-0 right-0 w-72 h-72 md:w-[500px] md:h-[500px] bg-gradient-to-br from-brand-200/40 to-brand-200/40 rounded-full blur-3xl -mr-32 md:-mr-64 -mt-32 md:-mt-64 animate-pulse" />
+        <div className="absolute bottom-0 left-0 w-72 h-72 md:w-[500px] md:h-[500px] bg-gradient-to-tr from-brand-200/40 to-brand-200/40 rounded-full blur-3xl -ml-32 md:-ml-64 -mb-32 md:-mb-64 animate-pulse" style={{ animationDelay: '1s' }} />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 md:w-[600px] md:h-[600px] bg-gradient-to-r from-orange-100/20 to-amber-100/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0.5s' }} />
         
         <div className="relative mx-auto max-w-7xl">
@@ -446,7 +446,7 @@ const AboutPage = () => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.4, type: "spring", stiffness: 200 }}
               viewport={{ once: true, margin: "-100px" }}
-              className="inline-flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-md border border-blue-200/60 px-4 py-2 md:px-5 md:py-2.5 text-sm md:text-base font-semibold text-blue-700 shadow-lg mb-4 md:mb-6 hover:shadow-xl transition-shadow duration-300"
+              className="inline-flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-md border border-brand-200/60 px-4 py-2 md:px-5 md:py-2.5 text-sm md:text-base font-semibold text-brand-700 shadow-lg mb-4 md:mb-6 hover:shadow-xl transition-shadow duration-300"
             >
               <Sparkles className="w-4 h-4 md:w-5 md:h-5" />
               About Heal Paradise School
@@ -459,7 +459,7 @@ const AboutPage = () => {
               viewport={{ once: true, margin: "-100px" }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mb-4 md:mb-5 px-2 leading-tight"
             >
-              <span className="bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 bg-clip-text text-transparent drop-shadow-sm">
+              <span className="bg-gradient-to-r from-brand-600 via-brand-600 to-brand-600 bg-clip-text text-transparent drop-shadow-sm">
                 Transforming Lives
               </span>
               <br />
@@ -485,8 +485,8 @@ const AboutPage = () => {
       <section className="mx-auto max-w-7xl px-4 sm:px-6 py-4 md:py-6 relative">
         {/* Subtle background decoration */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/2 left-0 w-64 h-64 bg-gradient-to-r from-blue-100/20 to-transparent rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 right-0 w-64 h-64 bg-gradient-to-l from-sky-100/20 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-0 w-64 h-64 bg-gradient-to-r from-brand-100/20 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 right-0 w-64 h-64 bg-gradient-to-l from-brand-100/20 to-transparent rounded-full blur-3xl"></div>
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 relative z-10">
@@ -502,7 +502,7 @@ const AboutPage = () => {
               >
                 <SpotlightCard
                   className="rounded-2xl md:rounded-3xl border border-white/80 bg-gradient-to-br from-white via-white to-slate-50/80 backdrop-blur-sm p-6 sm:p-7 md:p-10 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 h-full group"
-                  spotlightColor="#3b82f640"
+                  spotlightColor="#0098CA40"
                 >
                   <div className={`w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-2xl md:rounded-3xl bg-gradient-to-br ${stat.gradient} flex items-center justify-center mb-4 md:mb-6 shadow-xl mx-auto group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
                     <Icon className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white" />
@@ -526,15 +526,15 @@ const AboutPage = () => {
 
       {/* Section Divider */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-2">
-        <div className="h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent"></div>
+        <div className="h-px bg-gradient-to-r from-transparent via-brand-200 to-transparent"></div>
       </div>
 
       {/* Mission & Vision Section */}
       <section className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-12 relative">
         {/* Background decoration */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-3xl">
-          <div className="absolute top-0 left-0 w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-br from-blue-100/20 to-sky-100/20 rounded-full blur-3xl -ml-32 sm:-ml-48 -mt-32 sm:-mt-48"></div>
-          <div className="absolute bottom-0 right-0 w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-tr from-sky-100/20 to-blue-100/20 rounded-full blur-3xl -mr-32 sm:-mr-48 -mb-32 sm:-mb-48"></div>
+          <div className="absolute top-0 left-0 w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-br from-brand-100/20 to-brand-100/20 rounded-full blur-3xl -ml-32 sm:-ml-48 -mt-32 sm:-mt-48"></div>
+          <div className="absolute bottom-0 right-0 w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-tr from-brand-100/20 to-brand-100/20 rounded-full blur-3xl -mr-32 sm:-mr-48 -mb-32 sm:-mb-48"></div>
         </div>
         
         <motion.div
@@ -544,12 +544,12 @@ const AboutPage = () => {
           transition={{ duration: 0.15, ease: "easeOut" }}
           className="text-center mb-4 sm:mb-6 md:mb-8 relative z-10"
         >
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-sm border border-blue-200/60 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold text-blue-700 shadow-sm mb-3 sm:mb-4">
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-sm border border-brand-200/60 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold text-brand-700 shadow-sm mb-3 sm:mb-4">
             <Target className="w-3 h-3 sm:w-4 sm:h-4" />
             Our Purpose
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-slate-900 mb-3 sm:mb-4 md:mb-6 px-2">
-            <span className="bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 bg-clip-text text-transparent">Mission & Vision</span>
+            <span className="bg-gradient-to-r from-brand-600 via-brand-600 to-brand-600 bg-clip-text text-transparent">Mission & Vision</span>
           </h2>
         </motion.div>
 
@@ -563,11 +563,11 @@ const AboutPage = () => {
               duration: 0.2, 
               ease: "easeOut"
             }}
-            className="group relative overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl bg-gradient-to-br from-blue-50 via-white to-sky-50 border-2 border-blue-200/60 p-5 sm:p-6 md:p-8 lg:p-10 shadow-xl hover:shadow-2xl transition-all duration-200 md:duration-500 md:hover:scale-[1.02]"
+            className="group relative overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl bg-gradient-to-br from-brand-50 via-white to-brand-50 border-2 border-brand-200/60 p-5 sm:p-6 md:p-8 lg:p-10 shadow-xl hover:shadow-2xl transition-all duration-200 md:duration-500 md:hover:scale-[1.02]"
           >
-            <div className="absolute top-0 right-0 w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-br from-blue-200/30 to-sky-200/30 rounded-full blur-3xl -mr-24 sm:-mr-32 -mt-24 sm:-mt-32"></div>
+            <div className="absolute top-0 right-0 w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-br from-brand-200/30 to-brand-200/30 rounded-full blur-3xl -mr-24 sm:-mr-32 -mt-24 sm:-mt-32"></div>
             <div className="relative z-10">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-blue-500 to-sky-600 flex items-center justify-center mb-4 sm:mb-5 md:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-200 md:duration-300">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-brand-500 to-brand-600 flex items-center justify-center mb-4 sm:mb-5 md:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-200 md:duration-300">
                 <Target className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
               </div>
               <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 mb-3 sm:mb-4">
@@ -623,134 +623,12 @@ const AboutPage = () => {
         <div className="h-px bg-gradient-to-r from-transparent via-purple-200 to-transparent"></div>
       </div>
 
-      {/* Our Story Section */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-4 md:py-8 relative">
-        {/* Background decoration */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-3xl">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-100/20 to-sky-100/20 rounded-full blur-3xl -mr-48 -mt-48"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-sky-100/20 to-blue-100/20 rounded-full blur-3xl -ml-48 -mb-48"></div>
-        </div>
-        
-        <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-stretch relative z-10">
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.4, type: "spring", stiffness: 200 }}
-            className="space-y-5 md:space-y-6 flex flex-col"
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.3, delay: 0.05 }}
-              className="inline-flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-sm border border-blue-200/60 px-4 py-2 md:px-5 md:py-2.5 text-sm md:text-base font-semibold text-blue-700 shadow-md mb-4"
-          >
-              <Clock className="w-4 h-4 md:w-5 md:h-5" />
-              Our Journey
-            </motion.div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight">
-              <span className="bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 bg-clip-text text-transparent">Our Story</span>
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-slate-700 leading-relaxed font-medium">
-              Heal Paradise School was born from a simple yet powerful belief: every child, regardless of 
-              their circumstances, deserves access to world-class education. Founded in 2015, we began 
-              with a mission to break the cycle of poverty through education.
-            </p>
-            <p className="text-base sm:text-lg md:text-xl text-slate-700 leading-relaxed font-medium">
-              What started as a small initiative has grown into a beacon of hope, transforming the lives 
-              of hundreds of students. We provide not just education, but a complete ecosystem of care, 
-              support, and opportunity that empowers children to dream big and achieve their goals.
-            </p>
-            <div className="flex flex-wrap gap-3 md:gap-4 pt-2">
-              {['Compassionate Care', 'Excellence', 'Innovation', 'Impact'].map((tag, idx) => (
-                <motion.span
-                  key={idx}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.2, delay: 0.1 + idx * 0.03 }}
-                  className="px-4 py-2 md:px-5 md:py-2.5 rounded-full bg-gradient-to-r from-blue-50 to-sky-50 border border-blue-200/60 text-sm md:text-base font-semibold text-blue-700 shadow-sm hover:shadow-md transition-shadow duration-300"
-                >
-                  {tag}
-                </motion.span>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.3 }}
-            className="relative mt-6 md:mt-0 h-full"
-          >
-            <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl h-full">
-              <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 h-full">
-                <div className="flex flex-col space-y-2 sm:space-y-3 md:space-y-4 h-full">
-                  <div className="relative flex-1 rounded-xl md:rounded-2xl overflow-hidden shadow-lg group min-h-[120px] sm:min-h-[150px] md:min-h-[200px]">
-                    <img 
-                      src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=70&w=600&auto=format&fit=crop" 
-                      alt="Students learning"
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-600/40 to-transparent"></div>
-                </div>
-                  <div className="relative flex-1 rounded-xl md:rounded-2xl overflow-hidden shadow-lg group min-h-[120px] sm:min-h-[150px] md:min-h-[200px]">
-                    <img 
-                      src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=75&w=400&auto=format&fit=crop" 
-                      alt="School building"
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      loading="lazy"
-                      decoding="async"
-                      fetchPriority="low"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-sky-600/40 to-transparent"></div>
-                  </div>
-                </div>
-                <div className="flex flex-col space-y-2 sm:space-y-3 md:space-y-4 h-full pt-4 sm:pt-6 md:pt-8">
-                  <div className="relative flex-1 rounded-xl md:rounded-2xl overflow-hidden shadow-lg group min-h-[120px] sm:min-h-[150px] md:min-h-[200px]">
-                    <img 
-                      src="https://images.unsplash.com/photo-1497486751825-1233686d5d80?q=75&w=400&auto=format&fit=crop" 
-                      alt="Classroom"
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      loading="lazy"
-                      decoding="async"
-                      fetchPriority="low"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-600/40 to-transparent"></div>
-                  </div>
-                  <div className="relative flex-1 rounded-xl md:rounded-2xl overflow-hidden shadow-lg group min-h-[120px] sm:min-h-[150px] md:min-h-[200px]">
-                    <img 
-                      src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=75&w=400&auto=format&fit=crop" 
-                      alt="Students together"
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      loading="lazy"
-                      decoding="async"
-                      fetchPriority="low"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-sky-600/40 to-transparent"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Section Divider */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-2">
-        <div className="h-px bg-gradient-to-r from-transparent via-sky-200 to-transparent"></div>
-      </div>
-
       {/* Core Values Section */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 py-4 md:py-8 relative">
         {/* Background decoration */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-3xl">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-purple-100/15 to-pink-100/15 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tr from-indigo-100/15 to-blue-100/15 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tr from-brand-100/15 to-brand-100/15 rounded-full blur-3xl"></div>
         </div>
         
         <motion.div
@@ -765,7 +643,7 @@ const AboutPage = () => {
             What We Stand For
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 md:mb-6 px-2">
-            <span className="bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 bg-clip-text text-transparent">Our Core Values</span>
+            <span className="bg-gradient-to-r from-brand-500 via-brand-500 to-brand-500 bg-clip-text text-transparent">Our Core Values</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto px-2 leading-relaxed">
             The principles that guide our actions and shape our community
@@ -776,11 +654,11 @@ const AboutPage = () => {
           {values.map((value, index) => {
             const Icon = value.icon || Heart; // Fallback to Heart if icon is missing
             const cardStyles = [
-              'rounded-2xl border-2 border-blue-200/60 bg-gradient-to-br from-blue-50/90 to-white p-6 sm:p-7 md:p-9 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 h-full group',
+              'rounded-2xl border-2 border-brand-200/60 bg-gradient-to-br from-brand-50/90 to-white p-6 sm:p-7 md:p-9 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 h-full group',
               'rounded-3xl border-2 border-emerald-200/60 bg-gradient-to-br from-emerald-50/80 via-white to-emerald-50/60 p-6 sm:p-7 md:p-9 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 h-full group',
               'rounded-xl border-2 border-amber-200/60 bg-gradient-to-br from-amber-50/90 to-yellow-50/70 p-6 sm:p-7 md:p-9 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 h-full group',
               'rounded-2xl border-2 border-purple-200/60 bg-gradient-to-br from-purple-50/80 to-violet-50/60 p-6 sm:p-7 md:p-9 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 h-full group',
-              'rounded-3xl border-2 border-indigo-200/60 bg-gradient-to-br from-indigo-50/90 to-blue-50/70 p-6 sm:p-7 md:p-9 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 h-full group',
+              'rounded-3xl border-2 border-brand-200/60 bg-gradient-to-br from-brand-50/90 to-brand-50/70 p-6 sm:p-7 md:p-9 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 h-full group',
               'rounded-xl border-2 border-rose-200/60 bg-gradient-to-br from-rose-50/90 via-pink-50/70 to-rose-50/60 p-6 sm:p-7 md:p-9 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 h-full group',
             ];
             const iconShapes = ['rounded-xl', 'rounded-full', 'rounded-lg', 'rounded-2xl', 'rounded-full', 'rounded-xl'];
@@ -820,16 +698,164 @@ const AboutPage = () => {
         <Timeline data={timelineData} />
       </section>
 
+      {/* Student & Parent Testimonials */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-8 bg-gradient-to-br from-slate-50 via-white to-brand-50/30 relative overflow-hidden">
+        {/* Decorative background */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-72 h-72 bg-gradient-to-br from-brand-100/30 to-brand-100/30 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-gradient-to-tr from-brand-100/30 to-brand-100/30 rounded-full blur-3xl"></div>
+        </div>
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12 relative z-10"
+        >
+          <div className="inline-flex items-center gap-2 rounded-full bg-brand-100/80 backdrop-blur-sm border border-brand-200/60 px-4 py-2 text-sm font-semibold text-brand-500 shadow-sm mb-4">
+            <Quote className="w-4 h-4" />
+            About Heal
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4">
+            <span className="bg-gradient-to-r from-brand-500 via-brand-500 to-brand-500 bg-clip-text text-transparent">
+              What Our Community
+            </span>
+            <br />
+            <span className="text-slate-900">Says</span>
+          </h2>
+          <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+            Hear from students and parents about their experiences at Heal School
+          </p>
+        </motion.div>
+        <div className="grid md:grid-cols-3 gap-4 md:gap-6 relative z-10">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            whileHover={{ y: -5 }}
+            className="group relative overflow-hidden rounded-3xl bg-white border-2 border-brand-100/80 p-8 shadow-xl hover:shadow-2xl transition-all duration-300"
+          >
+            <motion.div 
+              className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-brand-100/60 to-brand-100/60 rounded-full blur-3xl -mr-16 -mt-16"
+              animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.7, 0.5] }}
+              transition={{ duration: 4, repeat: Infinity }}
+            ></motion.div>
+            <div className="relative z-10">
+              <motion.div
+                whileHover={{ rotate: [0, -10, 10, 0] }}
+                transition={{ duration: 0.5 }}
+              >
+                <Quote className="w-14 h-14 text-brand-200 mb-5" />
+              </motion.div>
+              <p className="text-base sm:text-lg text-slate-700 leading-relaxed mb-6 font-medium">
+                "Heal School has transformed my daughter's life. The caring teachers and excellent facilities have given her confidence and hope for a bright future."
+              </p>
+              <div className="flex items-center gap-4 pt-4 border-t border-brand-100">
+                <motion.div 
+                  className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-400 to-brand-500 flex items-center justify-center text-white font-bold text-lg shadow-lg"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  P
+                </motion.div>
+                <div>
+                  <h4 className="font-bold text-slate-900 text-lg">Parent Name</h4>
+                  <p className="text-sm text-slate-600">Parent of Class 8 Student</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            whileHover={{ y: -5 }}
+            className="group relative overflow-hidden rounded-3xl bg-white border-2 border-emerald-100/80 p-8 shadow-xl hover:shadow-2xl transition-all duration-300"
+          >
+            <motion.div 
+              className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-emerald-100/60 to-green-100/60 rounded-full blur-3xl -mr-16 -mt-16"
+              animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.7, 0.5] }}
+              transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
+            ></motion.div>
+            <div className="relative z-10">
+              <motion.div
+                whileHover={{ rotate: [0, -10, 10, 0] }}
+                transition={{ duration: 0.5 }}
+              >
+                <Quote className="w-14 h-14 text-emerald-200 mb-5" />
+              </motion.div>
+              <p className="text-base sm:text-lg text-slate-700 leading-relaxed mb-6 font-medium">
+                "I never imagined I could get such quality education for free. The teachers are amazing, and I've made so many friends. This school is my second home."
+              </p>
+              <div className="flex items-center gap-4 pt-4 border-t border-emerald-100">
+                <motion.div 
+                  className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-green-500 flex items-center justify-center text-white font-bold text-lg shadow-lg"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  S
+                </motion.div>
+                <div>
+                  <h4 className="font-bold text-slate-900 text-lg">Student Name</h4>
+                  <p className="text-sm text-slate-600">Class 10 Student</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            whileHover={{ y: -5 }}
+            className="group relative overflow-hidden rounded-3xl bg-white border-2 border-amber-100/80 p-8 shadow-xl hover:shadow-2xl transition-all duration-300"
+          >
+            <motion.div 
+              className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-amber-100/60 to-yellow-100/60 rounded-full blur-3xl -mr-16 -mt-16"
+              animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.7, 0.5] }}
+              transition={{ duration: 4, repeat: Infinity, delay: 1 }}
+            ></motion.div>
+            <div className="relative z-10">
+              <motion.div
+                whileHover={{ rotate: [0, -10, 10, 0] }}
+                transition={{ duration: 0.5 }}
+              >
+                <Quote className="w-14 h-14 text-amber-200 mb-5" />
+              </motion.div>
+              <p className="text-base sm:text-lg text-slate-700 leading-relaxed mb-6 font-medium">
+                "The residential care and academic support here are exceptional. My son has grown so much in confidence and academic performance. We're truly grateful."
+              </p>
+              <div className="flex items-center gap-4 pt-4 border-t border-amber-100">
+                <motion.div 
+                  className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-yellow-500 flex items-center justify-center text-white font-bold text-lg shadow-lg"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  P
+                </motion.div>
+                <div>
+                  <h4 className="font-bold text-slate-900 text-lg">Parent Name</h4>
+                  <p className="text-sm text-slate-600">Parent of Class 6 Student</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Section Divider */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-1">
-        <div className="h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent"></div>
+        <div className="h-px bg-gradient-to-r from-transparent via-brand-200 to-transparent"></div>
       </div>
 
       {/* Academic Programs Section */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 py-4 md:py-8 relative">
         {/* Background decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-3xl">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-sky-200/20 rounded-full blur-3xl -mr-48 -mt-48"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-brand-200/20 to-brand-200/20 rounded-full blur-3xl -mr-48 -mt-48"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-emerald-200/20 to-green-200/20 rounded-full blur-3xl -ml-48 -mb-48"></div>
         </div>
 
@@ -840,12 +866,12 @@ const AboutPage = () => {
               transition={{ duration: 0.3 }}
           className="text-center mb-4 md:mb-6 relative z-10"
         >
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur-sm border border-blue-200/50 px-4 py-2 text-sm font-medium text-blue-700 shadow-sm mb-4">
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur-sm border border-brand-200/50 px-4 py-2 text-sm font-medium text-brand-700 shadow-sm mb-4">
             <BookOpen className="w-4 h-4" />
             Our Programs
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 md:mb-6 px-2">
-            <span className="bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-brand-600 via-brand-600 to-brand-600 bg-clip-text text-transparent">
               Academic Programs
             </span>
           </h2>
@@ -861,9 +887,9 @@ const AboutPage = () => {
               subtitle: 'Recognized Excellence',
               description: 'Following the Central Board of Secondary Education curriculum with emphasis on conceptual understanding, critical thinking, and practical application of knowledge.',
               features: ['Classes I to XII', 'Regular assessments', 'Remedial support', 'Career guidance'],
-              gradient: 'from-blue-500 to-sky-500',
-              bg: 'from-blue-50/80 via-white to-sky-50/60',
-              border: 'border-2 border-blue-300/60',
+              gradient: 'from-brand-500 to-brand-500',
+              bg: 'from-brand-50/80 via-white to-brand-50/60',
+              border: 'border-2 border-brand-300/60',
               shape: 'rounded-3xl',
               iconShape: 'rounded-2xl',
               image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=70&w=600&auto=format&fit=crop',
@@ -928,7 +954,7 @@ const AboutPage = () => {
                     
                     {/* Gradient Overlay */}
                     <div className={`absolute inset-0 bg-gradient-to-t ${
-                      index === 0 ? 'from-blue-900/80 via-blue-900/40' : 
+                      index === 0 ? 'from-brand-900/80 via-brand-900/40' : 
                       index === 1 ? 'from-emerald-900/80 via-emerald-900/40' : 
                       'from-purple-900/80 via-violet-900/40'
                     } to-transparent`}></div>
@@ -1014,7 +1040,7 @@ const AboutPage = () => {
           className="text-center mb-5 md:mb-7"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 md:mb-4 px-2">
-            World-Class <span className="bg-gradient-to-r from-blue-600 to-sky-600 bg-clip-text text-transparent">Facilities</span>
+            World-Class <span className="bg-gradient-to-r from-brand-600 to-brand-600 bg-clip-text text-transparent">Facilities</span>
           </h2>
           <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto px-2">
             State-of-the-art infrastructure designed to support holistic learning and development
@@ -1027,9 +1053,9 @@ const AboutPage = () => {
               icon: Microscope, 
               title: 'Science Laboratories', 
               description: 'Fully equipped physics, chemistry, and biology labs with modern equipment', 
-              gradient: 'from-blue-500 to-sky-500', 
-              bg: 'from-blue-100/60 to-sky-100/40', 
-              border: 'border-blue-300/50', 
+              gradient: 'from-brand-500 to-brand-500', 
+              bg: 'from-brand-100/60 to-brand-100/40', 
+              border: 'border-brand-300/50', 
               shape: 'rounded-2xl',
               image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=70&w=600&auto=format&fit=crop',
               features: ['Modern Equipment', 'Safety Protocols', 'Research Support'],
@@ -1092,9 +1118,9 @@ const AboutPage = () => {
               icon: Home, 
               title: 'Residential Facilities', 
               description: 'Safe, comfortable hostels with 24/7 supervision and modern amenities', 
-              gradient: 'from-indigo-500 to-blue-500', 
-              bg: 'from-indigo-100/60 to-blue-100/40', 
-              border: 'border-indigo-300/50', 
+              gradient: 'from-brand-500 to-brand-500', 
+              bg: 'from-brand-100/60 to-brand-100/40', 
+              border: 'border-brand-300/50', 
               shape: 'rounded-xl',
               image: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?q=70&w=600&auto=format&fit=crop',
               features: ['24/7 Security', 'Modern Amenities', 'Comfortable Living'],
@@ -1202,7 +1228,7 @@ const AboutPage = () => {
         {/* Background decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-0 left-1/4 w-72 h-72 bg-gradient-to-br from-rose-200/20 to-pink-200/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-gradient-to-tr from-blue-200/20 to-sky-200/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-gradient-to-tr from-brand-200/20 to-brand-200/20 rounded-full blur-3xl"></div>
         </div>
 
         <motion.div
@@ -1212,12 +1238,12 @@ const AboutPage = () => {
               transition={{ duration: 0.3 }}
           className="text-center mb-4 md:mb-6 relative z-10"
         >
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur-sm border border-blue-200/50 px-4 py-2 text-sm font-medium text-blue-700 shadow-sm mb-4">
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur-sm border border-brand-200/50 px-4 py-2 text-sm font-medium text-brand-700 shadow-sm mb-4">
             <Sparkles className="w-4 h-4" />
             Beyond the Classroom
                     </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 md:mb-6 px-2">
-            <span className="bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-brand-600 via-brand-600 to-brand-600 bg-clip-text text-transparent">
               Extracurricular
             </span>
             <br />
@@ -1263,9 +1289,9 @@ const AboutPage = () => {
             { 
               icon: Code, 
               title: 'Coding Club', 
-              gradient: 'from-blue-500 to-sky-500', 
-              bg: 'from-blue-50 to-sky-50', 
-              border: 'border-blue-200/60', 
+              gradient: 'from-brand-500 to-brand-500', 
+              bg: 'from-brand-50 to-brand-50', 
+              border: 'border-brand-200/60', 
               shape: 'rounded-2xl',
               iconShape: 'rounded-full',
               image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=70&w=600&auto=format&fit=crop'
@@ -1283,9 +1309,9 @@ const AboutPage = () => {
             { 
               icon: Users, 
               title: 'Community Service', 
-              gradient: 'from-indigo-500 to-blue-500', 
-              bg: 'from-indigo-50 to-blue-50', 
-              border: 'border-indigo-200/60', 
+              gradient: 'from-brand-500 to-brand-500', 
+              bg: 'from-indigo-50 to-brand-50', 
+              border: 'border-brand-200/60', 
               shape: 'rounded-xl',
               iconShape: 'rounded-lg',
               image: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=70&w=600&auto=format&fit=crop'
@@ -1359,14 +1385,14 @@ const AboutPage = () => {
 
       {/* Section Divider */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-2">
-        <div className="h-px bg-gradient-to-r from-transparent via-indigo-200 to-transparent"></div>
+        <div className="h-px bg-gradient-to-r from-transparent via-brand-200 to-transparent"></div>
       </div>
 
       {/* Faculty & Staff Section */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 py-4 md:py-8 relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-sky-200/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-brand-200/20 to-brand-200/20 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tr from-purple-200/20 to-pink-200/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
         </div>
 
@@ -1378,7 +1404,7 @@ const AboutPage = () => {
           className="text-center mb-8 md:mb-12 relative z-10"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 md:mb-4 px-2">
-            Our <span className="bg-gradient-to-r from-blue-600 to-sky-600 bg-clip-text text-transparent">Dedicated Team</span>
+            Our <span className="bg-gradient-to-r from-brand-600 to-brand-600 bg-clip-text text-transparent">Dedicated Team</span>
           </h2>
           <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto px-2">
             Experienced educators and staff committed to student success
@@ -1389,7 +1415,7 @@ const AboutPage = () => {
           {/* Desktop: Horizontal layout with dividers */}
           <div className="hidden md:flex items-center justify-between gap-3 lg:gap-6">
             {[
-              { icon: UserCheck, title: 'Qualified Teachers', value: '50+', description: 'Certified and experienced educators', gradient: 'from-indigo-500 to-purple-600', color: 'indigo' },
+              { icon: UserCheck, title: 'Qualified Teachers', value: '50+', description: 'Certified and experienced educators', gradient: 'from-brand-500 to-brand-600', color: 'brand' },
               { icon: GraduationCap, title: 'Subject Experts', value: '15+', description: 'Specialized faculty for each subject', gradient: 'from-teal-500 to-cyan-600', color: 'teal' },
               { icon: Heart, title: 'Support Staff', value: '30+', description: 'Caring staff for student welfare', gradient: 'from-orange-500 to-amber-600', color: 'orange' },
               { icon: Shield, title: 'Counselors', value: '5+', description: 'Professional guidance counselors', gradient: 'from-pink-500 to-rose-600', color: 'pink' },
@@ -1454,7 +1480,7 @@ const AboutPage = () => {
                     {/* Title and description */}
                     <div className="text-center">
                       <motion.h3 
-                        className="text-xl lg:text-2xl font-bold text-slate-900 mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-slate-900 group-hover:via-blue-600 group-hover:to-slate-900 transition-all duration-300"
+                        className="text-xl lg:text-2xl font-bold text-slate-900 mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-slate-900 group-hover:via-brand-600 group-hover:to-slate-900 transition-all duration-300"
                         whileHover={{ scale: 1.05 }}
                       >
                         {team.title}
@@ -1483,7 +1509,7 @@ const AboutPage = () => {
           {/* Mobile: Grid layout */}
           <div className="grid grid-cols-2 gap-4 md:hidden">
             {[
-              { icon: UserCheck, title: 'Qualified Teachers', value: '50+', description: 'Certified and experienced educators', gradient: 'from-indigo-500 to-purple-600', color: 'indigo' },
+              { icon: UserCheck, title: 'Qualified Teachers', value: '50+', description: 'Certified and experienced educators', gradient: 'from-brand-500 to-brand-600', color: 'brand' },
               { icon: GraduationCap, title: 'Subject Experts', value: '15+', description: 'Specialized faculty for each subject', gradient: 'from-teal-500 to-cyan-600', color: 'teal' },
               { icon: Heart, title: 'Support Staff', value: '30+', description: 'Caring staff for student welfare', gradient: 'from-orange-500 to-amber-600', color: 'orange' },
               { icon: Shield, title: 'Counselors', value: '5+', description: 'Professional guidance counselors', gradient: 'from-pink-500 to-rose-600', color: 'pink' },
@@ -1523,7 +1549,7 @@ const AboutPage = () => {
 
       {/* Section Divider */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-2">
-        <div className="h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent"></div>
+        <div className="h-px bg-gradient-to-r from-transparent via-brand-200 to-transparent"></div>
       </div>
 
       {/* Accreditation & Affiliations Section */}
@@ -1536,7 +1562,7 @@ const AboutPage = () => {
           className="text-center mb-4 md:mb-6"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 md:mb-4 px-2">
-            <span className="bg-gradient-to-r from-blue-600 to-sky-600 bg-clip-text text-transparent">Accreditation</span> & Affiliations
+            <span className="bg-gradient-to-r from-brand-600 to-brand-600 bg-clip-text text-transparent">Accreditation</span> & Affiliations
           </h2>
           <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto px-2">
             Recognized and affiliated with leading educational bodies
@@ -1548,7 +1574,7 @@ const AboutPage = () => {
             { 
               title: 'CBSE Affiliation', 
               icon: Award,
-              gradient: 'from-blue-500 to-sky-500'
+              gradient: 'from-brand-500 to-brand-500'
             },
             { 
               title: 'ISO Certified', 
@@ -1602,7 +1628,7 @@ const AboutPage = () => {
           className="text-center mb-4 md:mb-6"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 md:mb-4 px-2">
-            <span className="bg-gradient-to-r from-blue-600 to-sky-600 bg-clip-text text-transparent">Partnerships</span> & Collaborations
+            <span className="bg-gradient-to-r from-brand-600 to-brand-600 bg-clip-text text-transparent">Partnerships</span> & Collaborations
           </h2>
           <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto px-2">
             Building strong relationships with organizations to enhance educational opportunities
@@ -1618,11 +1644,11 @@ const AboutPage = () => {
           <div className="flex gap-4 sm:gap-6 md:gap-8 lg:gap-12 animate-scroll">
             {/* First set of logos */}
             {[
-              { name: 'NGO Partner', icon: Handshake, gradient: 'from-blue-500 to-sky-500' },
+              { name: 'NGO Partner', icon: Handshake, gradient: 'from-brand-500 to-brand-500' },
               { name: 'Corporate Partner', icon: Building2, gradient: 'from-emerald-500 to-green-500' },
               { name: 'University Partner', icon: GraduationCap, gradient: 'from-purple-500 to-violet-500' },
               { name: 'Tech Partner', icon: Code, gradient: 'from-orange-500 to-red-500' },
-              { name: 'Education Partner', icon: BookOpen, gradient: 'from-indigo-500 to-blue-500' },
+              { name: 'Education Partner', icon: BookOpen, gradient: 'from-brand-500 to-brand-500' },
               { name: 'Community Partner', icon: Users, gradient: 'from-rose-500 to-pink-500' },
               { name: 'Research Partner', icon: Lightbulb, gradient: 'from-teal-500 to-cyan-500' },
               { name: 'Global Partner', icon: Globe, gradient: 'from-amber-500 to-yellow-500' },
@@ -1645,11 +1671,11 @@ const AboutPage = () => {
             
             {/* Duplicate set for seamless loop */}
             {[
-              { name: 'NGO Partner', icon: Handshake, gradient: 'from-blue-500 to-sky-500' },
+              { name: 'NGO Partner', icon: Handshake, gradient: 'from-brand-500 to-brand-500' },
               { name: 'Corporate Partner', icon: Building2, gradient: 'from-emerald-500 to-green-500' },
               { name: 'University Partner', icon: GraduationCap, gradient: 'from-purple-500 to-violet-500' },
               { name: 'Tech Partner', icon: Code, gradient: 'from-orange-500 to-red-500' },
-              { name: 'Education Partner', icon: BookOpen, gradient: 'from-indigo-500 to-blue-500' },
+              { name: 'Education Partner', icon: BookOpen, gradient: 'from-brand-500 to-brand-500' },
               { name: 'Community Partner', icon: Users, gradient: 'from-rose-500 to-pink-500' },
               { name: 'Research Partner', icon: Lightbulb, gradient: 'from-teal-500 to-cyan-500' },
               { name: 'Global Partner', icon: Globe, gradient: 'from-amber-500 to-yellow-500' },
@@ -1825,7 +1851,7 @@ const AboutPage = () => {
       <section className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6 py-2 sm:py-4 md:py-6 relative">
         {/* Background decoration */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-3xl">
-          <div className="absolute top-0 right-0 w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-br from-blue-100/20 to-sky-100/20 rounded-full blur-3xl -mr-24 sm:-mr-32 -mt-24 sm:-mt-32"></div>
+          <div className="absolute top-0 right-0 w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-br from-brand-100/20 to-brand-100/20 rounded-full blur-3xl -mr-24 sm:-mr-32 -mt-24 sm:-mt-32"></div>
           <div className="absolute bottom-0 left-0 w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-tr from-emerald-100/20 to-green-100/20 rounded-full blur-3xl -ml-24 sm:-ml-32 -mb-24 sm:-mb-32"></div>
         </div>
         
@@ -1836,12 +1862,12 @@ const AboutPage = () => {
           transition={{ duration: 0.3 }}
           className="text-center mb-2 sm:mb-3 md:mb-4 relative z-10"
         >
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-white/90 backdrop-blur-sm border border-blue-200/60 px-2 py-1 sm:px-3 sm:py-1.5 text-xs font-semibold text-blue-700 shadow-sm mb-2 sm:mb-3">
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-white/90 backdrop-blur-sm border border-brand-200/60 px-2 py-1 sm:px-3 sm:py-1.5 text-xs font-semibold text-brand-700 shadow-sm mb-2 sm:mb-3">
             <MapPin className="w-3 h-3" />
             Get In Touch
           </div>
           <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 mb-2 sm:mb-3 px-2">
-            <span className="bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 bg-clip-text text-transparent">Contact Us</span>
+            <span className="bg-gradient-to-r from-brand-600 via-brand-600 to-brand-600 bg-clip-text text-transparent">Contact Us</span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 max-w-2xl mx-auto px-2 leading-relaxed">
             We're here to answer your questions and help you learn more about our school
@@ -1856,10 +1882,10 @@ const AboutPage = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.3, delay: 0.1 }}
-              className="group p-3 sm:p-3.5 rounded-lg sm:rounded-xl bg-white/80 backdrop-blur-sm border-2 border-blue-100 shadow-md hover:shadow-lg transition-all duration-300 md:hover:scale-105"
+              className="group p-3 sm:p-3.5 rounded-lg sm:rounded-xl bg-white/80 backdrop-blur-sm border-2 border-brand-100 shadow-md hover:shadow-lg transition-all duration-300 md:hover:scale-105"
             >
               <div className="flex items-start gap-2.5 sm:gap-3">
-                <div className="flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-gradient-to-br from-blue-500 to-sky-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <div className="flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-gradient-to-br from-brand-500 to-brand-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
                   <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -1868,7 +1894,7 @@ const AboutPage = () => {
                     href="https://www.google.com/maps/place/HEAL+PARADISE+SECONDARY+SCHOOL/@16.6476137,80.793083,17.08z/data=!4m6!3m5!1s0x3a35e10014e10cf7:0xa8b6e0e50c33ca9a!8m2!3d16.647596!4d80.791592!16s%2Fg%2F11y7fmrmgj?entry=ttu&g_ep=EgoyMDI1MTIwOC4wIKXMDSoASAFQAw%3D%3D"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs sm:text-sm text-slate-700 leading-relaxed hover:text-blue-600 transition-colors cursor-pointer block"
+                    className="text-xs sm:text-sm text-slate-700 leading-relaxed hover:text-brand-600 transition-colors cursor-pointer block"
                   >
                     Heal Paradise School<br />
                     3-118, Thotapalli Village<br />
@@ -1892,8 +1918,8 @@ const AboutPage = () => {
                 <div className="flex-1 min-w-0">
                   <h3 className="text-sm sm:text-base font-bold text-slate-900 mb-1">Call Us</h3>
                   <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                    <a href="tel:+91XXXXXXXXXX" className="hover:text-blue-600 transition-colors break-all">+91 XXXXXXXXXX</a><br />
-                    <a href="tel:+91XXXXXXXXXX" className="hover:text-blue-600 transition-colors break-all">+91 XXXXXXXXXX</a>
+                    <a href="tel:+91XXXXXXXXXX" className="hover:text-brand-600 transition-colors break-all">+91 XXXXXXXXXX</a><br />
+                    <a href="tel:+91XXXXXXXXXX" className="hover:text-brand-600 transition-colors break-all">+91 XXXXXXXXXX</a>
                   </p>
                 </div>
               </div>
@@ -1912,8 +1938,8 @@ const AboutPage = () => {
                 <div className="flex-1 min-w-0">
                   <h3 className="text-sm sm:text-base font-bold text-slate-900 mb-1">Email Us</h3>
                   <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                    <a href="mailto:info@healparadiseschool.edu" className="hover:text-blue-600 transition-colors break-all">info@healparadiseschool.edu</a><br />
-                    <a href="mailto:admissions@healparadiseschool.edu" className="hover:text-blue-600 transition-colors break-all">admissions@healparadiseschool.edu</a>
+                    <a href="mailto:info@healparadiseschool.edu" className="hover:text-brand-600 transition-colors break-all">info@healparadiseschool.edu</a><br />
+                    <a href="mailto:admissions@healparadiseschool.edu" className="hover:text-brand-600 transition-colors break-all">admissions@healparadiseschool.edu</a>
                   </p>
                 </div>
               </div>
@@ -1946,11 +1972,11 @@ const AboutPage = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.3, delay: 0.2 }}
-            className="relative rounded-lg sm:rounded-xl overflow-hidden border-2 border-blue-100 shadow-md mt-3 md:mt-0 w-full"
+            className="relative rounded-lg sm:rounded-xl overflow-hidden border-2 border-brand-100 shadow-md mt-3 md:mt-0 w-full"
             style={{ height: '350px', maxHeight: '100%' }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-sky-50 flex items-center justify-center z-0">
-              <MapPin className="w-12 h-12 sm:w-14 sm:h-14 text-blue-300 animate-pulse" />
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-50 to-brand-50 flex items-center justify-center z-0">
+              <MapPin className="w-12 h-12 sm:w-14 sm:h-14 text-brand-300 animate-pulse" />
             </div>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.091091074091!2d80.791592!3d16.647596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35e10014e10cf7%3A0xa8b6e0e50c33ca9a!2sHEAL%20PARADISE%20SECONDARY%20SCHOOL!5e0!3m2!1sen!2sin!4v1702300000000!5m2!1sen!2sin"

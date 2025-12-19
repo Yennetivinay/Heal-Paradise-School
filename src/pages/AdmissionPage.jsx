@@ -125,7 +125,7 @@ const AdmissionPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-neutral-50 to-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-600 via-sky-500 to-blue-600 text-white py-20 md:py-28">
+      <section className="relative bg-gradient-to-r from-brand-600 via-brand-500 to-brand-600 text-white py-20 md:py-28">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -156,7 +156,7 @@ const AdmissionPage = () => {
             transition={{ duration: 0.4 }}
             className="text-center mb-8"
           >
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-sky-500 mb-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-brand-500 to-brand-500 mb-4">
               <Play className="w-8 h-8 text-white" />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
@@ -203,8 +203,8 @@ const AdmissionPage = () => {
           >
             <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-slate-200">
               <div className="flex items-start gap-4 mb-6">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
-                  <Info className="w-6 h-6 text-blue-600" />
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-brand-100 flex items-center justify-center">
+                  <Info className="w-6 h-6 text-brand-600" />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-2xl font-bold text-slate-900 mb-3">
@@ -263,13 +263,13 @@ const AdmissionPage = () => {
                 className="bg-white rounded-2xl shadow-xl p-6"
               >
                 <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-                  <BookOpen className="w-5 h-5 text-blue-600" />
+                  <BookOpen className="w-5 h-5 text-brand-600" />
                   Admission Process
                 </h3>
                 <div className="space-y-4">
                   {admissionProcess.map((step, index) => (
                     <div key={index} className="flex gap-3">
-                      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center">
                         {step.icon}
                       </div>
                       <div>
@@ -289,7 +289,7 @@ const AdmissionPage = () => {
                 className="bg-white rounded-2xl shadow-xl p-6"
               >
                 <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-                  <FileText className="w-5 h-5 text-blue-600" />
+                  <FileText className="w-5 h-5 text-brand-600" />
                   Required Documents
                 </h3>
                 <ul className="space-y-2">
@@ -311,7 +311,7 @@ const AdmissionPage = () => {
             transition={{ duration: 0.4, delay: 0.4 }}
             className="max-w-6xl mx-auto text-center"
           >
-            <div className="bg-gradient-to-r from-blue-600 via-sky-500 to-blue-600 rounded-2xl shadow-2xl p-8 md:p-10 text-white">
+            <div className="bg-gradient-to-r from-brand-600 via-brand-500 to-brand-600 rounded-2xl shadow-2xl p-8 md:p-10 text-white">
               <h3 className="text-2xl md:text-3xl font-bold mb-4">
                 Ready to Apply?
               </h3>
@@ -322,7 +322,7 @@ const AdmissionPage = () => {
                 href="https://forms.google.com/your-form-link-here"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-white text-blue-600 font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-white text-brand-600 font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
                 <span>Open Admission Form</span>
                 <ExternalLink className="w-5 h-5" />
@@ -366,7 +366,7 @@ const AdmissionPage = () => {
                 transition={{ duration: 0.6, delay: 0.1 * index }}
                 className="bg-white rounded-xl p-6 shadow-lg text-center hover:shadow-xl transition-shadow"
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-4">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand-100 text-brand-600 mb-4">
                   {feature.icon}
                 </div>
                 <h3 className="text-lg font-semibold text-slate-900 mb-2">{feature.title}</h3>

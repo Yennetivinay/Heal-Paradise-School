@@ -19,7 +19,7 @@ const NotFoundPage = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mb-6"
         >
-          <h1 className="text-9xl md:text-[12rem] font-bold bg-gradient-to-r from-blue-600 via-sky-500 to-blue-600 bg-clip-text text-transparent animate-gradient">
+          <h1 className="text-9xl md:text-[12rem] font-bold bg-gradient-to-r from-brand-600 via-brand-500 to-brand-600 bg-clip-text text-transparent animate-gradient">
             404
           </h1>
         </motion.div>
@@ -51,14 +51,14 @@ const NotFoundPage = () => {
         >
           <Link
             to="/"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-sky-500 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-brand-600 to-brand-500 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
           >
             <Home className="w-5 h-5" />
             <span>Go to Home</span>
           </Link>
           <button
             onClick={() => window.history.back()}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-slate-700 border-2 border-slate-200 rounded-full font-medium shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 hover:border-blue-500"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-slate-700 border-2 border-slate-200 rounded-full font-medium shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 hover:border-brand-500"
           >
             <ArrowLeft className="w-5 h-5" />
             <span>Go Back</span>
@@ -76,21 +76,21 @@ const NotFoundPage = () => {
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Link
               to="/about"
-              className="text-sm text-blue-600 hover:text-blue-700 hover:underline transition-colors"
+              className="text-sm text-brand-600 hover:text-brand-700 hover:underline transition-colors"
             >
               About Us
             </Link>
             <span className="text-slate-300">•</span>
             <Link
               to="/gallery"
-              className="text-sm text-blue-600 hover:text-blue-700 hover:underline transition-colors"
+              className="text-sm text-brand-600 hover:text-brand-700 hover:underline transition-colors"
             >
               Gallery
             </Link>
             <span className="text-slate-300">•</span>
             <Link
               to="/contact"
-              className="text-sm text-blue-600 hover:text-blue-700 hover:underline transition-colors"
+              className="text-sm text-brand-600 hover:text-brand-700 hover:underline transition-colors"
             >
               Contact Us
             </Link>

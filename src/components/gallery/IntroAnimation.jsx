@@ -63,11 +63,11 @@ function FlipCard({
 
         {/* Back Face */}
         <div
-          className="absolute inset-0 h-full w-full overflow-hidden rounded-2xl shadow-2xl bg-gradient-to-br from-blue-600 via-sky-600 to-blue-700 flex flex-col items-center justify-center p-4 border-2 border-white/20"
+          className="absolute inset-0 h-full w-full overflow-hidden rounded-2xl shadow-2xl bg-gradient-to-br from-brand-600 via-brand-600 to-brand-700 flex flex-col items-center justify-center p-4 border-2 border-white/20"
           style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
         >
           <div className="text-center">
-                        <p className="text-[8px] font-bold text-blue-200 uppercase tracking-widest mb-1">View</p>
+                        <p className="text-[8px] font-bold text-brand-200 uppercase tracking-widest mb-1">View</p>
                         <p className="text-xs font-medium text-white">Details</p>
           </div>
         </div>
@@ -903,15 +903,15 @@ export default function IntroAnimation({ onAnimationComplete }) {
         <div ref={containerRef} className="relative w-full h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50 overflow-hidden" style={{ position: 'relative' }}>
             {/* Animated Background - Matching Gallery Page */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl animate-pulse" />
-                <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-sky-200/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-blue-100/25 via-sky-100/25 to-blue-100/25 rounded-full blur-3xl" />
+                <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-200/30 rounded-full blur-3xl animate-pulse" />
+                <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-brand-200/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-brand-100/25 via-brand-100/25 to-brand-100/25 rounded-full blur-3xl" />
                 
                 {/* Floating Sparkles */}
                 {Array.from({ length: 12 }).map((_, i) => (
                     <motion.div
                         key={i}
-                        className="absolute w-1 h-1 bg-blue-400/60 rounded-full"
+                        className="absolute w-1 h-1 bg-brand-400/60 rounded-full"
       style={{ 
                             left: `${10 + (i * 7)}%`,
                             top: `${15 + (i * 6)}%`,
@@ -960,7 +960,7 @@ export default function IntroAnimation({ onAnimationComplete }) {
             className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-extrabold tracking-tight mb-2"
           >
             <span 
-              className="bg-gradient-to-r from-blue-600 via-sky-500 via-cyan-500 to-blue-600 bg-clip-text text-transparent animate-gradient"
+              className="bg-gradient-to-r from-brand-600 via-brand-500 via-cyan-500 to-brand-600 bg-clip-text text-transparent animate-gradient"
             style={{
               textShadow: '0 4px 20px rgba(59, 130, 246, 0.3), 0 2px 10px rgba(14, 165, 233, 0.2)',
               WebkitTextStroke: '1px rgba(255, 255, 255, 0.1)',
@@ -974,7 +974,7 @@ export default function IntroAnimation({ onAnimationComplete }) {
             initial={{ opacity: 0, y: 10 }}
             animate={introPhase === "circle" && morphValue < 0.5 ? { opacity: 0.6 - morphValue * 1.2, y: 0 } : { opacity: 0, y: 10 }}
             transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-            className="mt-3 text-xs md:text-sm font-bold tracking-[0.3em] text-blue-600/80 uppercase"
+            className="mt-3 text-xs md:text-sm font-bold tracking-[0.3em] text-brand-600/80 uppercase"
             style={{
               letterSpacing: '0.3em',
               textShadow: '0 2px 8px rgba(59, 130, 246, 0.2)',
@@ -992,7 +992,7 @@ export default function IntroAnimation({ onAnimationComplete }) {
           <motion.h2 
                         className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6"
             style={{ 
-              background: 'linear-gradient(135deg, #1e40af 0%, #0ea5e9 50%, #1e40af 100%)',
+              background: 'linear-gradient(135deg, #0098CA 0%, #0098CA 50%, #0098CA 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text'

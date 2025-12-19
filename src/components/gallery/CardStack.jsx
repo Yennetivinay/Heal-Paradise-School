@@ -125,10 +125,10 @@ export function CardStack({
                   }}
                   className={cn(
                     "cursor-pointer rounded-xl border border-slate-700 bg-slate-800/80 backdrop-blur-sm p-4 overflow-hidden",
-                    "hover:border-blue-500/50 transition-colors shadow-lg",
+                    "hover:border-brand-500/50 transition-colors shadow-lg",
                     "absolute w-56 h-48 md:w-64 md:h-56",
                     isTopCard && "cursor-grab active:cursor-grabbing",
-                    isExpanded && "ring-2 ring-blue-500",
+                    isExpanded && "ring-2 ring-brand-500",
                   )}
                   style={{
                     backgroundColor: card.color || undefined,
@@ -137,7 +137,7 @@ export function CardStack({
                   {card.image && (
                     <div className="absolute inset-0 -z-10">
                       {!loadedImages.has(card.image) && (
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-sky-500/20 to-blue-600/20 animate-pulse" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-brand-600/20 via-brand-500/20 to-brand-600/20 animate-pulse" />
                       )}
                       <img
                         src={card.image}
@@ -158,7 +158,7 @@ export function CardStack({
 
                   <div className="flex items-start gap-3 relative z-10">
                     {card.icon && (
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-600/20 text-white">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-600/20 text-white">
                         {card.icon}
                       </div>
                     )}
@@ -192,7 +192,7 @@ export function CardStack({
               }}
               className={cn(
                 "h-1.5 rounded-full transition-all",
-                index === activeIndex ? "w-4 bg-blue-500" : "w-1.5 bg-slate-600 hover:bg-slate-500",
+                index === activeIndex ? "w-4 bg-brand-500" : "w-1.5 bg-slate-600 hover:bg-slate-500",
               )}
               aria-label={`Go to card ${index + 1}`}
             />

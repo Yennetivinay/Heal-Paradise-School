@@ -162,8 +162,8 @@ export const TeamTestimonials = ({
             style={{ perspective: '1000px' }}
           >
             {/* Decorative background elements */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-100/50 via-sky-100/30 to-transparent rounded-2xl sm:rounded-3xl blur-2xl sm:blur-3xl -z-10" />
-            <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-br from-blue-200/20 to-sky-200/20 rounded-xl sm:rounded-[2rem] blur-xl sm:blur-2xl -z-10" />
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-100/50 via-brand-100/30 to-transparent rounded-2xl sm:rounded-3xl blur-2xl sm:blur-3xl -z-10" />
+            <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-br from-brand-200/20 to-brand-200/20 rounded-xl sm:rounded-[2rem] blur-xl sm:blur-2xl -z-10" />
             
             {/* Circular testimonials - shows 3 images at once */}
             {testimonials.map((testimonial, index) => {
@@ -208,7 +208,7 @@ export const TeamTestimonials = ({
           <h3 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
             {testimonials[active].name}
           </h3>
-          <p className="text-sm sm:text-base md:text-lg text-sky-600 font-semibold">
+          <p className="text-sm sm:text-base md:text-lg text-brand-600 font-semibold">
             {testimonials[active].designation}
           </p>
         </motion.div>
@@ -266,11 +266,11 @@ export const TeamTestimonials = ({
           {/* Previous Button */}
           <button
             onClick={handlePrev}
-            className="group relative h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-gradient-to-br from-slate-800 to-slate-900 shadow-md sm:shadow-lg shadow-black/50 hover:shadow-xl hover:shadow-black/70 border border-slate-700/80 flex items-center justify-center transition-all duration-300 active:scale-95 sm:hover:scale-110 hover:border-blue-500/50"
+            className="group relative h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-gradient-to-br from-slate-800 to-slate-900 shadow-md sm:shadow-lg shadow-black/50 hover:shadow-xl hover:shadow-black/70 border border-slate-700/80 flex items-center justify-center transition-all duration-300 active:scale-95 sm:hover:scale-110 hover:border-brand-500/50"
             aria-label="Previous testimonial"
           >
-            <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5 text-slate-300 group-hover:text-blue-400 transition-colors duration-300 group-hover:translate-x-[-2px]" />
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/20 to-sky-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5 text-slate-300 group-hover:text-brand-400 transition-colors duration-300 group-hover:translate-x-[-2px]" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-brand-500/20 to-brand-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </button>
 
           {/* Indicator Dots */}
@@ -282,7 +282,7 @@ export const TeamTestimonials = ({
                 className={cn(
                   "transition-all duration-300 rounded-full",
                   isActive(index)
-                    ? "w-6 sm:w-8 h-1.5 sm:h-2 bg-gradient-to-r from-blue-500 to-sky-500 shadow-md shadow-blue-500/50"
+                    ? "w-6 sm:w-8 h-1.5 sm:h-2 bg-gradient-to-r from-brand-500 to-brand-500 shadow-md shadow-brand-500/50"
                     : "w-1.5 sm:w-2 h-1.5 sm:h-2 bg-slate-600 hover:bg-slate-500"
                 )}
                 aria-label={`Go to testimonial ${index + 1}`}
@@ -293,11 +293,11 @@ export const TeamTestimonials = ({
           {/* Next Button */}
           <button
             onClick={handleNext}
-            className="group relative h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-gradient-to-br from-slate-800 to-slate-900 shadow-md sm:shadow-lg shadow-black/50 hover:shadow-xl hover:shadow-black/70 border border-slate-700/80 flex items-center justify-center transition-all duration-300 active:scale-95 sm:hover:scale-110 hover:border-blue-500/50"
+            className="group relative h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-gradient-to-br from-slate-800 to-slate-900 shadow-md sm:shadow-lg shadow-black/50 hover:shadow-xl hover:shadow-black/70 border border-slate-700/80 flex items-center justify-center transition-all duration-300 active:scale-95 sm:hover:scale-110 hover:border-brand-500/50"
             aria-label="Next testimonial"
           >
-            <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-slate-300 group-hover:text-blue-400 transition-colors duration-300 group-hover:translate-x-[2px]" />
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/20 to-sky-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-slate-300 group-hover:text-brand-400 transition-colors duration-300 group-hover:translate-x-[2px]" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-brand-500/20 to-brand-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </button>
         </div>
       </div>
@@ -312,8 +312,8 @@ export const TeamTestimonials = ({
             style={{ perspective: '1000px', overflow: 'visible' }}
           >
             {/* Decorative background elements */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-100/50 via-sky-100/30 to-transparent rounded-3xl blur-3xl -z-10" />
-            <div className="absolute -inset-4 bg-gradient-to-br from-blue-200/20 to-sky-200/20 rounded-[2rem] blur-2xl -z-10" />
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-100/50 via-brand-100/30 to-transparent rounded-3xl blur-3xl -z-10" />
+            <div className="absolute -inset-4 bg-gradient-to-br from-brand-200/20 to-brand-200/20 rounded-[2rem] blur-2xl -z-10" />
             
             {/* Circular testimonials - shows 3 images at once */}
             {testimonials.map((testimonial, index) => {
@@ -358,7 +358,7 @@ export const TeamTestimonials = ({
           >
             {/* Quote Icon */}
             <div className="flex items-start">
-              <div className="text-5xl lg:text-6xl font-serif text-blue-200/60 leading-none">"</div>
+              <div className="text-5xl lg:text-6xl font-serif text-brand-200/60 leading-none">"</div>
             </div>
 
             {/* Quote Text */}
@@ -389,11 +389,11 @@ export const TeamTestimonials = ({
             </motion.div>
 
             {/* Name and Designation */}
-            <div className="pl-3 pt-3 border-l-2 border-gradient-to-b from-blue-500 to-sky-500 border-blue-500">
+            <div className="pl-3 pt-3 border-l-2 border-gradient-to-b from-brand-500 to-brand-500 border-brand-500">
               <h3 className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent mb-1">
                 {testimonials[active].name}
               </h3>
-              <p className="text-base lg:text-lg text-sky-600 font-semibold">
+              <p className="text-base lg:text-lg text-brand-600 font-semibold">
                 {testimonials[active].designation}
               </p>
             </div>
@@ -404,21 +404,21 @@ export const TeamTestimonials = ({
             {/* Previous Button */}
             <button
               onClick={handlePrev}
-              className="group relative h-12 w-12 rounded-full bg-gradient-to-br from-slate-800 to-slate-900 shadow-lg shadow-black/50 hover:shadow-xl hover:shadow-black/70 border border-slate-700/80 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:border-blue-500/50"
+              className="group relative h-12 w-12 rounded-full bg-gradient-to-br from-slate-800 to-slate-900 shadow-lg shadow-black/50 hover:shadow-xl hover:shadow-black/70 border border-slate-700/80 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:border-brand-500/50"
               aria-label="Previous testimonial"
             >
-              <ChevronLeft className="h-5 w-5 text-slate-300 group-hover:text-blue-400 transition-colors duration-300 group-hover:translate-x-[-2px]" />
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/20 to-sky-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <ChevronLeft className="h-5 w-5 text-slate-300 group-hover:text-brand-400 transition-colors duration-300 group-hover:translate-x-[-2px]" />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-brand-500/20 to-brand-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </button>
 
             {/* Next Button */}
             <button
               onClick={handleNext}
-              className="group relative h-12 w-12 rounded-full bg-gradient-to-br from-slate-800 to-slate-900 shadow-lg shadow-black/50 hover:shadow-xl hover:shadow-black/70 border border-slate-700/80 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:border-blue-500/50"
+              className="group relative h-12 w-12 rounded-full bg-gradient-to-br from-slate-800 to-slate-900 shadow-lg shadow-black/50 hover:shadow-xl hover:shadow-black/70 border border-slate-700/80 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:border-brand-500/50"
               aria-label="Next testimonial"
             >
-              <ChevronRight className="h-5 w-5 text-slate-300 group-hover:text-blue-400 transition-colors duration-300 group-hover:translate-x-[2px]" />
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/20 to-sky-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <ChevronRight className="h-5 w-5 text-slate-300 group-hover:text-brand-400 transition-colors duration-300 group-hover:translate-x-[2px]" />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-brand-500/20 to-brand-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </button>
 
             {/* Indicator Dots */}
@@ -430,7 +430,7 @@ export const TeamTestimonials = ({
                   className={cn(
                     "transition-all duration-300 rounded-full",
                     isActive(index)
-                      ? "w-8 h-2 bg-gradient-to-r from-blue-500 to-sky-500 shadow-md shadow-blue-500/50"
+                      ? "w-8 h-2 bg-gradient-to-r from-brand-500 to-brand-500 shadow-md shadow-brand-500/50"
                       : "w-2 h-2 bg-slate-600 hover:bg-slate-500"
                   )}
                   aria-label={`Go to testimonial ${index + 1}`}
