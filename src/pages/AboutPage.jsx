@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { createPortal } from 'react-dom';
 
 // Import components directly for better performance (they're already optimized)
 import { SpotlightCard } from '../components/common/SpotlightCard';
-import { Timeline } from '../components/common/Timeline';
+import TimelineCarousel from '../components/ui/TimelineCarousel';
 import { 
   GraduationCap, 
   Heart, 
   Users, 
   Award, 
+  Handshake, 
   BookOpen, 
   Target,
   Lightbulb,
@@ -29,12 +31,16 @@ import {
   CheckCircle,
   MapPin,
   Quote,
-  Handshake,
   UserCheck,
   Eye,
   Phone,
   Mail,
-  Calendar
+  Calendar,
+  Cog,
+  Presentation,
+  X,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 // Custom hook for count-up animation
@@ -119,6 +125,37 @@ const CountUp = ({ end, suffix = '', duration = 2000 }) => {
 };
 
 const AboutPage = () => {
+  // State for hover modal
+  const [hoveredValue, setHoveredValue] = useState(null);
+
+  // Core Values detailed data
+  const coreValuesData = {
+    cwa: {
+      acronym: 'CWA',
+      title: 'Compassion with Accountability',
+      description: 'Care is unconditional, but growth requires discipline. HEAL combines empathy with clear expectations, structure, and responsibility.'
+    },
+    eai: {
+      acronym: 'EAI',
+      title: 'Equality and Inclusion',
+      description: 'Every child is treated with dignity, regardless of background, disability, or past hardship. Inclusive education is practiced, not preached.'
+    },
+    iat: {
+      acronym: 'IAT',
+      title: 'Integrity and Transparency',
+      description: 'Honesty in administration, education, and community engagement is non-negotiable. Trust is built through consistent action.'
+    },
+    ete: {
+      acronym: 'ETE',
+      title: 'Excellence through Effort',
+      description: 'Children are encouraged to strive for their best, not perfection. Hard work, consistency, and self-belief are actively cultivated.'
+    },
+    sts: {
+      acronym: 'STS',
+      title: 'Service to Society',
+      description: 'Education at HEAL instills a sense of social responsibility. Giving back is part of success, not an afterthought.'
+    }
+  };
 
   // Scroll to top on component mount and prevent scroll restoration
   useEffect(() => {
@@ -149,244 +186,214 @@ const AboutPage = () => {
 
   // Statistics data with numeric values and suffixes
   const stats = [
-    { icon: Users, value: 500, suffix: '+', label: 'Students Enrolled', gradient: 'from-brand-500 to-brand-500' },
-    { icon: GraduationCap, value: 95, suffix: '%', label: 'Pass Rate', gradient: 'from-emerald-500 to-green-500' },
-    { icon: Award, value: 50, suffix: '+', label: 'Awards Won', gradient: 'from-amber-500 to-yellow-500' },
+    { icon: Handshake, value: 33, suffix: 'yrs+', label: 'Service', gradient: 'from-amber-500 to-yellow-500' },
+    { icon: Users, value: 16000, suffix: '+', label: 'Students Enrolled', gradient: 'from-brand-500 to-brand-500' },
+    { icon: GraduationCap, value: 99, suffix: '%', label: 'Pass Rate', gradient: 'from-emerald-500 to-green-500' },
+    
     { icon: Heart, value: 100, suffix: '%', label: 'Scholarship Coverage', gradient: 'from-rose-500 to-pink-500' },
   ];
 
-  // Core Values the values that we believe in and follow in our school
-  const values = [
-    {
-      icon: Heart,
-      title: 'Compassion',
-      description: 'We believe in treating every child with empathy, understanding, and unconditional care, creating a nurturing environment where they feel valued and supported.',
-      gradient: 'from-rose-500 to-pink-500'
-    },
-    {
-      icon: Target,
-      title: 'Excellence',
-      description: 'We strive for the highest standards in education, continuously improving our programs and facilities to provide world-class learning experiences.',
-      gradient: 'from-brand-500 to-brand-500'
-    },
-    {
-      icon: Shield,
-      title: 'Integrity',
-      description: 'We operate with honesty, transparency, and ethical principles, building trust with our students, families, and the community.',
-      gradient: 'from-emerald-500 to-green-500'
-    },
-    {
-      icon: Lightbulb,
-      title: 'Innovation',
-      description: 'We embrace creative teaching methods and modern technology to make learning engaging, relevant, and effective for every student.',
-      gradient: 'from-amber-500 to-yellow-500'
-    },
-    {
-      icon: Users,
-      title: 'Inclusivity',
-      description: 'We welcome students from all backgrounds, ensuring equal opportunities and celebrating diversity as a strength of our community.',
-      gradient: 'from-purple-500 to-violet-500'
-    },
-    {
-      icon: Sparkles,
-      title: 'Empowerment',
-      description: 'We empower students to discover their potential, build confidence, and become leaders who can make a positive impact on the world.',
-      gradient: 'from-brand-500 to-brand-500'
-    },
-  ];
 
-  // Timeline milestones - formatted for new Timeline component
+  // Timeline data for carousel
   const timelineData = [
     {
-      title: '2015',
-      image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=70&w=800&auto=format&fit=crop',
-      content: (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.4 }}
-          className="space-y-4"
-        >
-          <div className="flex items-start gap-4 sm:gap-5">
-            <motion.div
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              className="w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-500 flex items-center justify-center shadow-lg flex-shrink-0 ring-4 ring-brand-100"
-            >
-              <Building2 className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 text-white" />
-            </motion.div>
-            <div className="flex-1 min-w-0 pt-1">
-              <h4 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 mb-1.5 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-                Foundation
-              </h4>
-              <p className="text-sm sm:text-base text-slate-500 font-semibold uppercase tracking-wide">The Beginning</p>
-            </div>
-          </div>
-          <div className="pl-0 sm:pl-20">
-            <p className="text-base sm:text-lg md:text-xl text-slate-700 leading-relaxed font-medium">
-              Heal Paradise School was established with a vision to provide free, quality education to underprivileged children.
-              Our journey began with a simple yet powerful mission: to break the cycle of poverty through education.
-            </p>
-            <div className="flex flex-wrap gap-2.5 mt-4">
-              <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-brand-500 to-brand-500 text-white text-sm font-bold shadow-md">Vision</span>
-              <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-brand-500 to-brand-500 text-white text-sm font-bold shadow-md">Mission</span>
-            </div>
-          </div>
-        </motion.div>
-      )
+      id: 1,
+      year: '1967',
+      title: 'Praja Seva Samithi',
+      description: 'Dr. Koneru Satya Prasad lays the foundation for social service. This marked the beginning of a lifelong mission rooted in community welfare.'
     },
     {
-      title: '2017',
-      image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=70&w=800&auto=format&fit=crop',
-      content: (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.4 }}
-          className="space-y-4"
-        >
-          <div className="flex items-start gap-4 sm:gap-5">
-            <motion.div
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              className="w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 rounded-2xl bg-gradient-to-br from-emerald-500 to-green-500 flex items-center justify-center shadow-lg flex-shrink-0 ring-4 ring-emerald-100"
-            >
-              <Award className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 text-white" />
-            </motion.div>
-            <div className="flex-1 min-w-0 pt-1">
-              <h4 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 mb-1.5 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-                CBSE Affiliation
-              </h4>
-              <p className="text-sm sm:text-base text-slate-500 font-semibold uppercase tracking-wide">Recognition Achieved</p>
-            </div>
-          </div>
-          <div className="pl-0 sm:pl-20">
-            <p className="text-base sm:text-lg md:text-xl text-slate-700 leading-relaxed font-medium">
-              Successfully obtained CBSE affiliation, ensuring our students receive recognized, high-quality education.
-              This milestone validated our commitment to academic excellence and opened doors to better opportunities.
-            </p>
-            <div className="flex flex-wrap gap-2.5 mt-4">
-              <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-emerald-500 to-green-500 text-white text-sm font-bold shadow-md">CBSE</span>
-              <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-white text-sm font-bold shadow-md">Quality</span>
-            </div>
-          </div>
-        </motion.div>
-      )
+      id: 2,
+      year: '1972',
+      title: 'Mini Medical Care Centre',
+      description: 'Accessible primary healthcare introduced at the grassroots. Its success proved the need for structured rural health interventions.'
     },
     {
-      title: '2019',
-      image: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?q=70&w=800&auto=format&fit=crop',
-      content: (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.4 }}
-          className="space-y-4"
-        >
-          <div className="flex items-start gap-4 sm:gap-5">
-            <motion.div
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              className="w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 rounded-2xl bg-gradient-to-br from-amber-500 to-yellow-500 flex items-center justify-center shadow-lg flex-shrink-0 ring-4 ring-amber-100"
-            >
-              <TrendingUp className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 text-white" />
-            </motion.div>
-            <div className="flex-1 min-w-0 pt-1">
-              <h4 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 mb-1.5 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-                Expansion
-              </h4>
-              <p className="text-sm sm:text-base text-slate-500 font-semibold uppercase tracking-wide">Growing Strong</p>
-            </div>
-          </div>
-          <div className="pl-0 sm:pl-20">
-            <p className="text-base sm:text-lg md:text-xl text-slate-700 leading-relaxed font-medium">
-              Expanded facilities to accommodate more students, adding new classrooms, state-of-the-art labs, 
-              and enhanced residential facilities. Our growth reflected the increasing trust and impact in the community.
-            </p>
-            <div className="flex flex-wrap gap-2.5 mt-4">
-              <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 text-white text-sm font-bold shadow-md">Growth</span>
-              <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 text-white text-sm font-bold shadow-md">Facilities</span>
-            </div>
-          </div>
-        </motion.div>
-      )
+      id: 3,
+      year: '1992',
+      title: 'HEAL UK',
+      description: 'HEAL registered in the UK to mobilise global support. Funds raised enabled structured projects across India.'
     },
     {
-      title: '2022',
-      image: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=70&w=800&auto=format&fit=crop',
-      content: (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.3 }}
-          className="space-y-4"
-        >
-          <div className="flex items-start gap-4 sm:gap-5">
-            <motion.div
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              className="w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 rounded-2xl bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center shadow-lg flex-shrink-0 ring-4 ring-purple-100"
-            >
-              <Star className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 text-white" />
-            </motion.div>
-            <div className="flex-1 min-w-0 pt-1">
-              <h4 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 mb-1.5 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-                Recognition
-              </h4>
-              <p className="text-sm sm:text-base text-slate-500 font-semibold uppercase tracking-wide">Excellence Acknowledged</p>
-            </div>
-          </div>
-          <div className="pl-0 sm:pl-20">
-            <p className="text-base sm:text-lg md:text-xl text-slate-700 leading-relaxed font-medium">
-              Received multiple awards for excellence in education and social impact, gaining national recognition.
-              Our dedication to transforming lives through education was celebrated and acknowledged at the highest levels.
-            </p>
-            <div className="flex flex-wrap gap-2.5 mt-4">
-              <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-purple-500 to-violet-500 text-white text-sm font-bold shadow-md">Awards</span>
-              <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-violet-500 to-purple-500 text-white text-sm font-bold shadow-md">Excellence</span>
-            </div>
-          </div>
-        </motion.div>
-      )
+      id: 4,
+      year: '1993',
+      title: 'HEAL India Begins',
+      description: 'Dr. Prasad\'s ancestral home transformed into an orphanage. Twenty-six children found safety, care, and education.'
     },
     {
-      title: '2024',
-      image: 'https://images.unsplash.com/photo-1529390079861-591de354faf5?q=70&w=800&auto=format&fit=crop',
-      content: (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.3 }}
-          className="space-y-4"
-        >
-          <div className="flex items-start gap-4 sm:gap-5">
-            <motion.div
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              className="w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 rounded-2xl bg-gradient-to-br from-rose-500 to-pink-500 flex items-center justify-center shadow-lg flex-shrink-0 ring-4 ring-rose-100"
-            >
-              <Users className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 text-white" />
-            </motion.div>
-            <div className="flex-1 min-w-0 pt-1">
-              <h4 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 mb-1.5 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-                500+ Students
-              </h4>
-              <p className="text-sm sm:text-base text-slate-500 font-semibold uppercase tracking-wide">Milestone Reached</p>
-            </div>
-          </div>
-          <div className="pl-0 sm:pl-20">
-            <p className="text-base sm:text-lg md:text-xl text-slate-700 leading-relaxed font-medium">
-              Reached a milestone of 500+ students, transforming lives through education and compassionate care.
-              Each student represents a story of hope, resilience, and the power of education to change destinies.
-            </p>
-            <div className="flex flex-wrap gap-2.5 mt-4">
-              <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-rose-500 to-pink-500 text-white text-sm font-bold shadow-md">500+</span>
-              <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white text-sm font-bold shadow-md">Impact</span>
-            </div>
-          </div>
-        </motion.div>
-      )
+      id: 5,
+      year: '1997',
+      title: 'HEAL Children\'s Village',
+      description: 'Foundation stone laid for a full-scale residential ecosystem. Capacity expanded to support 250 children.'
     },
+    {
+      id: 6,
+      year: '2005',
+      title: 'Boys\' Hostel Established',
+      description: 'Infrastructure expanded to separate boys\' and girls\' hostels. This improved safety, discipline, and capacity.'
+    },
+    {
+      id: 7,
+      year: '2008',
+      title: 'Cycle India',
+      description: 'Biennial international fundraising initiative launched. Participants came from the UK, India, Kenya, Australia, and the USA.'
+    },
+    {
+      id: 8,
+      year: '2009',
+      title: 'ZPH School, Kanuru',
+      description: 'HEAL begins supporting a government school after multiple founder visits. A step towards strengthening public education.'
+    },
+    {
+      id: 9,
+      year: '2009',
+      title: 'HEAL School, Bhadrachalam',
+      description: 'School started for tribal and rural marginalised children. Over 400 children supported through education and care.'
+    },
+    {
+      id: 10,
+      year: '2012',
+      title: 'HEAL Paradise',
+      description: 'A self-sustaining residential model takes shape. Designed as a replicable blueprint for rural transformation.'
+    },
+    {
+      id: 11,
+      year: '2014',
+      title: 'HEAL Australia',
+      description: 'HEAL Australia registered in Robina, Queensland. Expanded the organisation\'s global footprint.'
+    },
+    {
+      id: 12,
+      year: '2014',
+      title: 'HEAL School at Paradise',
+      description: 'School launched with 57 students. Today, more than 800 children study on the campus.'
+    },
+    {
+      id: 13,
+      year: '2015',
+      title: 'Institute for the Visually Challenged',
+      description: 'Specialised education introduced with Braille and digital tools. Enabled independent living and skill development.'
+    },
+    {
+      id: 14,
+      year: '2015',
+      title: 'HEAL Artificial Limb Centre',
+      description: 'Free lower-limb support for children under 18. Extended to adults in 2020, with over 430 limbs provided.'
+    },
+    {
+      id: 15,
+      year: '2016',
+      title: 'Escape Poverty Trap Program',
+      description: 'Support extended to 15 government schools in Krishna District. Focused on breaking intergenerational poverty.'
+    },
+    {
+      id: 16,
+      year: '2017',
+      title: 'Sports Project',
+      description: 'Professional sports training introduced at HEAL Paradise. Students achieved national-level medals. A Sports Excellence Centre planned.'
+    },
+    {
+      id: 17,
+      year: '2018',
+      title: 'Silver Jubilee',
+      description: '25 years of HEAL celebrated. A commemorative souvenir documented transformed lives.'
+    },
+    {
+      id: 18,
+      year: '2019',
+      title: 'Acupuncture Training',
+      description: 'Medical training launched with BMAS India. Built alternative healthcare capacity among professionals.'
+    },
+    {
+      id: 19,
+      year: '2019',
+      title: 'NIOS & Skill Development Centre',
+      description: 'Affiliation secured to support destitute children. Focus on education, skills, and employability.'
+    },
+    {
+      id: 20,
+      year: '2020',
+      title: 'Distance Education Faculty',
+      description: 'Global educators onboarded during COVID-19. Learning continued without disruption.'
+    },
+    {
+      id: 21,
+      year: '2021',
+      title: 'Elder Care Program',
+      description: 'Elder Care Assistant course launched with a US partner. Created livelihood pathways in healthcare support.'
+    },
+    {
+      id: 22,
+      year: '2022',
+      title: 'HEAL Canada',
+      description: 'Registered as a charity under Canadian law. Strengthened international collaborations.'
+    },
+    {
+      id: 23,
+      year: '2022',
+      title: 'HEAL Innovation Centre',
+      description: 'Innovation-led learning and applied solutions initiated. Focused on technology and impact.'
+    },
+    {
+      id: 24,
+      year: '2022',
+      title: 'Alekhya AI Centre of Excellence',
+      description: 'Artificial Intelligence education institutionalised. Positioned HEAL at the forefront of future skills.'
+    },
+    {
+      id: 25,
+      year: '2023',
+      title: 'Global Exposure',
+      description: 'HEAL students travel to the USA. This marked direct international exposure and confidence building.'
+    },
+    {
+      id: 26,
+      year: '2023',
+      title: 'Industry Integration',
+      description: 'AI students secured placements through active industry collaborations. HEAL Paradise emerged as a working talent hub.'
+    },
+    {
+      id: 27,
+      year: '2023',
+      title: 'Health Expansion',
+      description: 'HEAL Health Centre inaugurated at Panjagutta, Hyderabad. A full-scale urban healthcare facility came into operation.'
+    },
+    {
+      id: 28,
+      year: '2024',
+      title: 'Administrative Foundation',
+      description: 'A state-of-the-art Administrative Centre established at HEAL Paradise. Centralised governance and operations strengthened.'
+    },
+    {
+      id: 29,
+      year: '2024',
+      title: 'Centres of Excellence',
+      description: 'Alekhya AI Centre of Excellence and Sports Excellence Centre formally strengthened. Focus shifted to high-performance outcomes.'
+    },
+    {
+      id: 30,
+      year: '2024',
+      title: 'Higher Education Vision',
+      description: 'Proposal initiated for a Deemed University under a distinct category. A long-term academic roadmap was defined.'
+    },
+    {
+      id: 31,
+      year: '2024',
+      title: 'National Recognition',
+      description: 'Dr. Koneru Satya Prasad honoured at the Sevaa Dharmik Awards. His decades of service received formal recognition.'
+    },
+    {
+      id: 32,
+      year: '2025',
+      title: 'Global Honour',
+      description: 'Dr. Koneru Satya Prasad receives the Roots Health Services Award 2025. International acknowledgement of leadership and impact.'
+    },
+    {
+      id: 33,
+      year: '2025',
+      title: 'Student Global Leadership',
+      description: 'Five HEAL students represented India at the ISF Global Junicorn & AI Summit. Event held at Texas State University, San Marcos, USA, on May 29–30.'
+    }
   ];
 
   // Why Choose Us features
@@ -430,33 +437,28 @@ const AboutPage = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-brand-50/30 relative z-0 overflow-x-hidden">
+    <main className="min-h-screen bg-white relative z-0 overflow-x-hidden">
+      
       {/* Hero Section */}
       <header className="relative overflow-hidden pt-24 pb-6 md:pt-28 md:pb-8 z-10 px-4 sm:px-6">
-        {/* Enhanced background with multiple layers */}
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-50/80 via-white to-brand-50/60" />
-        <div className="absolute top-0 right-0 w-72 h-72 md:w-[500px] md:h-[500px] bg-gradient-to-br from-brand-200/40 to-brand-200/40 rounded-full blur-3xl -mr-32 md:-mr-64 -mt-32 md:-mt-64 animate-pulse" />
-        <div className="absolute bottom-0 left-0 w-72 h-72 md:w-[500px] md:h-[500px] bg-gradient-to-tr from-brand-200/40 to-brand-200/40 rounded-full blur-3xl -ml-32 md:-ml-64 -mb-32 md:-mb-64 animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 md:w-[600px] md:h-[600px] bg-gradient-to-r from-orange-100/20 to-amber-100/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0.5s' }} />
-        
         <div className="relative mx-auto max-w-7xl">
           <div className="text-center relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.4, type: "spring", stiffness: 200 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: false, margin: "0px", amount: 0.1 }}
               className="inline-flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-md border border-brand-200/60 px-4 py-2 md:px-5 md:py-2.5 text-sm md:text-base font-semibold text-brand-700 shadow-lg mb-4 md:mb-6 hover:shadow-xl transition-shadow duration-300"
             >
               <Sparkles className="w-4 h-4 md:w-5 md:h-5" />
-              About Heal Paradise School
+              About Heal School
             </motion.div>
             
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.05, type: "spring", stiffness: 200 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: false, margin: "0px", amount: 0.1 }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mb-4 md:mb-5 px-2 leading-tight"
             >
               <span className="bg-gradient-to-r from-brand-600 via-brand-600 to-brand-600 bg-clip-text text-transparent drop-shadow-sm">
@@ -466,29 +468,39 @@ const AboutPage = () => {
               <span className="text-slate-900 drop-shadow-sm">Through Education</span>
             </motion.h1>
             
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="text-lg sm:text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed px-2 font-medium"
+              viewport={{ once: false, margin: "0px", amount: 0.1 }}
+              className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12"
             >
-              A compassionate, world-class CBSE school dedicated to uplifting underprivileged children, 
-              single-parent families, and orphans — providing full scholarship, residential care, and 
-              holistic education that empowers students to achieve their dreams.
-            </motion.p>
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-brand-600 leading-relaxed font-medium text-center italic">
+                &ldquo;Education at HEAL is not a service. It is a responsibility.&rdquo;
+              </p>
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 leading-relaxed font-medium mt-4 md:mt-6 text-justify w-full">
+                Since its origins in 1968 as Praja Seva Samithi and formally established as HEAL in 1992, 
+                the institution has existed for one clear reason: to break the cycle of poverty and abandonment 
+                through disciplined, value-based education.
+              </p>
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 leading-relaxed font-medium mt-4 md:mt-6 text-justify w-full">
+                HEAL works with children who start life at a disadvantage. Orphans. Semi-orphans. Children from 
+                severely underprivileged families. Many arrive with emotional trauma, learning gaps, and no stable 
+                support system. Education alone is not enough for them. They need structure, care, dignity, and 
+                long-term guidance.
+              </p>
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 leading-relaxed font-medium mt-4 md:mt-6 text-justify w-full">
+                HEAL functions as both parent and institution. It provides schooling, accommodation, nutrition, 
+                healthcare, emotional security, and moral grounding under one roof. The goal is not just academic 
+                success. The goal is to shape capable, self-reliant, socially responsible human beings.
+              </p>
+            </motion.div>
           </div>
         </div>
       </header>
 
       {/* Statistics Section */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-4 md:py-6 relative">
-        {/* Subtle background decoration */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/2 left-0 w-64 h-64 bg-gradient-to-r from-brand-100/20 to-transparent rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 right-0 w-64 h-64 bg-gradient-to-l from-brand-100/20 to-transparent rounded-full blur-3xl"></div>
-        </div>
-        
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-4 md:py-6 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 relative z-10">
           {stats.map((stat, index) => {
             const Icon = stat.icon || Users; // Fallback if icon is missing
@@ -497,12 +509,12 @@ const AboutPage = () => {
                 key={index}
                 initial={{ opacity: 0, y: 40, scale: 0.9 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: false, margin: "0px", amount: 0.1 }}
                 transition={{ duration: 0.3, delay: index * 0.03, type: "spring", stiffness: 150 }}
               >
                 <SpotlightCard
-                  className="rounded-2xl md:rounded-3xl border border-white/80 bg-gradient-to-br from-white via-white to-slate-50/80 backdrop-blur-sm p-6 sm:p-7 md:p-10 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 h-full group"
-                  spotlightColor="#0098CA40"
+                  className="rounded-2xl md:rounded-3xl border-2 border-brand-300/60 bg-gradient-to-br from-white via-white to-slate-50/80 backdrop-blur-sm p-6 sm:p-7 md:p-10 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 h-full group hover:border-brand-400/80"
+                  spotlightColor="#00abd940"
                 >
                   <div className={`w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-2xl md:rounded-3xl bg-gradient-to-br ${stat.gradient} flex items-center justify-center mb-4 md:mb-6 shadow-xl mx-auto group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
                     <Icon className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white" />
@@ -530,13 +542,7 @@ const AboutPage = () => {
       </div>
 
       {/* Mission & Vision Section */}
-      <section className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-12 relative">
-        {/* Background decoration */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-3xl">
-          <div className="absolute top-0 left-0 w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-br from-brand-100/20 to-brand-100/20 rounded-full blur-3xl -ml-32 sm:-ml-48 -mt-32 sm:-mt-48"></div>
-          <div className="absolute bottom-0 right-0 w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-tr from-brand-100/20 to-brand-100/20 rounded-full blur-3xl -mr-32 sm:-mr-48 -mb-32 sm:-mb-48"></div>
-        </div>
-        
+      <section className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-12 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -563,24 +569,64 @@ const AboutPage = () => {
               duration: 0.2, 
               ease: "easeOut"
             }}
-            className="group relative overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl bg-gradient-to-br from-brand-50 via-white to-brand-50 border-2 border-brand-200/60 p-5 sm:p-6 md:p-8 lg:p-10 shadow-xl hover:shadow-2xl transition-all duration-200 md:duration-500 md:hover:scale-[1.02]"
+            className="group relative overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl bg-gradient-to-br from-brand-50 via-white to-brand-50 border-2 border-brand-300/60 p-4 sm:p-5 md:p-6 lg:p-7 shadow-xl hover:shadow-2xl transition-all duration-200 md:duration-500 md:hover:scale-[1.02] hover:border-brand-400/80"
           >
             <div className="absolute top-0 right-0 w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-br from-brand-200/30 to-brand-200/30 rounded-full blur-3xl -mr-24 sm:-mr-32 -mt-24 sm:-mt-32"></div>
             <div className="relative z-10">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-brand-500 to-brand-600 flex items-center justify-center mb-4 sm:mb-5 md:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-200 md:duration-300">
-                <Target className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-brand-500 to-brand-600 flex items-center justify-center mb-3 sm:mb-4 md:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-200 md:duration-300">
+                <Target className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white" />
               </div>
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 mb-3 sm:mb-4">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-extrabold text-slate-900 mb-3 sm:mb-4 md:mb-4">
                 Our Mission
               </h3>
-              <p className="text-sm sm:text-base md:text-lg text-slate-700 leading-relaxed mb-3 sm:mb-4">
-                To provide world-class CBSE education with complete residential care, free of cost, 
-                to underprivileged children, single-parent families, and orphans.
+              
+              {/* Main Mission Statement */}
+              <p className="text-sm sm:text-base md:text-lg text-slate-800 leading-relaxed mb-3 sm:mb-4 md:mb-4 font-medium">
+                To provide holistic education and care to orphaned and underprivileged children, enabling them to become educated, employable, and ethically grounded individuals.
               </p>
-              <p className="text-sm sm:text-base md:text-lg text-slate-700 leading-relaxed">
-                We are committed to nurturing each child's potential through holistic education, 
-                compassionate support, and values-based learning that empowers them to become 
-                confident, responsible, and successful individuals who can transform their communities.
+
+              {/* Subheading */}
+              <p className="text-sm sm:text-base md:text-lg text-slate-700 leading-relaxed mb-3 sm:mb-3 md:mb-4 font-semibold">
+                HEAL's mission goes beyond classroom learning. It focuses on building strong foundations through:
+              </p>
+
+              {/* Bullet Points */}
+              <ul className="space-y-2 sm:space-y-2.5 md:space-y-3 mb-3 sm:mb-4 md:mb-4">
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <span className="flex-shrink-0 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-gradient-to-r from-brand-500 to-brand-600 mt-1.5 sm:mt-2 shadow-sm"></span>
+                  <span className="text-sm sm:text-base md:text-lg text-slate-700 leading-relaxed flex-1">
+                    <span className="font-semibold text-brand-700">Quality formal education</span>
+                  </span>
+                </li>
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <span className="flex-shrink-0 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-gradient-to-r from-brand-500 to-brand-600 mt-1.5 sm:mt-2 shadow-sm"></span>
+                  <span className="text-sm sm:text-base md:text-lg text-slate-700 leading-relaxed flex-1">
+                    <span className="font-semibold text-brand-700">Residential care with discipline and safety</span>
+                  </span>
+                </li>
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <span className="flex-shrink-0 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-gradient-to-r from-brand-500 to-brand-600 mt-1.5 sm:mt-2 shadow-sm"></span>
+                  <span className="text-sm sm:text-base md:text-lg text-slate-700 leading-relaxed flex-1">
+                    <span className="font-semibold text-brand-700">Physical and mental well-being</span>
+                  </span>
+                </li>
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <span className="flex-shrink-0 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-gradient-to-r from-brand-500 to-brand-600 mt-1.5 sm:mt-2 shadow-sm"></span>
+                  <span className="text-sm sm:text-base md:text-lg text-slate-700 leading-relaxed flex-1">
+                    <span className="font-semibold text-brand-700">Moral and social values</span>
+                  </span>
+                </li>
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <span className="flex-shrink-0 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-gradient-to-r from-brand-500 to-brand-600 mt-1.5 sm:mt-2 shadow-sm"></span>
+                  <span className="text-sm sm:text-base md:text-lg text-slate-700 leading-relaxed flex-1">
+                    <span className="font-semibold text-brand-700">Skill development and career readiness</span>
+                  </span>
+                </li>
+              </ul>
+
+              {/* Closing Statement */}
+              <p className="text-sm sm:text-base md:text-lg text-slate-800 leading-relaxed font-medium italic border-l-4 border-brand-500 pl-3 sm:pl-4 md:pl-5 py-1.5 sm:py-2 bg-gradient-to-r from-brand-50/50 to-transparent rounded-r-lg">
+                Every child at HEAL is prepared not just to pass exams, but to stand independently in society with confidence and purpose.
               </p>
             </div>
           </motion.div>
@@ -594,24 +640,30 @@ const AboutPage = () => {
               duration: 0.2, 
               ease: "easeOut"
             }}
-            className="group relative overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl bg-gradient-to-br from-purple-50 via-white to-violet-50 border-2 border-purple-200/60 p-5 sm:p-6 md:p-8 lg:p-10 shadow-xl hover:shadow-2xl transition-all duration-200 md:duration-500 md:hover:scale-[1.02]"
+            className="group relative overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl bg-gradient-to-br from-purple-50 via-white to-violet-50 border-2 border-purple-300/60 p-4 sm:p-5 md:p-6 lg:p-7 shadow-xl hover:shadow-2xl transition-all duration-200 md:duration-500 md:hover:scale-[1.02] hover:border-purple-400/80"
           >
             <div className="absolute top-0 left-0 w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-br from-purple-200/30 to-violet-200/30 rounded-full blur-3xl -ml-24 sm:-ml-32 -mt-24 sm:-mt-32"></div>
             <div className="relative z-10">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center mb-4 sm:mb-5 md:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-200 md:duration-300">
-                <Lightbulb className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center mb-3 sm:mb-4 md:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-200 md:duration-300">
+                <Lightbulb className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white" />
               </div>
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 mb-3 sm:mb-4">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-extrabold text-slate-900 mb-3 sm:mb-4 md:mb-4">
                 Our Vision
               </h3>
-              <p className="text-sm sm:text-base md:text-lg text-slate-700 leading-relaxed mb-3 sm:mb-4">
-                To be a beacon of hope and excellence in education, creating a nurturing environment 
-                where every child, regardless of their background, receives equal opportunities to excel.
+              
+              {/* Main Vision Statement */}
+              <p className="text-sm sm:text-base md:text-lg text-slate-800 leading-relaxed mb-3 sm:mb-4 md:mb-4 font-medium">
+                To create a society where no child is denied education, dignity, or opportunity due to poverty, disability, or the absence of parental support.
               </p>
-              <p className="text-sm sm:text-base md:text-lg text-slate-700 leading-relaxed">
-                We envision a future where our students become leaders, innovators, and change-makers, 
-                breaking cycles of poverty through education and contributing meaningfully to society 
-                with integrity, compassion, and excellence.
+
+              {/* Vision Description */}
+              <p className="text-sm sm:text-base md:text-lg text-slate-700 leading-relaxed mb-3 sm:mb-3 md:mb-4 font-semibold">
+                HEAL envisions a future where children from the most disadvantaged backgrounds emerge as professionals, leaders, and contributors to the nation. The long-term vision is self-sufficiency. Children should not remain dependent on charity. They should become capable of shaping their own lives and supporting others in return.
+              </p>
+
+              {/* Highlighted Closing Statement */}
+              <p className="text-sm sm:text-base md:text-lg text-slate-800 leading-relaxed font-medium italic border-l-4 border-purple-500 pl-3 sm:pl-4 md:pl-5 py-1.5 sm:py-2 bg-gradient-to-r from-purple-50/50 to-transparent rounded-r-lg">
+                From dependency to independence, from receiving to giving—that is the HEAL vision.
               </p>
             </div>
           </motion.div>
@@ -620,249 +672,322 @@ const AboutPage = () => {
 
       {/* Section Divider */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-2">
-        <div className="h-px bg-gradient-to-r from-transparent via-purple-200 to-transparent"></div>
-      </div>
-
-      {/* Core Values Section */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-4 md:py-8 relative">
-        {/* Background decoration */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-3xl">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-purple-100/15 to-pink-100/15 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tr from-brand-100/15 to-brand-100/15 rounded-full blur-3xl"></div>
-        </div>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.3 }}
-          className="text-center mb-4 md:mb-6 relative z-10"
-        >
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-sm border border-purple-200/60 px-4 py-2 text-sm font-semibold text-purple-700 shadow-sm mb-4">
-            <Heart className="w-4 h-4" />
-            What We Stand For
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 md:mb-6 px-2">
-            <span className="bg-gradient-to-r from-brand-500 via-brand-500 to-brand-500 bg-clip-text text-transparent">Our Core Values</span>
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto px-2 leading-relaxed">
-            The principles that guide our actions and shape our community
-          </p>
-        </motion.div>
-
-        <div className="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3 relative z-10">
-          {values.map((value, index) => {
-            const Icon = value.icon || Heart; // Fallback to Heart if icon is missing
-            const cardStyles = [
-              'rounded-2xl border-2 border-brand-200/60 bg-gradient-to-br from-brand-50/90 to-white p-6 sm:p-7 md:p-9 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 h-full group',
-              'rounded-3xl border-2 border-emerald-200/60 bg-gradient-to-br from-emerald-50/80 via-white to-emerald-50/60 p-6 sm:p-7 md:p-9 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 h-full group',
-              'rounded-xl border-2 border-amber-200/60 bg-gradient-to-br from-amber-50/90 to-yellow-50/70 p-6 sm:p-7 md:p-9 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 h-full group',
-              'rounded-2xl border-2 border-purple-200/60 bg-gradient-to-br from-purple-50/80 to-violet-50/60 p-6 sm:p-7 md:p-9 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 h-full group',
-              'rounded-3xl border-2 border-brand-200/60 bg-gradient-to-br from-brand-50/90 to-brand-50/70 p-6 sm:p-7 md:p-9 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 h-full group',
-              'rounded-xl border-2 border-rose-200/60 bg-gradient-to-br from-rose-50/90 via-pink-50/70 to-rose-50/60 p-6 sm:p-7 md:p-9 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 h-full group',
-            ];
-            const iconShapes = ['rounded-xl', 'rounded-full', 'rounded-lg', 'rounded-2xl', 'rounded-full', 'rounded-xl'];
-            const iconSizes = ['w-16 h-16', 'w-18 h-18', 'w-14 h-14', 'w-16 h-16', 'w-18 h-18', 'w-14 h-14'];
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 40, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.3, delay: index * 0.03, type: "spring", stiffness: 150 }}
-              >
-                <div className={cardStyles[index % cardStyles.length]}>
-                  <div className={`${iconSizes[index % iconSizes.length]} ${iconShapes[index % iconShapes.length]} bg-gradient-to-br ${value.gradient} flex items-center justify-center mb-4 md:mb-6 shadow-xl ring-4 ring-white/60 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
-                    <Icon className={`${index % 2 === 0 ? 'w-8 h-8' : 'w-9 h-9'} text-white`} />
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-3 md:mb-4">
-                    {value.title}
-                  </h3>
-                  <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
-                    {value.description}
-                  </p>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Section Divider */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-2">
-        <div className="h-px bg-gradient-to-r from-transparent via-purple-200 to-transparent"></div>
-      </div>
-
-      {/* Timeline Section */}
-      <section className="mx-auto max-w-7xl px-2 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8 relative">
-        <Timeline data={timelineData} />
-      </section>
-
-      {/* Student & Parent Testimonials */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-8 bg-gradient-to-br from-slate-50 via-white to-brand-50/30 relative overflow-hidden">
-        {/* Decorative background */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-72 h-72 bg-gradient-to-br from-brand-100/30 to-brand-100/30 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-gradient-to-tr from-brand-100/30 to-brand-100/30 rounded-full blur-3xl"></div>
-        </div>
-        
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12 relative z-10"
-        >
-          <div className="inline-flex items-center gap-2 rounded-full bg-brand-100/80 backdrop-blur-sm border border-brand-200/60 px-4 py-2 text-sm font-semibold text-brand-500 shadow-sm mb-4">
-            <Quote className="w-4 h-4" />
-            About Heal
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4">
-            <span className="bg-gradient-to-r from-brand-500 via-brand-500 to-brand-500 bg-clip-text text-transparent">
-              What Our Community
-            </span>
-            <br />
-            <span className="text-slate-900">Says</span>
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
-            Hear from students and parents about their experiences at Heal School
-          </p>
-        </motion.div>
-        <div className="grid md:grid-cols-3 gap-4 md:gap-6 relative z-10">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            whileHover={{ y: -5 }}
-            className="group relative overflow-hidden rounded-3xl bg-white border-2 border-brand-100/80 p-8 shadow-xl hover:shadow-2xl transition-all duration-300"
-          >
-            <motion.div 
-              className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-brand-100/60 to-brand-100/60 rounded-full blur-3xl -mr-16 -mt-16"
-              animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.7, 0.5] }}
-              transition={{ duration: 4, repeat: Infinity }}
-            ></motion.div>
-            <div className="relative z-10">
-              <motion.div
-                whileHover={{ rotate: [0, -10, 10, 0] }}
-                transition={{ duration: 0.5 }}
-              >
-                <Quote className="w-14 h-14 text-brand-200 mb-5" />
-              </motion.div>
-              <p className="text-base sm:text-lg text-slate-700 leading-relaxed mb-6 font-medium">
-                "Heal School has transformed my daughter's life. The caring teachers and excellent facilities have given her confidence and hope for a bright future."
-              </p>
-              <div className="flex items-center gap-4 pt-4 border-t border-brand-100">
-                <motion.div 
-                  className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-400 to-brand-500 flex items-center justify-center text-white font-bold text-lg shadow-lg"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  P
-                </motion.div>
-                <div>
-                  <h4 className="font-bold text-slate-900 text-lg">Parent Name</h4>
-                  <p className="text-sm text-slate-600">Parent of Class 8 Student</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            whileHover={{ y: -5 }}
-            className="group relative overflow-hidden rounded-3xl bg-white border-2 border-emerald-100/80 p-8 shadow-xl hover:shadow-2xl transition-all duration-300"
-          >
-            <motion.div 
-              className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-emerald-100/60 to-green-100/60 rounded-full blur-3xl -mr-16 -mt-16"
-              animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.7, 0.5] }}
-              transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
-            ></motion.div>
-            <div className="relative z-10">
-              <motion.div
-                whileHover={{ rotate: [0, -10, 10, 0] }}
-                transition={{ duration: 0.5 }}
-              >
-                <Quote className="w-14 h-14 text-emerald-200 mb-5" />
-              </motion.div>
-              <p className="text-base sm:text-lg text-slate-700 leading-relaxed mb-6 font-medium">
-                "I never imagined I could get such quality education for free. The teachers are amazing, and I've made so many friends. This school is my second home."
-              </p>
-              <div className="flex items-center gap-4 pt-4 border-t border-emerald-100">
-                <motion.div 
-                  className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-green-500 flex items-center justify-center text-white font-bold text-lg shadow-lg"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  S
-                </motion.div>
-                <div>
-                  <h4 className="font-bold text-slate-900 text-lg">Student Name</h4>
-                  <p className="text-sm text-slate-600">Class 10 Student</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            whileHover={{ y: -5 }}
-            className="group relative overflow-hidden rounded-3xl bg-white border-2 border-amber-100/80 p-8 shadow-xl hover:shadow-2xl transition-all duration-300"
-          >
-            <motion.div 
-              className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-amber-100/60 to-yellow-100/60 rounded-full blur-3xl -mr-16 -mt-16"
-              animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.7, 0.5] }}
-              transition={{ duration: 4, repeat: Infinity, delay: 1 }}
-            ></motion.div>
-            <div className="relative z-10">
-              <motion.div
-                whileHover={{ rotate: [0, -10, 10, 0] }}
-                transition={{ duration: 0.5 }}
-              >
-                <Quote className="w-14 h-14 text-amber-200 mb-5" />
-              </motion.div>
-              <p className="text-base sm:text-lg text-slate-700 leading-relaxed mb-6 font-medium">
-                "The residential care and academic support here are exceptional. My son has grown so much in confidence and academic performance. We're truly grateful."
-              </p>
-              <div className="flex items-center gap-4 pt-4 border-t border-amber-100">
-                <motion.div 
-                  className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-yellow-500 flex items-center justify-center text-white font-bold text-lg shadow-lg"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  P
-                </motion.div>
-                <div>
-                  <h4 className="font-bold text-slate-900 text-lg">Parent Name</h4>
-                  <p className="text-sm text-slate-600">Parent of Class 6 Student</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Section Divider */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-1">
         <div className="h-px bg-gradient-to-r from-transparent via-brand-200 to-transparent"></div>
       </div>
 
-      {/* Academic Programs Section */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-4 md:py-8 relative">
-        {/* Background decorative elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-3xl">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-brand-200/20 to-brand-200/20 rounded-full blur-3xl -mr-48 -mt-48"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-emerald-200/20 to-green-200/20 rounded-full blur-3xl -ml-48 -mb-48"></div>
-        </div>
+      {/* Core Values Section - Banner Style */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16 relative">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "0px", amount: 0.1 }}
+          transition={{ duration: 0.4 }}
+          className="text-center mb-8 sm:mb-10 md:mb-12 relative z-10"
+        >
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-sm border border-brand-200/60 px-4 py-2 text-sm font-semibold text-brand-700 shadow-sm mb-4">
+            <Heart className="w-4 h-4" />
+            What We Stand For
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-3 sm:mb-4">
+            <span className="bg-gradient-to-r from-brand-600 via-brand-600 to-brand-600 bg-clip-text text-transparent">Our Core Values</span>
+          </h2>
+        </motion.div>
 
+        {/* Core Values Banner - Horizontal Layout */}
+              <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "0px", amount: 0.1 }}
+          transition={{ duration: 0.6 }}
+          className="relative z-10"
+        >
+          <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 shadow-2xl overflow-hidden">
+            {/* Subtle background pattern */}
+            <div className="absolute inset-0 opacity-5">
+              <div className="absolute inset-0" style={{
+                backgroundImage: `radial-gradient(circle at 2px 2px, #fbbf24 1px, transparent 0)`,
+                backgroundSize: '40px 40px'
+              }}></div>
+                  </div>
+
+            {/* Values Grid - 2 per row on mobile, single row on larger screens */}
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-4 md:gap-6 lg:gap-8 relative z-10">
+              {/* Value 1: Compassion with Accountability */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: false, margin: "0px", amount: 0.1 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="flex flex-col items-center text-center group"
+              >
+                <div className="relative mb-4 sm:mb-5">
+                  <div 
+                    className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full border-[3px] border-amber-300 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 cursor-pointer"
+                    onMouseEnter={() => setHoveredValue('cwa')}
+                    onMouseLeave={() => setHoveredValue(null)}
+                  >
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 flex items-center justify-center shadow-lg">
+                      <Heart className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white" />
+                    </div>
+                  </div>
+                </div>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3">
+                  CWA
+                  </h3>
+                <p className="text-xs sm:text-sm md:text-base text-amber-100 leading-tight">
+                  Compassion with Accountability
+                  </p>
+              </motion.div>
+
+              {/* Value 2: Equality and Inclusion */}
+        <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: false, margin: "0px", amount: 0.1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="flex flex-col items-center text-center group"
+              >
+                <div className="relative mb-4 sm:mb-5">
+                  <div 
+                    className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full border-[3px] border-amber-300 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 cursor-pointer"
+                    onMouseEnter={() => setHoveredValue('eai')}
+                    onMouseLeave={() => setHoveredValue(null)}
+                  >
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 flex items-center justify-center shadow-lg">
+                      <Users className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white" />
+          </div>
+                  </div>
+                </div>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3">
+                  EAI
+                </h3>
+                <p className="text-xs sm:text-sm md:text-base text-amber-100 leading-tight">
+                  Equality and Inclusion
+          </p>
+        </motion.div>
+
+              {/* Value 3: Integrity and Transparency */}
+          <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: false, margin: "0px", amount: 0.1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="flex flex-col items-center text-center group"
+              >
+                <div className="relative mb-4 sm:mb-5">
+                  <div 
+                    className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full border-[3px] border-amber-300 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 cursor-pointer"
+                    onMouseEnter={() => setHoveredValue('iat')}
+                    onMouseLeave={() => setHoveredValue(null)}
+                  >
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 flex items-center justify-center shadow-lg">
+                      <Shield className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white" />
+                    </div>
+                  </div>
+                </div>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3">
+                  IAT
+                </h3>
+                <p className="text-xs sm:text-sm md:text-base text-amber-100 leading-tight">
+                  Integrity and Transparency
+                </p>
+              </motion.div>
+
+              {/* Value 4: Excellence through Effort */}
+                <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: false, margin: "0px", amount: 0.1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="flex flex-col items-center text-center group"
+              >
+                <div className="relative mb-4 sm:mb-5">
+                  <div 
+                    className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full border-[3px] border-amber-300 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 cursor-pointer"
+                    onMouseEnter={() => setHoveredValue('ete')}
+                    onMouseLeave={() => setHoveredValue(null)}
+                  >
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 flex items-center justify-center shadow-lg">
+                      <Star className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white" />
+                </div>
+              </div>
+            </div>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3">
+                  ETE
+                </h3>
+                <p className="text-xs sm:text-sm md:text-base text-amber-100 leading-tight">
+                  Excellence through Effort
+                </p>
+          </motion.div>
+
+              {/* Value 5: Service to Society - Centered in its own row on mobile only */}
+          <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: false, margin: "0px", amount: 0.1 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                className="flex flex-col items-center text-center group col-span-2 sm:col-span-1 mx-auto max-w-xs sm:max-w-none"
+              >
+                <div className="relative mb-4 sm:mb-5">
+                  <div 
+                    className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full border-[3px] border-amber-300 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 cursor-pointer"
+                    onMouseEnter={() => setHoveredValue('sts')}
+                    onMouseLeave={() => setHoveredValue(null)}
+                  >
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 flex items-center justify-center shadow-lg">
+                      <Handshake className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white" />
+                    </div>
+                  </div>
+                </div>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3">
+                  STS
+                </h3>
+                <p className="text-xs sm:text-sm md:text-base text-amber-100 leading-tight">
+                  Service to Society
+                </p>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+
+        {/* Core Values Hover Modal */}
+        {typeof window !== 'undefined' && createPortal(
+          <AnimatePresence>
+            {hoveredValue && coreValuesData[hoveredValue] && (
+          <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="fixed inset-0 z-[9998] pointer-events-none"
+                style={{
+                  position: 'fixed',
+                  top: 0,
+                  left: 0,
+                  width: '100vw',
+                  height: '100vh',
+                  margin: 0,
+                  padding: 0,
+                }}
+              >
+                {/* Backdrop - Dulls the screen */}
+            <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute inset-0 bg-slate-900/50 pointer-events-none"
+                />
+                
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg px-4" style={{ maxHeight: '60vh', overflowY: 'auto' }}>
+              <motion.div
+                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 20, scale: 0.95 }}
+                    transition={{ duration: 0.2, ease: 'easeOut' }}
+                    className="relative flex flex-col rounded-3xl bg-gradient-to-br from-amber-50 via-white to-amber-50 shadow-2xl overflow-hidden pointer-events-auto"
+                    style={{
+                      border: '3px solid rgba(251, 191, 36, 0.3)',
+                      borderRadius: '1.5rem',
+                      boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(251, 191, 36, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.6)'
+                    }}
+                    onMouseEnter={() => setHoveredValue(hoveredValue)}
+                    onMouseLeave={() => setHoveredValue(null)}
+                  >
+                    {/* Outer Card Glow Effect */}
+                    <div className="absolute -inset-1 bg-gradient-to-r from-amber-400/20 via-yellow-400/20 to-amber-400/20 rounded-3xl blur-xl opacity-50 pointer-events-none z-0" />
+                    
+                    {/* Letter Paper Effect */}
+                    <div className="absolute inset-0 opacity-5 pointer-events-none z-0" style={{
+                      backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px)'
+                    }} />
+                    
+                    {/* Decorative Corner Accents */}
+                    <div className="absolute top-0 left-0 w-20 h-20 bg-gradient-to-br from-amber-200/30 to-transparent rounded-br-full pointer-events-none z-0" />
+                    <div className="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-amber-200/30 to-transparent rounded-tl-full pointer-events-none z-0" />
+                    
+                    {/* Close Button */}
+                    <button
+                      onClick={() => setHoveredValue(null)}
+                      className="absolute top-2 right-2 z-20 w-8 h-8 rounded-full bg-gradient-to-br from-white to-amber-50/50 hover:from-white hover:to-amber-100 border-2 border-amber-200/50 shadow-xl hover:shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-90 backdrop-blur-sm"
+                      aria-label="Close"
+                      style={{
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(251, 191, 36, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.8)'
+                      }}
+                    >
+                      <X className="w-3.5 h-3.5 text-slate-700 transition-colors duration-300" />
+                    </button>
+
+                    {/* Content Container - Reduced Padding */}
+                    <div className="relative z-10 p-4 sm:p-5 md:p-6">
+                      {/* Header */}
+                <div>
+                        <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-amber-200/50 backdrop-blur-sm text-amber-900 text-xs font-semibold shadow-sm mb-3">
+                          <Star className="w-3 h-3" />
+                          <span>Core Value</span>
+                </div>
+                        <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 mb-2">
+                          {coreValuesData[hoveredValue].acronym}
+                        </h3>
+                        <h4 className="text-base sm:text-lg md:text-xl font-bold text-amber-700 mb-3">
+                          {coreValuesData[hoveredValue].title}
+                        </h4>
+                        <p className="text-sm sm:text-base md:text-lg text-slate-700 leading-relaxed font-medium">
+                          {coreValuesData[hoveredValue].description}
+                        </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body
+        )}
+      </section>
+
+      {/* Section Divider */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-2">
+        <div className="h-px bg-gradient-to-r from-transparent via-brand-200 to-transparent"></div>
+      </div>
+
+      {/* Testimonials Carousel Section */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16 relative">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "0px", amount: 0.1 }}
+          transition={{ duration: 0.4 }}
+          className="text-center mb-8 sm:mb-10 md:mb-12"
+        >
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-sm border border-brand-200/60 px-4 py-2 text-sm font-semibold text-brand-700 shadow-sm mb-4">
+            <Star className="w-4 h-4" />
+            Heal Journey
+        </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-3 sm:mb-4">
+            <span className="bg-gradient-to-r from-brand-600 via-brand-600 to-brand-600 bg-clip-text text-transparent">Milestones</span>
+          </h2>
+        </motion.div>
+
+        {/* TimelineCarousel Component */}
+        <TimelineCarousel 
+          data={timelineData} 
+          cardsPerView={4}
+          cardsPerViewMobile={2}
+          showPagination={true}
+          showArrows={true}
+        />
+      </section>
+
+
+      {/* Academic Programs Section */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-4 md:py-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: false, margin: "0px", amount: 0.1 }}
               transition={{ duration: 0.3 }}
           className="text-center mb-4 md:mb-6 relative z-10"
         >
@@ -934,7 +1059,7 @@ const AboutPage = () => {
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: false, margin: "0px", amount: 0.1 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
                 className="group"
               >
@@ -1003,7 +1128,7 @@ const AboutPage = () => {
                           key={idx}
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true, margin: "-50px" }}
+                          viewport={{ once: false, margin: "0px", amount: 0.1 }}
                           transition={{ duration: 0.2, delay: idx * 0.03 }}
                           className="flex items-start gap-2.5 group/item"
                         >
@@ -1029,675 +1154,6 @@ const AboutPage = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-2">
         <div className="h-px bg-gradient-to-r from-transparent via-emerald-200 to-transparent"></div>
       </div>
-
-      {/* School Facilities Section */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-6 md:py-12 relative">
-        <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.3 }}
-          className="text-center mb-5 md:mb-7"
-        >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 md:mb-4 px-2">
-            World-Class <span className="bg-gradient-to-r from-brand-600 to-brand-600 bg-clip-text text-transparent">Facilities</span>
-          </h2>
-          <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto px-2">
-            State-of-the-art infrastructure designed to support holistic learning and development
-          </p>
-        </motion.div>
-
-        <div className="grid gap-4 md:gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            { 
-              icon: Microscope, 
-              title: 'Science Laboratories', 
-              description: 'Fully equipped physics, chemistry, and biology labs with modern equipment', 
-              gradient: 'from-brand-500 to-brand-500', 
-              bg: 'from-brand-100/60 to-brand-100/40', 
-              border: 'border-brand-300/50', 
-              shape: 'rounded-2xl',
-              image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=70&w=600&auto=format&fit=crop',
-              features: ['Modern Equipment', 'Safety Protocols', 'Research Support'],
-              details: 'Our state-of-the-art science laboratories provide students with hands-on learning experiences in physics, chemistry, and biology. Equipped with the latest scientific instruments and safety equipment, our labs foster curiosity and scientific inquiry. Students conduct experiments, analyze data, and develop critical thinking skills in a safe and supportive environment.',
-              highlights: ['Advanced microscopes and lab equipment', 'Dedicated spaces for each science discipline', 'Regular safety training and protocols', 'Research projects and science fairs']
-            },
-            { 
-              icon: Library, 
-              title: 'Digital Library', 
-              description: 'Extensive collection of books, e-resources, and quiet study spaces', 
-              gradient: 'from-emerald-500 to-green-500', 
-              bg: 'from-emerald-100/60 to-green-100/40', 
-              border: 'border-emerald-300/50', 
-              shape: 'rounded-3xl',
-              image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=70&w=600&auto=format&fit=crop',
-              features: ['10,000+ Books', 'E-Resources', 'Study Spaces'],
-              details: 'Our digital library is a treasure trove of knowledge with over 10,000 books covering various subjects and genres. The library features quiet study areas, computer stations for research, and access to digital resources. Students can explore fiction, non-fiction, reference materials, and academic journals in a peaceful, inspiring environment.',
-              highlights: ['Extensive book collection across all subjects', 'Digital resources and online databases', 'Quiet study zones and reading corners', 'Librarian support for research assistance']
-            },
-            { 
-              icon: Code, 
-              title: 'Computer Labs', 
-              description: 'Modern computer labs with latest technology and software for digital learning', 
-              gradient: 'from-purple-500 to-violet-500', 
-              bg: 'from-purple-100/60 to-violet-100/40', 
-              border: 'border-purple-300/50', 
-              shape: 'rounded-xl',
-              image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=70&w=600&auto=format&fit=crop',
-              features: ['Latest Software', 'High-Speed Internet', 'Digital Learning'],
-              details: 'Our modern computer laboratories are equipped with the latest technology to prepare students for the digital age. Each lab features high-performance computers, educational software, and high-speed internet connectivity. Students learn programming, digital design, research skills, and computer applications in a technology-rich environment.',
-              highlights: ['Latest computers and hardware', 'Educational software and programming tools', 'High-speed internet and Wi-Fi', 'Digital literacy and coding programs']
-            },
-            { 
-              icon: Dumbbell, 
-              title: 'Sports Complex', 
-              description: 'Spacious playgrounds, courts, and facilities for various sports activities', 
-              gradient: 'from-amber-500 to-yellow-500', 
-              bg: 'from-amber-100/60 to-yellow-100/40', 
-              border: 'border-amber-300/50', 
-              shape: 'rounded-2xl',
-              image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=70&w=600&auto=format&fit=crop',
-              features: ['Multiple Courts', 'Fitness Center', 'Outdoor Fields'],
-              details: 'Our comprehensive sports complex includes indoor and outdoor facilities for various sports and physical activities. Students can participate in basketball, volleyball, football, athletics, and more. The complex features well-maintained courts, a fitness center, and open fields, promoting physical fitness, teamwork, and healthy competition.',
-              highlights: ['Basketball and volleyball courts', 'Football and cricket fields', 'Fitness center with modern equipment', 'Athletics track and field events']
-            },
-            { 
-              icon: Music, 
-              title: 'Arts & Music Rooms', 
-              description: 'Dedicated spaces for music, dance, drama, and visual arts programs', 
-              gradient: 'from-rose-500 to-pink-500', 
-              bg: 'from-rose-100/60 to-pink-100/40', 
-              border: 'border-rose-300/50', 
-              shape: 'rounded-3xl',
-              image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=70&w=600&auto=format&fit=crop',
-              features: ['Music Studio', 'Dance Hall', 'Art Gallery'],
-              details: 'Our arts and music facilities provide creative spaces for students to explore their artistic talents. The music room is equipped with various instruments, the dance hall offers space for performances, and the art studio provides materials for painting, drawing, and crafts. These spaces nurture creativity, self-expression, and cultural appreciation.',
-              highlights: ['Music room with various instruments', 'Dance hall for performances', 'Art studio with painting and craft materials', 'Regular cultural events and exhibitions']
-            },
-            { 
-              icon: Home, 
-              title: 'Residential Facilities', 
-              description: 'Safe, comfortable hostels with 24/7 supervision and modern amenities', 
-              gradient: 'from-brand-500 to-brand-500', 
-              bg: 'from-brand-100/60 to-brand-100/40', 
-              border: 'border-brand-300/50', 
-              shape: 'rounded-xl',
-              image: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?q=70&w=600&auto=format&fit=crop',
-              features: ['24/7 Security', 'Modern Amenities', 'Comfortable Living'],
-              details: 'Our residential facilities provide a safe, comfortable, and nurturing home away from home for students. The hostels feature well-furnished rooms, common areas, dining facilities, and 24/7 security. With dedicated house parents and support staff, students receive care, guidance, and supervision in a family-like environment.',
-              highlights: ['Well-furnished and spacious rooms', 'Common areas for recreation and study', 'Dining facilities with nutritious meals', '24/7 security and house parent supervision']
-            },
-          ].map((facility, index) => {
-            const Icon = facility.icon || Building2; // Fallback if icon is missing
-            const iconShapes = ['rounded-full', 'rounded-xl', 'rounded-lg', 'rounded-full', 'rounded-2xl', 'rounded-lg'];
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                className="group perspective-1000"
-                whileHover={{ 
-                  scale: 1.03,
-                  rotateY: 2,
-                  rotateX: -2,
-                  transition: { duration: 0.3 }
-                }}
-                style={{ transformStyle: 'preserve-3d' }}
-              >
-                <div 
-                  className={`relative bg-gradient-to-br ${facility.bg} border-2 ${facility.border} ${facility.shape} overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 h-full transform-gpu`}
-                  style={{ transformStyle: 'preserve-3d' }}
-                >
-                  {/* Animated background glow */}
-                  <motion.div 
-                    className={`absolute inset-0 bg-gradient-to-br ${facility.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-2xl`}
-                    animate={{
-                      scale: [1, 1.2, 1],
-                      opacity: [0, 0.1, 0],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  />
-                  
-                  {/* Image container */}
-                  <div className="relative h-48 overflow-hidden">
-                    <motion.img 
-                      src={facility.image}
-                      alt={facility.title}
-                      className="w-full h-full object-cover"
-                      whileHover={{ 
-                        scale: 1.1,
-                        transition: { duration: 0.5 }
-                      }}
-                    />
-                    
-                    {/* Overlay gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/20 to-transparent"></div>
-                    
-                    {/* Icon badge - top right */}
-                    <div 
-                      className={`absolute top-3 right-3 w-12 h-12 ${iconShapes[index % iconShapes.length]} bg-gradient-to-br ${facility.gradient} flex items-center justify-center shadow-xl ring-2 ring-white/60`}
-                    >
-                      <Icon className="w-6 h-6 text-white" />
-                    </div>
-                  </div>
-                  
-                  {/* Content section */}
-                  <div className="relative p-5 z-10 flex flex-col flex-1">
-                    {/* Title */}
-                    <h3 className="text-lg font-bold text-slate-900 mb-2">
-                      {facility.title}
-                    </h3>
-                    
-                    {/* Description */}
-                    <p className="text-sm text-slate-700 leading-relaxed mb-4 flex-1">
-                      {facility.description}
-                    </p>
-                    
-                    {/* Features badges - always visible */}
-                    <div className="flex flex-wrap gap-2 mt-auto">
-                      {facility.features.map((feature, idx) => (
-                        <span
-                          key={idx}
-                          className={`px-3 py-1.5 rounded-full text-xs font-semibold bg-gradient-to-r ${facility.gradient} text-white shadow-md`}
-                        >
-                          {feature}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Section Divider */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-2">
-        <div className="h-px bg-gradient-to-r from-transparent via-rose-200 to-transparent"></div>
-      </div>
-
-      {/* Extracurricular Activities Section */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-6 md:py-12 relative">
-        {/* Background decorative elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-72 h-72 bg-gradient-to-br from-rose-200/20 to-pink-200/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-gradient-to-tr from-brand-200/20 to-brand-200/20 rounded-full blur-3xl"></div>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.3 }}
-          className="text-center mb-4 md:mb-6 relative z-10"
-        >
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur-sm border border-brand-200/50 px-4 py-2 text-sm font-medium text-brand-700 shadow-sm mb-4">
-            <Sparkles className="w-4 h-4" />
-            Beyond the Classroom
-                    </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 md:mb-6 px-2">
-            <span className="bg-gradient-to-r from-brand-600 via-brand-600 to-brand-600 bg-clip-text text-transparent">
-              Extracurricular
-            </span>
-            <br />
-            <span className="text-slate-900">Activities</span>
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto px-2 leading-relaxed">
-            Diverse activities to explore talents, build skills, and foster creativity beyond the classroom
-          </p>
-        </motion.div>
-
-        <div className="grid gap-4 md:gap-5 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 relative z-10">
-          {[
-            { 
-              icon: Music, 
-              title: 'Music & Dance', 
-              gradient: 'from-rose-500 to-pink-500', 
-              bg: 'from-rose-50 to-pink-50', 
-              border: 'border-rose-200/60', 
-              shape: 'rounded-2xl',
-              iconShape: 'rounded-full',
-              image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=70&w=600&auto=format&fit=crop'
-            },
-            { 
-              icon: Palette, 
-              title: 'Art & Craft', 
-              gradient: 'from-purple-500 to-violet-500', 
-              bg: 'from-purple-50 to-violet-50', 
-              border: 'border-purple-200/60', 
-              shape: 'rounded-3xl',
-              iconShape: 'rounded-xl',
-              image: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?q=70&w=600&auto=format&fit=crop'
-            },
-            { 
-              icon: Dumbbell, 
-              title: 'Sports', 
-              gradient: 'from-amber-500 to-yellow-500', 
-              bg: 'from-amber-50 to-yellow-50', 
-              border: 'border-amber-200/60', 
-              shape: 'rounded-xl',
-              iconShape: 'rounded-lg',
-              image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=70&w=600&auto=format&fit=crop'
-            },
-            { 
-              icon: Code, 
-              title: 'Coding Club', 
-              gradient: 'from-brand-500 to-brand-500', 
-              bg: 'from-brand-50 to-brand-50', 
-              border: 'border-brand-200/60', 
-              shape: 'rounded-2xl',
-              iconShape: 'rounded-full',
-              image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=70&w=600&auto=format&fit=crop'
-            },
-            { 
-              icon: BookOpen, 
-              title: 'Debate & Quiz', 
-              gradient: 'from-emerald-500 to-green-500', 
-              bg: 'from-emerald-50 to-green-50', 
-              border: 'border-emerald-200/60', 
-              shape: 'rounded-3xl',
-              iconShape: 'rounded-2xl',
-              image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=70&w=600&auto=format&fit=crop'
-            },
-            { 
-              icon: Users, 
-              title: 'Community Service', 
-              gradient: 'from-brand-500 to-brand-500', 
-              bg: 'from-indigo-50 to-brand-50', 
-              border: 'border-brand-200/60', 
-              shape: 'rounded-xl',
-              iconShape: 'rounded-lg',
-              image: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=70&w=600&auto=format&fit=crop'
-            },
-            { 
-              icon: Globe, 
-              title: 'Language Clubs', 
-              gradient: 'from-teal-500 to-cyan-500', 
-              bg: 'from-teal-50 to-cyan-50', 
-              border: 'border-teal-200/60', 
-              shape: 'rounded-2xl',
-              iconShape: 'rounded-full',
-              image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=70&w=600&auto=format&fit=crop'
-            },
-            { 
-              icon: Lightbulb, 
-              title: 'Science Club', 
-              gradient: 'from-orange-500 to-red-500', 
-              bg: 'from-orange-50 to-red-50', 
-              border: 'border-orange-200/60', 
-              shape: 'rounded-3xl',
-              iconShape: 'rounded-xl',
-              image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=70&w=600&auto=format&fit=crop'
-            },
-          ].map((activity, index) => {
-            const Icon = activity.icon || Palette; // Fallback if icon is missing
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.3, delay: index * 0.03, type: "spring", stiffness: 150 }}
-                className="group"
-              >
-                <div className={`bg-white border ${activity.border} ${activity.shape} overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.03] h-full flex flex-col relative`}>
-                  {/* Image Section */}
-                  <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
-                    <img 
-                      src={activity.image}
-                      alt={activity.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    
-                    {/* Icon Badge - Top Right */}
-                    <div className={`absolute top-3 right-3 w-12 h-12 sm:w-14 sm:h-14 ${activity.iconShape} bg-gradient-to-br ${activity.gradient} flex items-center justify-center shadow-2xl ring-4 ring-white/50 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
-                      <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
-                    </div>
-                    
-                    {/* Subtle gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  </div>
-                  
-                  {/* Title Section with Colored Background */}
-                  <div className={`bg-gradient-to-br ${activity.bg} p-4 sm:p-5 flex-1 flex items-center justify-center min-h-[70px]`}>
-                    <h3 className="text-base sm:text-lg font-bold text-slate-900 text-center leading-tight group-hover:text-slate-800 transition-colors">
-                      {activity.title}
-                      </h3>
-                  </div>
-                  
-                  {/* Decorative bottom accent */}
-                  <div className={`h-1 bg-gradient-to-r ${activity.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Section Divider */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-2">
-        <div className="h-px bg-gradient-to-r from-transparent via-brand-200 to-transparent"></div>
-      </div>
-
-      {/* Faculty & Staff Section */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-4 md:py-8 relative overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-brand-200/20 to-brand-200/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tr from-purple-200/20 to-pink-200/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.3 }}
-          className="text-center mb-8 md:mb-12 relative z-10"
-        >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 md:mb-4 px-2">
-            Our <span className="bg-gradient-to-r from-brand-600 to-brand-600 bg-clip-text text-transparent">Dedicated Team</span>
-          </h2>
-          <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto px-2">
-            Experienced educators and staff committed to student success
-          </p>
-        </motion.div>
-
-        <div className="relative z-10">
-          {/* Desktop: Horizontal layout with dividers */}
-          <div className="hidden md:flex items-center justify-between gap-3 lg:gap-6">
-            {[
-              { icon: UserCheck, title: 'Qualified Teachers', value: '50+', description: 'Certified and experienced educators', gradient: 'from-brand-500 to-brand-600', color: 'brand' },
-              { icon: GraduationCap, title: 'Subject Experts', value: '15+', description: 'Specialized faculty for each subject', gradient: 'from-teal-500 to-cyan-600', color: 'teal' },
-              { icon: Heart, title: 'Support Staff', value: '30+', description: 'Caring staff for student welfare', gradient: 'from-orange-500 to-amber-600', color: 'orange' },
-              { icon: Shield, title: 'Counselors', value: '5+', description: 'Professional guidance counselors', gradient: 'from-pink-500 to-rose-600', color: 'pink' },
-            ].map((team, index) => {
-              const Icon = team.icon || Users; // Fallback if icon is missing
-              return (
-                <React.Fragment key={index}>
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.4, delay: index * 0.1, type: "spring", stiffness: 150 }}
-                    className="flex-1 group relative"
-                    whileHover={{ scale: 1.05, y: -5 }}
-                  >
-                    {/* Large number with gradient background */}
-                    <div className="relative mb-6">
-                      <motion.div
-                        className={`relative w-32 h-32 mx-auto rounded-full bg-gradient-to-br ${team.gradient} flex items-center justify-center shadow-2xl`}
-                        whileHover={{ 
-                          rotate: [0, -5, 5, -5, 0],
-                          scale: 1.1,
-                          transition: { duration: 0.5 }
-                        }}
-                        animate={{
-                          boxShadow: [
-                            `0 20px 40px -10px ${team.color === 'indigo' ? 'rgba(99, 102, 241, 0.3)' : team.color === 'teal' ? 'rgba(20, 184, 166, 0.3)' : team.color === 'orange' ? 'rgba(249, 115, 22, 0.3)' : 'rgba(236, 72, 153, 0.3)'}`,
-                            `0 25px 50px -10px ${team.color === 'indigo' ? 'rgba(99, 102, 241, 0.5)' : team.color === 'teal' ? 'rgba(20, 184, 166, 0.5)' : team.color === 'orange' ? 'rgba(249, 115, 22, 0.5)' : 'rgba(236, 72, 153, 0.5)'}`,
-                            `0 20px 40px -10px ${team.color === 'indigo' ? 'rgba(99, 102, 241, 0.3)' : team.color === 'teal' ? 'rgba(20, 184, 166, 0.3)' : team.color === 'orange' ? 'rgba(249, 115, 22, 0.3)' : 'rgba(236, 72, 153, 0.3)'}`,
-                          ],
-                        }}
-                        transition={{
-                          boxShadow: {
-                            duration: 2,
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                          }
-                        }}
-                      >
-                        {/* Icon overlay */}
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <Icon className="w-12 h-12 text-white/20" />
-                    </div>
-                        {/* Number */}
-                        <span className="relative z-10 text-5xl font-extrabold text-white drop-shadow-lg">
-                          {team.value}
-                        </span>
-                      </motion.div>
-                      
-                      {/* Floating icon badge */}
-                      <motion.div
-                        className={`absolute -top-2 -right-2 w-14 h-14 rounded-full bg-white shadow-xl flex items-center justify-center border-4 border-white`}
-                        whileHover={{ rotate: 360, scale: 1.1 }}
-                        transition={{ duration: 0.5 }}
-                      >
-                        <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${team.gradient} flex items-center justify-center`}>
-                          <Icon className="w-5 h-5 text-white" />
-                  </div>
-              </motion.div>
-                    </div>
-
-                    {/* Title and description */}
-                    <div className="text-center">
-                      <motion.h3 
-                        className="text-xl lg:text-2xl font-bold text-slate-900 mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-slate-900 group-hover:via-brand-600 group-hover:to-slate-900 transition-all duration-300"
-                        whileHover={{ scale: 1.05 }}
-                      >
-                        {team.title}
-                      </motion.h3>
-                      <p className="text-sm lg:text-base text-slate-600 leading-relaxed max-w-[200px] mx-auto">
-                        {team.description}
-                      </p>
-                    </div>
-
-                    {/* Decorative line */}
-                    <motion.div
-                      className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-1 bg-gradient-to-r ${team.gradient} rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
-                      whileHover={{ width: 100 }}
-                    />
-                  </motion.div>
-
-                  {/* Divider between items (not after last) */}
-                  {index < 3 && (
-                    <div className="hidden lg:block w-px h-32 bg-gradient-to-b from-transparent via-slate-300 to-transparent mx-4"></div>
-                  )}
-                </React.Fragment>
-            );
-          })}
-          </div>
-
-          {/* Mobile: Grid layout */}
-          <div className="grid grid-cols-2 gap-4 md:hidden">
-            {[
-              { icon: UserCheck, title: 'Qualified Teachers', value: '50+', description: 'Certified and experienced educators', gradient: 'from-brand-500 to-brand-600', color: 'brand' },
-              { icon: GraduationCap, title: 'Subject Experts', value: '15+', description: 'Specialized faculty for each subject', gradient: 'from-teal-500 to-cyan-600', color: 'teal' },
-              { icon: Heart, title: 'Support Staff', value: '30+', description: 'Caring staff for student welfare', gradient: 'from-orange-500 to-amber-600', color: 'orange' },
-              { icon: Shield, title: 'Counselors', value: '5+', description: 'Professional guidance counselors', gradient: 'from-pink-500 to-rose-600', color: 'pink' },
-            ].map((team, index) => {
-              const Icon = team.icon || Users; // Fallback if icon is missing
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className="group text-center"
-                >
-                  {/* Compact mobile design */}
-                  <motion.div
-                    className={`relative w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-br ${team.gradient} flex items-center justify-center shadow-lg`}
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                  >
-                    <Icon className="w-8 h-8 text-white" />
-                    <span className="absolute -bottom-1 -right-1 text-lg font-bold text-white bg-slate-900 rounded-full w-8 h-8 flex items-center justify-center shadow-md">
-                      {team.value}
-                    </span>
-                  </motion.div>
-                  <h3 className="text-sm font-bold text-slate-900 mb-1">
-                    {team.title}
-                  </h3>
-                  <p className="text-xs text-slate-600 leading-tight">
-                    {team.description}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Section Divider */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-2">
-        <div className="h-px bg-gradient-to-r from-transparent via-brand-200 to-transparent"></div>
-      </div>
-
-      {/* Accreditation & Affiliations Section */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-4 md:py-8 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.3 }}
-          className="text-center mb-4 md:mb-6"
-        >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 md:mb-4 px-2">
-            <span className="bg-gradient-to-r from-brand-600 to-brand-600 bg-clip-text text-transparent">Accreditation</span> & Affiliations
-          </h2>
-          <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto px-2">
-            Recognized and affiliated with leading educational bodies
-          </p>
-              </motion.div>
-
-         <div className="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-0">
-          {[
-            { 
-              title: 'CBSE Affiliation', 
-              icon: Award,
-              gradient: 'from-brand-500 to-brand-500'
-            },
-            { 
-              title: 'ISO Certified', 
-              icon: CheckCircle,
-              gradient: 'from-emerald-500 to-green-500'
-            },
-            { 
-              title: 'Government Recognition', 
-              icon: Shield,
-              gradient: 'from-amber-500 to-yellow-500'
-            },
-          ].map((affiliation, index) => {
-            const Icon = affiliation.icon || Award; // Fallback if icon is missing
-            return (
-                <React.Fragment key={index}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className="flex flex-col items-center gap-3 sm:gap-4 px-6 sm:px-8 md:px-12 lg:px-16"
-                >
-                  <div className={`flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br ${affiliation.gradient} shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110`}>
-                    <Icon className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white" />
-                   </div>
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-slate-900 text-center">
-                    {affiliation.title}
-                  </h3>
-                </motion.div>
-                {index < 2 && (
-                  <div className="hidden sm:block w-px h-16 md:h-20 bg-gradient-to-b from-transparent via-slate-300 to-transparent"></div>
-                )}
-              </React.Fragment>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Section Divider */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-2">
-        <div className="h-px bg-gradient-to-r from-transparent via-teal-200 to-transparent"></div>
-      </div>
-
-      {/* Partnerships Section */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-6 md:py-12 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.3 }}
-          className="text-center mb-4 md:mb-6"
-        >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 md:mb-4 px-2">
-            <span className="bg-gradient-to-r from-brand-600 to-brand-600 bg-clip-text text-transparent">Partnerships</span> & Collaborations
-          </h2>
-          <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto px-2">
-            Building strong relationships with organizations to enhance educational opportunities
-          </p>
-        </motion.div>
-
-        {/* Scrolling Logos Bar */}
-        <div className="relative overflow-hidden">
-          {/* Gradient fade edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-20 bg-gradient-to-r from-white via-white to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-20 bg-gradient-to-l from-white via-white to-transparent z-10 pointer-events-none"></div>
-          
-          <div className="flex gap-4 sm:gap-6 md:gap-8 lg:gap-12 animate-scroll">
-            {/* First set of logos */}
-            {[
-              { name: 'NGO Partner', icon: Handshake, gradient: 'from-brand-500 to-brand-500' },
-              { name: 'Corporate Partner', icon: Building2, gradient: 'from-emerald-500 to-green-500' },
-              { name: 'University Partner', icon: GraduationCap, gradient: 'from-purple-500 to-violet-500' },
-              { name: 'Tech Partner', icon: Code, gradient: 'from-orange-500 to-red-500' },
-              { name: 'Education Partner', icon: BookOpen, gradient: 'from-brand-500 to-brand-500' },
-              { name: 'Community Partner', icon: Users, gradient: 'from-rose-500 to-pink-500' },
-              { name: 'Research Partner', icon: Lightbulb, gradient: 'from-teal-500 to-cyan-500' },
-              { name: 'Global Partner', icon: Globe, gradient: 'from-amber-500 to-yellow-500' },
-            ].map((partner, index) => {
-              const Icon = partner.icon || Handshake; // Fallback if icon is missing
-              return (
-                <div
-                  key={index}
-                  className="flex-shrink-0 flex flex-col items-center justify-center gap-2 sm:gap-3 group w-[100px] sm:w-auto"
-                >
-                  <div className={`w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-xl sm:rounded-2xl bg-gradient-to-br ${partner.gradient} flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group-hover:rotate-3`}>
-                    <Icon className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 text-white" />
-                  </div>
-                  <p className="text-[10px] sm:text-xs md:text-sm font-medium text-slate-600 text-center max-w-[90px] sm:max-w-[100px] md:max-w-[120px] leading-tight">
-                    {partner.name}
-                  </p>
-                </div>
-              );
-            })}
-            
-            {/* Duplicate set for seamless loop */}
-            {[
-              { name: 'NGO Partner', icon: Handshake, gradient: 'from-brand-500 to-brand-500' },
-              { name: 'Corporate Partner', icon: Building2, gradient: 'from-emerald-500 to-green-500' },
-              { name: 'University Partner', icon: GraduationCap, gradient: 'from-purple-500 to-violet-500' },
-              { name: 'Tech Partner', icon: Code, gradient: 'from-orange-500 to-red-500' },
-              { name: 'Education Partner', icon: BookOpen, gradient: 'from-brand-500 to-brand-500' },
-              { name: 'Community Partner', icon: Users, gradient: 'from-rose-500 to-pink-500' },
-              { name: 'Research Partner', icon: Lightbulb, gradient: 'from-teal-500 to-cyan-500' },
-              { name: 'Global Partner', icon: Globe, gradient: 'from-amber-500 to-yellow-500' },
-            ].map((partner, index) => {
-              const Icon = partner.icon || Handshake; // Fallback if icon is missing
-              return (
-                <div
-                  key={`duplicate-${index}`}
-                  className="flex-shrink-0 flex flex-col items-center justify-center gap-2 sm:gap-3 group w-[100px] sm:w-auto"
-                >
-                  <div className={`w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-xl sm:rounded-2xl bg-gradient-to-br ${partner.gradient} flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group-hover:rotate-3`}>
-                    <Icon className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 text-white" />
-                  </div>
-                  <p className="text-[10px] sm:text-xs md:text-sm font-medium text-slate-600 text-center max-w-[90px] sm:max-w-[100px] md:max-w-[120px] leading-tight">
-                    {partner.name}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
 
       {/* Call to Action Section */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 py-6 md:py-10 perspective-1000">
@@ -1743,7 +1199,7 @@ const AboutPage = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.8, rotateX: -20 }}
               whileInView={{ opacity: 1, scale: 1, rotateX: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: false, margin: "0px", amount: 0.1 }}
               transition={{ duration: 0.3, delay: 0.1 }}
               whileHover={{ scale: 1.05, rotateY: 5, transition: { duration: 0.2 } }}
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-orange-200 to-amber-200 border-2 border-orange-400/60 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-bold text-orange-800 shadow-lg mb-3 sm:mb-4 transform-gpu"
@@ -1756,7 +1212,7 @@ const AboutPage = () => {
             <motion.h3
               initial={{ opacity: 0, y: 20, rotateX: -10 }}
               whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: false, margin: "0px", amount: 0.1 }}
               transition={{ duration: 0.3, delay: 0.05 }}
               whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
               className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 bg-clip-text text-transparent mb-2 sm:mb-3 px-2 drop-shadow-lg transform-gpu"
@@ -1768,7 +1224,7 @@ const AboutPage = () => {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: false, margin: "0px", amount: 0.1 }}
               transition={{ duration: 0.3, delay: 0.1 }}
               className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-slate-800 leading-relaxed mb-5 sm:mb-6 md:mb-7 px-2 font-medium"
             >
@@ -1779,12 +1235,14 @@ const AboutPage = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: false, margin: "0px", amount: 0.1 }}
               transition={{ duration: 0.3, delay: 0.15 }}
               className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4"
             >
               <motion.a
-                href="#support"
+                href="https://healcharity.org/"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ 
                   scale: 1.08,
                   rotateY: 5,
@@ -1846,153 +1304,6 @@ const AboutPage = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-2">
         <div className="h-px bg-gradient-to-r from-transparent via-orange-200 to-transparent"></div>
     </div>
-
-      {/* Contact Information Section */}
-      <section className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6 py-2 sm:py-4 md:py-6 relative">
-        {/* Background decoration */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-3xl">
-          <div className="absolute top-0 right-0 w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-br from-brand-100/20 to-brand-100/20 rounded-full blur-3xl -mr-24 sm:-mr-32 -mt-24 sm:-mt-32"></div>
-          <div className="absolute bottom-0 left-0 w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-tr from-emerald-100/20 to-green-100/20 rounded-full blur-3xl -ml-24 sm:-ml-32 -mb-24 sm:-mb-32"></div>
-        </div>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.3 }}
-          className="text-center mb-2 sm:mb-3 md:mb-4 relative z-10"
-        >
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-white/90 backdrop-blur-sm border border-brand-200/60 px-2 py-1 sm:px-3 sm:py-1.5 text-xs font-semibold text-brand-700 shadow-sm mb-2 sm:mb-3">
-            <MapPin className="w-3 h-3" />
-            Get In Touch
-          </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 mb-2 sm:mb-3 px-2">
-            <span className="bg-gradient-to-r from-brand-600 via-brand-600 to-brand-600 bg-clip-text text-transparent">Contact Us</span>
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 max-w-2xl mx-auto px-2 leading-relaxed">
-            We're here to answer your questions and help you learn more about our school
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-5 relative z-10">
-          {/* Contact Details */}
-          <div className="space-y-2 sm:space-y-2.5 md:space-y-3">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.3, delay: 0.1 }}
-              className="group p-3 sm:p-3.5 rounded-lg sm:rounded-xl bg-white/80 backdrop-blur-sm border-2 border-brand-100 shadow-md hover:shadow-lg transition-all duration-300 md:hover:scale-105"
-            >
-              <div className="flex items-start gap-2.5 sm:gap-3">
-                <div className="flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-gradient-to-br from-brand-500 to-brand-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-sm sm:text-base font-bold text-slate-900 mb-1">Visit Us</h3>
-                  <a 
-                    href="https://www.google.com/maps/place/HEAL+PARADISE+SECONDARY+SCHOOL/@16.6476137,80.793083,17.08z/data=!4m6!3m5!1s0x3a35e10014e10cf7:0xa8b6e0e50c33ca9a!8m2!3d16.647596!4d80.791592!16s%2Fg%2F11y7fmrmgj?entry=ttu&g_ep=EgoyMDI1MTIwOC4wIKXMDSoASAFQAw%3D%3D"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs sm:text-sm text-slate-700 leading-relaxed hover:text-brand-600 transition-colors cursor-pointer block"
-                  >
-                    Heal Paradise School<br />
-                    3-118, Thotapalli Village<br />
-                    Agiripalli Madalam, Eluru District<br />
-                    PIN Code: 521211
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.3, delay: 0.2 }}
-              className="group p-3 sm:p-3.5 rounded-lg sm:rounded-xl bg-white/80 backdrop-blur-sm border-2 border-emerald-100 shadow-md hover:shadow-lg transition-all duration-300 md:hover:scale-105"
-            >
-              <div className="flex items-start gap-2.5 sm:gap-3">
-                <div className="flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-                  <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-sm sm:text-base font-bold text-slate-900 mb-1">Call Us</h3>
-                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                    <a href="tel:+91XXXXXXXXXX" className="hover:text-brand-600 transition-colors break-all">+91 XXXXXXXXXX</a><br />
-                    <a href="tel:+91XXXXXXXXXX" className="hover:text-brand-600 transition-colors break-all">+91 XXXXXXXXXX</a>
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.3, delay: 0.3 }}
-              className="group p-3 sm:p-3.5 rounded-lg sm:rounded-xl bg-white/80 backdrop-blur-sm border-2 border-amber-100 shadow-md hover:shadow-lg transition-all duration-300 md:hover:scale-105"
-            >
-              <div className="flex items-start gap-2.5 sm:gap-3">
-                <div className="flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-                  <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-sm sm:text-base font-bold text-slate-900 mb-1">Email Us</h3>
-                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                    <a href="mailto:info@healparadiseschool.edu" className="hover:text-brand-600 transition-colors break-all">info@healparadiseschool.edu</a><br />
-                    <a href="mailto:admissions@healparadiseschool.edu" className="hover:text-brand-600 transition-colors break-all">admissions@healparadiseschool.edu</a>
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.3, delay: 0.4 }}
-              className="group p-3 sm:p-3.5 rounded-lg sm:rounded-xl bg-white/80 backdrop-blur-sm border-2 border-purple-100 shadow-md hover:shadow-lg transition-all duration-300 md:hover:scale-105"
-            >
-              <div className="flex items-start gap-2.5 sm:gap-3">
-                <div className="flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-                  <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-sm sm:text-base font-bold text-slate-900 mb-1">Office Hours</h3>
-                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                    Monday - Friday: 9:00 AM - 5:00 PM<br />
-                    Saturday: 9:00 AM - 1:00 PM<br />
-                    Sunday: Closed
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-          {/* Google Maps Embed */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.3, delay: 0.2 }}
-            className="relative rounded-lg sm:rounded-xl overflow-hidden border-2 border-brand-100 shadow-md mt-3 md:mt-0 w-full"
-            style={{ height: '350px', maxHeight: '100%' }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-brand-50 to-brand-50 flex items-center justify-center z-0">
-              <MapPin className="w-12 h-12 sm:w-14 sm:h-14 text-brand-300 animate-pulse" />
-            </div>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.091091074091!2d80.791592!3d16.647596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35e10014e10cf7%3A0xa8b6e0e50c33ca9a!2sHEAL%20PARADISE%20SECONDARY%20SCHOOL!5e0!3m2!1sen!2sin!4v1702300000000!5m2!1sen!2sin"
-              width="100%"
-              height="100%"
-              style={{ border: 0, position: 'absolute', top: 0, left: 0, zIndex: 1, width: '100%', height: '100%' }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Heal Paradise Secondary School Location"
-            />
-            {/* Overlay gradient for better integration */}
-            <div className="absolute inset-0 pointer-events-none z-10 bg-gradient-to-t from-white/5 via-transparent to-transparent rounded-xl sm:rounded-2xl"></div>
-          </motion.div>
-        </div>
-      </section>
     </main>
   );
 };

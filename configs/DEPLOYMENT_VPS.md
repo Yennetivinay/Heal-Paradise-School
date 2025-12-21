@@ -1,30 +1,14 @@
-# Ubuntu 24.04 VPS Deployment Guide (MERN Stack)
+# VPS Deployment Guide - Full Stack (Ubuntu 24.04)
 
-This guide shows how to deploy a **MERN stack** on a Hostinger VPS running **Ubuntu 24.04**:
-
-- **Client**: React (Vite build output)
-- **Server**: Node.js + Express (API)
-- **Database**: MongoDB (recommended: **MongoDB Atlas**; self-host option included)
-- **Process manager**: PM2
-- **Reverse proxy + SSL**: Nginx + Let’s Encrypt
-
-It’s written to fit the most common repo layout:
-
-```text
-your-repo/
-  client/   (React app)
-  server/   (Express API)
-```
-
-If your folders are named differently (e.g. `frontend/`, `backend/`), just substitute paths.
+Complete guide for deploying the full-stack Heal School website (React + Node.js) on a VPS.
 
 ## Prerequisites
 
-- Ubuntu 24.04 VPS (Hostinger)
+- Ubuntu 24.04 VPS (Hostinger, DigitalOcean, AWS, etc.)
 - SSH access
 - A domain pointing to your VPS IP (recommended for HTTPS)
 
-## Step 0: Basic server setup (recommended)
+## Step 0: Basic Server Setup
 
 ```bash
 sudo apt update && sudo apt upgrade -y
@@ -38,7 +22,7 @@ sudo ufw enable
 sudo ufw status
 ```
 
-### Create a non-root deploy user (recommended)
+### Create a Non-Root Deploy User (Recommended)
 
 ```bash
 sudo adduser deploy
@@ -46,16 +30,15 @@ sudo usermod -aG sudo deploy
 ```
 
 Then log in as that user:
-
 ```bash
 ssh deploy@YOUR_SERVER_IP
 ```
 
-## Step 1: Install Node.js (Ubuntu 24.04) — use Node 20.19+ (required)
+## Step 1: Install Node.js (Node 20.19+ Required)
 
-Your dependencies (Vite / React Router / etc.) require **Node 20.19+**.
+Your dependencies require **Node 20.19+**.
 
-### Option A: Install via NVM (recommended)
+### Option A: Install via NVM (Recommended)
 
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
@@ -69,7 +52,7 @@ node -v  # v20.x.x
 npm -v
 ```
 
-### Option B: Install via NodeSource (system-wide)
+### Option B: Install via NodeSource (System-Wide)
 
 ```bash
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
@@ -77,37 +60,7 @@ sudo apt-get install -y nodejs
 node -v
 ```
 
-## Step 2: MongoDB setup (choose ONE)
-
-### Option A (recommended): MongoDB Atlas (no server DB install)
-
-1. Create a cluster on Atlas and get your connection string.
-2. Put it into your server `.env` as `MONGODB_URI=...`.
-
-This is the easiest and most reliable way on VPS.
-
-### Option B: Self-host MongoDB using Docker (recommended for self-host)
-
-Docker avoids “which MongoDB apt repo supports Ubuntu 24.04” issues.
-
-```bash
-sudo apt install -y docker.io
-sudo systemctl enable --now docker
-
-sudo docker volume create mongo_data
-sudo docker run -d \
-  --name mongodb \
-  --restart unless-stopped \
-  -p 127.0.0.1:27017:27017 \
-  -v mongo_data:/data/db \
-  mongo:7
-```
-
-Notes:
-- Binding to `127.0.0.1` keeps MongoDB **private** (not exposed publicly).
-- Use `mongodb://127.0.0.1:27017/your_db_name` in your app.
-
-## Step 3: Get your code onto the server
+## Step 2: Get Your Code onto the Server
 
 ```bash
 cd ~
@@ -117,9 +70,9 @@ cd app
 
 If you upload a zip instead of git, extract into `~/app`.
 
-## Step 4: Configure environment variables
+## Step 3: Configure Environment Variables
 
-### Server `.env` (example)
+### Server `.env`
 
 Create `server/.env` (do not commit this file):
 
@@ -127,56 +80,55 @@ Create `server/.env` (do not commit this file):
 nano server/.env
 ```
 
-Example keys (adjust to your backend):
+Example configuration:
 
 ```env
 NODE_ENV=production
-PORT=5000
+PORT=3001
 
-# MongoDB
-MONGODB_URI=mongodb://127.0.0.1:27017/heal_school
+# Email Configuration (see EMAIL_SETUP.md)
+SMTP_HOST=mail.healschool.org
+SMTP_PORT=587
+SMTP_SECURE=false
+EMAIL_USER=admin@healschool.org
+EMAIL_PASSWORD=your-admin-password-here
+TARGET_EMAIL=info@healschool.org
 
-# If you use JWT/auth/etc
-JWT_SECRET=replace_with_long_random_secret
-
-# If your client calls the API with a base URL
-CLIENT_ORIGIN=https://your-domain.com
+# Optional: Google Sheets Integration (see GOOGLE_SHEETS_SETUP.md)
+GOOGLE_SHEETS_WEBHOOK_URL=https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec
 ```
 
-### Client environment (example)
+### Client Environment
 
-If your React app needs an API base URL at build-time, create `client/.env.production`:
+If your React app needs an API base URL at build-time, create `.env.production`:
 
 ```env
-VITE_API_BASE_URL=/api
+VITE_API_URL=https://your-domain.com/api
 ```
 
 Using `/api` is best with Nginx proxying (next steps).
 
-## Step 5: Build the client (React) for production
+## Step 4: Build the Client (React) for Production
 
 ```bash
-cd ~/app/client
+cd ~/app
 npm ci
 npm run build
 ```
 
 After this you should have:
-
 ```bash
 ls -la dist
 ```
 
-## Step 6: Run the server (Express) with PM2
+## Step 5: Run the Server (Express) with PM2
 
 Install PM2 once:
-
 ```bash
 sudo npm i -g pm2
 ```
 
 Then start your API:
-
 ```bash
 cd ~/app/server
 npm ci
@@ -187,31 +139,27 @@ pm2 save
 ```
 
 Enable PM2 on boot:
-
 ```bash
 pm2 startup systemd -u $USER --hp $HOME
 # Copy/paste the command PM2 prints (it uses sudo)
 ```
 
 Check:
-
 ```bash
 pm2 status
 pm2 logs api
 ```
 
-## Step 7: Configure Nginx (serve client + proxy /api to server)
+## Step 6: Configure Nginx (Serve Client + Proxy /api to Server)
 
 Install Nginx:
-
 ```bash
 sudo apt install -y nginx
 ```
 
 Create a site config:
-
 ```bash
-sudo nano /etc/nginx/sites-available/mern-app
+sudo nano /etc/nginx/sites-available/heal-school
 ```
 
 Paste and edit `server_name` + paths:
@@ -222,12 +170,12 @@ server {
     server_name your-domain.com www.your-domain.com;
 
     # React build output
-    root /home/deploy/app/client/dist;
+    root /home/deploy/app/dist;
     index index.html;
 
     # Proxy API to Node/Express
     location /api/ {
-        proxy_pass http://127.0.0.1:5000/;
+        proxy_pass http://127.0.0.1:3001/;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
@@ -251,15 +199,14 @@ server {
 ```
 
 Enable it:
-
 ```bash
-sudo ln -s /etc/nginx/sites-available/mern-app /etc/nginx/sites-enabled/mern-app
+sudo ln -s /etc/nginx/sites-available/heal-school /etc/nginx/sites-enabled/heal-school
 sudo rm -f /etc/nginx/sites-enabled/default
 sudo nginx -t
 sudo systemctl restart nginx
 ```
 
-## Step 8: Add HTTPS (Let’s Encrypt)
+## Step 7: Add HTTPS (Let's Encrypt)
 
 ```bash
 sudo apt install -y certbot python3-certbot-nginx
@@ -267,12 +214,11 @@ sudo certbot --nginx -d your-domain.com -d www.your-domain.com
 ```
 
 Auto-renew:
-
 ```bash
 sudo systemctl status certbot.timer
 ```
 
-## Step 9: Deploy updates (pull → install → build → restart)
+## Step 8: Deploy Updates (Pull → Install → Build → Restart)
 
 Create `~/deploy.sh`:
 
@@ -291,7 +237,7 @@ cd server
 npm ci
 pm2 restart api
 
-cd ../client
+cd ..
 npm ci
 npm run build
 
@@ -300,49 +246,42 @@ echo "Deploy complete"
 ```
 
 Make executable:
-
 ```bash
 chmod +x ~/deploy.sh
 ```
 
 Run:
-
 ```bash
 ~/deploy.sh
 ```
 
 ## Troubleshooting
 
-### Node engine warnings / build failures
+### Node Engine Warnings / Build Failures
 
 ```bash
 node -v
 ```
 
-If it’s not **20.19+**, fix Node first (Step 1), then reinstall:
-
+If it's not **20.19+**, fix Node first (Step 1), then reinstall:
 ```bash
 rm -rf node_modules package-lock.json
 npm install
 ```
 
-### API not working
+### API Not Working
 
 - Check PM2 logs:
-
 ```bash
 pm2 logs api
 ```
 
 - Confirm server is listening locally:
-
 ```bash
-curl -i http://127.0.0.1:5000/health || true
+curl -i http://127.0.0.1:3001/api/health || true
 ```
 
-(Replace `/health` with a real endpoint.)
-
-### Nginx errors
+### Nginx Errors
 
 ```bash
 sudo tail -n 200 /var/log/nginx/error.log
@@ -350,17 +289,25 @@ sudo nginx -t
 sudo systemctl restart nginx
 ```
 
-### MongoDB connection issues (Docker)
+### Routes Don't Work
 
-```bash
-sudo docker ps
-sudo docker logs mongodb --tail 200
-```
+- Make sure Nginx config has `try_files $uri $uri/ /index.html;`
+- Check that `root` points to `/home/deploy/app/dist`
 
-## Recommended production setup (summary)
+## Recommended Production Setup
 
-- **MongoDB Atlas** (or Docker Mongo bound to localhost)
-- **PM2** for the Express API
+- **PM2** for the Express API (auto-restart on crash)
 - **Nginx** to serve the React build and proxy `/api`
-- **Certbot** for HTTPS
+- **Certbot** for HTTPS (free SSL)
+- **UFW** firewall for security
+- **Git** for easy deployments
+
+## Next Steps
+
+1. Set up email (see `EMAIL_SETUP.md`)
+2. Set up Google Sheets (see `GOOGLE_SHEETS_SETUP.md`)
+3. Configure monitoring (optional)
+4. Set up backups (optional)
+
+Your full-stack application is now deployed! 🚀
 

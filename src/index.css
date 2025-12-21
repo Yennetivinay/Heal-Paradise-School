@@ -1,30 +1,39 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* Custom Brand Color - #0098CA */
+/* Custom Brand Color - #00abd9 (HEAL Theme) */
 @theme {
-  --color-brand: #0098CA;
+  --color-brand: #00abd9;
   --color-brand-50: #e6f7fc;
   --color-brand-100: #b3e8f5;
   --color-brand-200: #80d9ee;
   --color-brand-300: #4dcae7;
   --color-brand-400: #1abbe0;
-  --color-brand-500: #0098CA;
-  --color-brand-600: #007aa2;
-  --color-brand-700: #005c7a;
-  --color-brand-800: #003e52;
-  --color-brand-900: #00202a;
+  --color-brand-500: #00abd9;
+  --color-brand-600: #0089ad;
+  --color-brand-700: #006782;
+  --color-brand-800: #004557;
+  --color-brand-900: #00232c;
 }
 
 /* Utility class for direct color usage */
-.bg-brand { background-color: #0098CA; }
-.text-brand { color: #0098CA; }
-.border-brand { border-color: #0098CA; }
+.bg-brand { background-color: #00abd9; }
+.text-brand { color: #00abd9; }
+.border-brand { border-color: #00abd9; }
 
 /* Prevent horizontal overflow globally */
 html, body {
   overflow-x: hidden;
   max-width: 100%;
+}
+
+/* Enable native smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overscroll-behavior: none; /* Prevent overscroll bounce */
 }
 
 /* Hide scrollbar globally for all browsers */
@@ -149,7 +158,7 @@ html {
 
 /* Focus indicators for keyboard navigation */
 *:focus-visible {
-  outline: 2px solid #0098CA;
+  outline: 2px solid #00abd9;
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -167,9 +176,9 @@ textarea:focus-visible,
 select:focus-visible,
 [role="button"]:focus-visible,
 [tabindex]:focus-visible {
-  outline: 3px solid #0098CA;
+  outline: 3px solid #00abd9;
   outline-offset: 3px;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  box-shadow: 0 0 0 3px rgba(0, 171, 217, 0.2);
 }
 
 /* Focus styles for links */
@@ -182,7 +191,7 @@ a:focus-visible {
   position: absolute;
   top: -40px;
   left: 0;
-  background: #0098CA;
+  background: #00abd9;
   color: white;
   padding: 8px 16px;
   text-decoration: none;
@@ -401,13 +410,6 @@ body {
   min-height: 100vh;
 }
 
-/* Loading state styles - moved from index.html */
-.loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-}
 
 /* Instant logo placeholder - renders before React - moved from index.html */
 .logo-placeholder {
@@ -416,7 +418,7 @@ body {
   z-index: 9999;
   width: 2.5rem;
   height: 2.5rem;
-  background: linear-gradient(135deg, #0098CA, #0098CA);
+  background: linear-gradient(135deg, #00abd9, #00abd9);
   border-radius: 9999px;
   display: flex;
   align-items: center;

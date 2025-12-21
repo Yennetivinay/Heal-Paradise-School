@@ -10,7 +10,7 @@ const TextCard = ({
 }) => {
   return (
     <div 
-      className={`group rounded-3xl border border-slate-200/80 bg-gradient-to-br from-white to-slate-50/50 backdrop-blur-sm p-8 md:p-10 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:border-brand-300/50 ${className}`}
+      className={`group rounded-3xl border-2 border-brand-300/60 bg-gradient-to-br from-white to-slate-50/50 backdrop-blur-sm p-8 md:p-10 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:border-brand-400/80 ${className}`}
       onClick={onClick}
     >
       <div className="flex items-center gap-3 mb-6">

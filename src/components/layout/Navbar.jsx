@@ -60,28 +60,13 @@ function AppleNavbar() {
     if (location.pathname === "/") {
       // Use requestAnimationFrame to ensure DOM is ready
       requestAnimationFrame(() => {
-        // Method 1: Try Lenis if available (it controls smooth scrolling)
-        if (window.lenis && typeof window.lenis.scrollTo === 'function') {
-          try {
-            window.lenis.scrollTo(0, {
-              duration: 1.5,
-              easing: (t) => 1 - Math.pow(1 - t, 3),
-              immediate: false
-            });
-          } catch (err) {
-            // Fallback if Lenis fails
-            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-          }
-        } else {
-          // Method 2: Native smooth scroll if Lenis not available
           window.scrollTo({
             top: 0,
             left: 0,
             behavior: 'smooth'
           });
-        }
         
-        // Method 3: Direct scroll as immediate backup
+        // Direct scroll as immediate backup
         document.documentElement.scrollTop = 0;
         document.body.scrollTop = 0;
       });
@@ -332,26 +317,11 @@ function AppleNavbar() {
     if (targetPath && location.pathname === targetPath) {
       // Use requestAnimationFrame to ensure DOM is ready
       requestAnimationFrame(() => {
-        // Method 1: Try Lenis if available
-        if (window.lenis && typeof window.lenis.scrollTo === 'function') {
-          try {
-            window.lenis.scrollTo(0, {
-              duration: 1.5,
-              easing: (t) => 1 - Math.pow(1 - t, 3),
-              immediate: false
-            });
-          } catch (err) {
-            // Fallback if Lenis fails
-            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-          }
-        } else {
-          // Method 2: Native smooth scroll if Lenis not available
           window.scrollTo({
             top: 0,
             left: 0,
             behavior: 'smooth'
           });
-        }
         
         // Method 3: Direct scroll as immediate backup
         document.documentElement.scrollTop = 0;

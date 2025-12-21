@@ -20,12 +20,16 @@ const StructuredData = () => {
       },
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+91-XXXXXXXXXX",
+        "telephone": "+91-9100024438",
         "contactType": "Admissions",
-        "email": "admissions@healparadiseschool.edu"
+        "email": "healschool@healparadise.org"
       },
       "sameAs": [
-        "https://www.facebook.com/HealVillage"
+        "https://www.facebook.com/HealVillage/",
+        "https://x.com/Heal_Paradise",
+        "https://www.instagram.com/heal_paradise/",
+        "https://www.youtube.com/@Heal_Paradise",
+        "https://in.linkedin.com/company/heal-paradise"
       ],
       "educationalCredentialAwarded": "CBSE",
       "hasOfferCatalog": {
@@ -60,7 +64,7 @@ const StructuredData = () => {
         "addressCountry": "IN"
       },
       "telephone": "+91-XXXXXXXXXX",
-      "email": "info@healparadiseschool.edu",
+      "email": "info@healschool.org",
       "foundingDate": "2024",
       "award": "100% Scholarship Program"
     };

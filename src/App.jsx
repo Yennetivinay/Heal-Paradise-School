@@ -9,6 +9,8 @@ import AppleNavbar from './components/layout/Navbar.jsx'
 const Footer = lazy(() => import('./components/layout/Footer.jsx'))
 // ScrollToTop should load immediately to prevent scroll issues
 import ScrollToTop from './components/layout/ScrollToTop.jsx'
+// PullToRefresh for mobile devices
+import PullToRefresh from './components/common/PullToRefresh.jsx'
 // Error boundary for route-level error handling
 import ErrorBoundary from './components/common/ErrorBoundary.jsx'
 // Structured data for SEO
@@ -34,7 +36,6 @@ const App = () => {
   const validRoutes = [
     '/',
     '/about',
-    '/gallery',
     '/admission',
     '/contact',
   ];
@@ -48,23 +49,26 @@ const App = () => {
     }
   }, []);
 
-  // Intelligent preloading: preload critical pages immediately
+  // Intelligent preloading: preload critical pages after initial render
   React.useEffect(() => {
-    // Preload admission page immediately if on that route (no delay for critical content)
+    // Defer preloading to improve initial load
+    const timer = setTimeout(() => {
     if (location.pathname === '/' || location.pathname === '/admission') {
       import('./pages/AdmissionPage').catch(() => {});
     }
+      // Preload other critical pages
+      import('./pages/AboutPage').catch(() => {});
+      import('./pages/ContactPage').catch(() => {});
+    }, 100);
+    
+    return () => clearTimeout(timer);
   }, [location.pathname]);
-  
-  // Preload admission page on mount for instant loading
-  React.useEffect(() => {
-    import('./pages/AdmissionPage').catch(() => {});
-  }, []);
   
   return (
     <div className="min-h-screen bg-background text-foreground border-border outline-ring/50 bg-gradient-to-b from-neutral-50 to-white overflow-x-hidden">
       <StructuredData />
       <ScrollToTop />
+      <PullToRefresh />
       {isValidRoute && <AppleNavbar/>}
       <ErrorBoundary>
         <Suspense fallback={
@@ -83,7 +87,7 @@ const App = () => {
               <Routes location={location}>
                 <Route path='/' element={<LandingPage/>}/>
                 <Route path='/about' element={<AboutPage/>}/>
-                <Route path='/gallery' element={<GalleryPage/>}/>
+                <Route path='/gallery' element={<WorkInProgressPage/>}/>
                 <Route path='/admission' element={<AdmissionPage/>}/>
                 <Route path='/contact' element={<ContactPage/>}/>
                 <Route path='/careers' element={<WorkInProgressPage/>}/>

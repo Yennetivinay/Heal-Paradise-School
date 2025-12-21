@@ -2,57 +2,42 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
-import { optimizeAnimations } from './utils/animationOptimizer'
+import { optimizeAnimations } from './utils/animations'
 import { trackWebVitals } from './utils/webVitals'
+import Lenis from 'lenis'
 // Import CSS - Vite will handle bundling correctly in both dev and production
 import './index.css'
 
-// Initialize Lenis lazily after initial render with mobile optimization
-const initLenis = () => {
-  import('lenis').then(({ default: Lenis }) => {
-    // Detect mobile device
-    const isMobile = window.innerWidth < 768;
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    const lenis = new Lenis({
-      duration: isMobile ? 1.0 : 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smooth: !prefersReducedMotion,
-      smoothTouch: !prefersReducedMotion && !isMobile, // Disable on mobile for better performance
-      touchMultiplier: isMobile ? 1.5 : 2,
-      wheelMultiplier: isMobile ? 0.8 : 1,
-      infinite: false,
-    });
-    window.lenis = lenis;
-    
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-  });
-};
-
-// Optimize animations before rendering
-optimizeAnimations();
-
-// Initialize Web Vitals tracking
-trackWebVitals();
-
-// Render app immediately
+// Render app immediately - prioritize rendering over other initialization
 const root = createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <App/>
   </BrowserRouter>
 );
+// Initialize Lenis
+const lenis = new Lenis({
+  autoRaf: true,
+});
 
-// Initialize Lenis after initial render
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    // Defer Lenis initialization
-    setTimeout(initLenis, 100);
-  });
+// Listen for the scroll event and log the event data
+lenis.on('scroll', (e) => {
+  console.log(e);
+});
+// Defer non-critical initialization to improve TTI
+if ('requestIdleCallback' in window) {
+  requestIdleCallback(() => {
+    // Optimize animations after initial render
+    optimizeAnimations();
+    
+    // Initialize Web Vitals tracking (non-blocking)
+    trackWebVitals();
+  }, { timeout: 2000 });
 } else {
-  setTimeout(initLenis, 100);
+  // Fallback for browsers without requestIdleCallback
+  setTimeout(() => {
+    optimizeAnimations();
+    trackWebVitals();
+  }, 100);
 }
+

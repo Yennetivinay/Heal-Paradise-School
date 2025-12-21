@@ -41,7 +41,7 @@ export const TeamTestimonials = ({
     if (autoplay) {
       autoplayIntervalRef.current = setInterval(() => {
         setActive((prev) => (prev + 1) % testimonials.length);
-      }, 5000);
+      }, 9000);
     }
   }, [autoplay, testimonials.length]);
 
@@ -156,7 +156,7 @@ export const TeamTestimonials = ({
       <div className="relative flex flex-col items-center gap-4 sm:gap-5 md:gap-6 lg:hidden">
         {/* Image Section - Circular Layout - Portrait */}
         <div className="relative mx-auto overflow-visible">
-          <div 
+          <div
             ref={imageContainerRef}
             className="relative w-[200px] sm:w-[240px] md:w-[280px] h-[280px] sm:h-[320px] md:h-[360px] overflow-visible"
             style={{ perspective: '1000px' }}
@@ -164,7 +164,7 @@ export const TeamTestimonials = ({
             {/* Decorative background elements */}
             <div className="absolute inset-0 bg-gradient-to-br from-brand-100/50 via-brand-100/30 to-transparent rounded-2xl sm:rounded-3xl blur-2xl sm:blur-3xl -z-10" />
             <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-br from-brand-200/20 to-brand-200/20 rounded-xl sm:rounded-[2rem] blur-xl sm:blur-2xl -z-10" />
-            
+
             {/* Circular testimonials - shows 3 images at once */}
             {testimonials.map((testimonial, index) => {
               const style = getImageStyle(index);
@@ -232,32 +232,10 @@ export const TeamTestimonials = ({
             duration: 0.5,
             ease: [0.4, 0, 0.2, 1],
           }}
-          className="text-center max-w-2xl mx-auto"
+          className="text-center max-w-2xl mx-auto min-h-[120px] sm:min-h-[140px] md:min-h-[160px] flex items-center justify-center mt-4 sm:mt-6"
         >
-          <div className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-700 leading-relaxed font-medium">
-            {testimonials[active].quote.split(" ").map((word, index) => (
-              <motion.span
-                key={index}
-                initial={{
-                  filter: "blur(8px)",
-                  opacity: 0,
-                  y: 10,
-                }}
-                animate={{
-                  filter: "blur(0px)",
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  duration: 0.3,
-                  ease: "easeOut",
-                  delay: 0.03 * index,
-                }}
-                className="inline-block mr-1.5"
-              >
-                {word}
-              </motion.span>
-            ))}
+          <div className="text-sm sm:text-base md:text-lg text-slate-700 leading-relaxed font-medium px-2">
+            {testimonials[active].quote}
           </div>
         </motion.div>
 
@@ -306,7 +284,7 @@ export const TeamTestimonials = ({
       <div className="hidden lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-start overflow-visible">
         {/* Image Section - Circular Testimonials Style - Portrait */}
         <div className="relative flex items-start justify-center overflow-visible px-16 h-[320px] lg:h-[360px]">
-          <div 
+          <div
             ref={desktopImageContainerRef}
             className="relative w-[260px] lg:w-[300px] h-[320px] lg:h-[360px]"
             style={{ perspective: '1000px', overflow: 'visible' }}
@@ -314,7 +292,7 @@ export const TeamTestimonials = ({
             {/* Decorative background elements */}
             <div className="absolute inset-0 bg-gradient-to-br from-brand-100/50 via-brand-100/30 to-transparent rounded-3xl blur-3xl -z-10" />
             <div className="absolute -inset-4 bg-gradient-to-br from-brand-200/20 to-brand-200/20 rounded-[2rem] blur-2xl -z-10" />
-            
+
             {/* Circular testimonials - shows 3 images at once */}
             {testimonials.map((testimonial, index) => {
               const style = getImageStyle(index);
@@ -335,7 +313,7 @@ export const TeamTestimonials = ({
         </div>
 
         {/* Content Section */}
-        <div className="flex flex-col justify-center space-y-4 lg:space-y-6 relative z-10 h-[320px] lg:h-[360px] -mt-4 lg:-mt-6">
+        <div className="flex flex-col justify-center space-y-4 lg:space-y-2 relative z-10 h-[320px] lg:h-[360px] -mt-4 lg:-mt-6">
           <motion.div
             key={active}
             initial={{
@@ -358,35 +336,13 @@ export const TeamTestimonials = ({
           >
             {/* Quote Icon */}
             <div className="flex items-start">
-              <div className="text-5xl lg:text-6xl font-serif text-brand-200/60 leading-none">"</div>
+              <div className="text-4xl lg:text-5xl font-serif text-brand-200/60 leading-none">"</div>
             </div>
 
             {/* Quote Text */}
-            <motion.div className="text-lg lg:text-xl xl:text-2xl text-slate-700 leading-relaxed font-medium pl-3">
-              {testimonials[active].quote.split(" ").map((word, index) => (
-                <motion.span
-                  key={index}
-                  initial={{
-                    filter: "blur(8px)",
-                    opacity: 0,
-                    y: 10,
-                  }}
-                  animate={{
-                    filter: "blur(0px)",
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  transition={{
-                    duration: 0.3,
-                    ease: "easeOut",
-                    delay: 0.03 * index,
-                  }}
-                  className="inline-block mr-1.5"
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </motion.div>
+            <div className="text-base lg:text-lg xl:text-xl text-slate-700 leading-relaxed font-medium pl-3 min-h-[120px] lg:min-h-[140px] flex items-center mt-4 lg:mt-6">
+              {testimonials[active].quote}
+            </div>
 
             {/* Name and Designation */}
             <div className="pl-3 pt-3 border-l-2 border-gradient-to-b from-brand-500 to-brand-500 border-brand-500">

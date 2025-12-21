@@ -992,7 +992,7 @@ export default function IntroAnimation({ onAnimationComplete }) {
           <motion.h2 
                         className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6"
             style={{ 
-              background: 'linear-gradient(135deg, #0098CA 0%, #0098CA 50%, #0098CA 100%)',
+              background: 'linear-gradient(135deg, #00abd9 0%, #00abd9 50%, #00abd9 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text'

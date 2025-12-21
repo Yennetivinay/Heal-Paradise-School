@@ -10,17 +10,11 @@ const ScrollToTop = () => {
       window.history.scrollRestoration = 'manual';
     }
 
-    // Immediately scroll to top using multiple methods for reliability
+    // Immediately scroll to top using native smooth scrolling
     const scrollToTop = () => {
-      // Set scroll position immediately
-      window.scrollTo(0, 0);
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
-      
-      // Also try Lenis if available
-      if (window.lenis) {
-        window.lenis.scrollTo(0, { immediate: true });
-      }
     };
 
     // Scroll immediately

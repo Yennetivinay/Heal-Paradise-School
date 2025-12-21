@@ -37,22 +37,23 @@
     <!-- Preconnect to external domains for faster resource loading -->
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
     <link rel="dns-prefetch" href="https://images.unsplash.com">
+    <link rel="dns-prefetch" href="https://lottie.host">
     
-    <!-- Preload logo for faster display with high priority -->
+    <!-- Preload critical resources for instant LCP -->
     <link rel="preload" href="/logo.png" as="image" type="image/png" fetchpriority="high">
+    <link rel="preload" href="/src/assets/Hero vid.mp4" as="video" type="video/mp4" fetchpriority="high">
     
-    <!-- Prefetch all pages for faster navigation -->
-    <link rel="prefetch" href="/src/pages/LandingPage.jsx" as="script">
-    <link rel="prefetch" href="/src/pages/AboutPage.jsx" as="script">
-    <link rel="prefetch" href="/src/pages/GalleryPage.jsx" as="script">
-    <link rel="prefetch" href="/src/pages/AwardsPage.jsx" as="script">
+    <!-- Preload critical CSS inline hint -->
+    <link rel="preload" href="/src/index.css" as="style">
+    
+    <!-- Prefetch critical routes for faster navigation -->
+    <link rel="modulepreload" href="/src/main.jsx">
+    <link rel="modulepreload" href="/src/App.jsx">
   </head>
   <body>
     <!-- Instant logo placeholder - shows before React loads -->
     <div class="logo-placeholder" id="instant-logo-placeholder">HP</div>
-    <div id="root">
-      <div class="loading">Loading...</div>
-    </div>
+    <div id="root"></div>
     <script>
       // Hide placeholder immediately when React starts loading
       (function() {

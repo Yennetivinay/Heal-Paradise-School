@@ -174,7 +174,7 @@ export const Timeline = ({ data }) => {
                       `}>
                         <motion.h3
                           animate={{
-                            color: isActive ? '#ffffff' : isPast ? '#0098CA' : '#64748b',
+                            color: isActive ? '#ffffff' : isPast ? '#00abd9' : '#64748b',
                           }}
                           className={`
                             text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-extrabold transition-colors duration-300 text-center md:text-left leading-tight

@@ -184,14 +184,14 @@ const GalleryPage = () => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, margin: "0px" }}
               transition={{ duration: 0.8 }}
               className="text-center mb-8 sm:mb-10 md:mb-12"
             >
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, margin: "0px" }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-100 to-brand-100 border border-brand-200/50 px-4 py-2 text-sm font-semibold text-brand-700 shadow-sm mb-3"
               >
@@ -355,7 +355,7 @@ const GalleryPage = () => {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, margin: "0px" }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="mt-8 sm:mt-10 md:mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5"
             >
@@ -389,7 +389,7 @@ const GalleryPage = () => {
                   key={index}
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false, margin: "0px" }}
                   transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
                   whileHover={{ y: -5, scale: 1.02 }}
                   className="relative group"

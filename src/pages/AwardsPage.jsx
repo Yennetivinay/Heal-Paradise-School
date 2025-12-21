@@ -169,7 +169,7 @@ const AwardsPage = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, margin: "0px" }}
             transition={{ duration: 0.6 }}
             className="text-center"
           >
@@ -193,7 +193,7 @@ const AwardsPage = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, margin: "0px" }}
             transition={{ duration: 0.6 }}
             className="text-center"
           >
@@ -230,7 +230,7 @@ const AwardsPage = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, margin: "0px" }}
             transition={{ duration: 0.6 }}
             className="text-center"
           >
@@ -277,7 +277,7 @@ const AwardsPage = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, margin: "0px" }}
             transition={{ duration: 0.6 }}
             className="relative rounded-2xl sm:rounded-3xl bg-gradient-to-br from-white via-slate-50/50 to-white backdrop-blur-xl border border-brand-200/50 p-6 sm:p-8 md:p-10 lg:p-12 shadow-2xl"
           >
@@ -294,7 +294,7 @@ const AwardsPage = () => {
                     key={index}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false, margin: "0px" }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     className="text-center"
                   >
@@ -321,7 +321,7 @@ const AwardsPage = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, margin: "0px" }}
             transition={{ duration: 0.6 }}
             className="relative rounded-3xl bg-gradient-to-br from-brand-50 via-white to-brand-50/50 backdrop-blur-xl border border-brand-200/50 p-8 md:p-12 text-center overflow-hidden shadow-2xl"
           >

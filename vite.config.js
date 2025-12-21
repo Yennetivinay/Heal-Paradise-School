@@ -10,7 +10,7 @@ export default defineConfig({
     react({
       // Remove StrictMode in production for better performance
       jsxRuntime: 'automatic',
-    }), 
+    }),
     tailwindcss()
   ],
   server: {
@@ -20,6 +20,9 @@ export default defineConfig({
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom'],
     exclude: ['lenis'], // Lazy load Lenis
+    esbuildOptions: {
+      target: 'esnext',
+    },
   },
   // For production build
   build: {
@@ -30,16 +33,15 @@ export default defineConfig({
       compress: {
         drop_console: true,
         drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug'],
+        passes: 2, // Multiple passes for better compression
       },
     },
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // Vendor chunks
+          // Vendor chunks - optimized splitting
           if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
-              return 'react-vendor';
-            }
             if (id.includes('framer-motion')) {
               return 'framer-motion';
             }
@@ -52,23 +54,53 @@ export default defineConfig({
             if (id.includes('lenis')) {
               return 'lenis';
             }
+            if (id.includes('/react/') || id.includes('/react-dom/') || id.includes('/react-router/')) {
+              return 'react-vendor';
+            }
+            // Other vendor libraries
+            return 'vendor';
           }
           // Page chunks - separate for better caching
-          if (id.includes('/Pages/')) {
-            const pageName = id.split('/Pages/')[1]?.split('.')[0];
+          if (id.includes('/pages/')) {
+            const pageName = id.split('/pages/')[1]?.split('.')[0];
             if (pageName) {
               return `page-${pageName.toLowerCase()}`;
             }
           }
         },
+        // Optimize chunk file names
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: (assetInfo) => {
+          const info = assetInfo.name.split('.');
+          const ext = info[info.length - 1];
+          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(ext)) {
+            return `assets/images/[name]-[hash][extname]`;
+          }
+          if (/woff2?|eot|ttf|otf/i.test(ext)) {
+            return `assets/fonts/[name]-[hash][extname]`;
+          }
+          return `assets/[name]-[hash][extname]`;
+        },
       },
     },
-    chunkSizeWarningLimit: 1000,
     // Disable source maps in production for smaller bundle
     sourcemap: false,
     // Enable compression
     reportCompressedSize: true,
-    // Optimize asset inlining threshold
-    assetsInlineLimit: 4096,
+    // Optimize asset inlining threshold (smaller = more inlining)
+    assetsInlineLimit: 4096, // Increased for better caching
+    // CSS code splitting
+    cssCodeSplit: true,
+    // Target modern browsers for smaller bundles
+    target: 'esnext',
+    // Minify CSS
+    cssMinify: true,
+    // Optimize for faster loads
+    modulePreload: {
+      polyfill: false, // Modern browsers don't need polyfill
+    },
+    // Reduce chunk size warnings
+    chunkSizeWarningLimit: 600,
   }
 })

@@ -1,8 +1,20 @@
-# Vercel Deployment Configuration
+# Vercel Deployment Guide
 
-This project is fully configured for Vercel deployment. All necessary files have been set up.
+Complete guide for deploying your Heal School website to Vercel.
+
+## Quick Start
+
+**Fastest Method - Vercel CLI:**
+```bash
+npm install -g vercel
+vercel
+```
+
+Follow the prompts, and your site will be live in under 2 minutes!
 
 ## Configuration Files
+
+Your project is already configured with:
 
 ### ✅ vercel.json
 - **Build Command**: `npm run build`
@@ -14,7 +26,7 @@ This project is fully configured for Vercel deployment. All necessary files have
 - **Cache Headers**: Optimized for static assets
 
 ### ✅ package.json
-- **Node Version**: >=18.0.0 (specified in engines)
+- **Node Version**: >=20.19.0 (specified in engines)
 - **Build Script**: `vite build`
 - **All Dependencies**: Listed and versioned
 
@@ -25,51 +37,50 @@ This project is fully configured for Vercel deployment. All necessary files have
 - **Code Splitting**: Configured
 - **Minification**: Terser with console removal
 
-### ✅ .nvmrc
-- **Node Version**: 18 (for Vercel auto-detection)
+## Deployment Methods
 
-### ✅ .vercelignore
-- Excludes unnecessary files from deployment
-
-## Deployment Steps
-
-### Option 1: Automatic via GitHub (Recommended)
+### Method 1: Automatic via GitHub (Recommended)
 
 1. **Push to GitHub**:
    ```bash
+   git init
    git add .
-   git commit -m "Configure for Vercel deployment"
-   git push origin main
+   git commit -m "Initial commit"
+   git remote add origin https://github.com/yourusername/your-repo-name.git
+   git push -u origin main
    ```
 
 2. **Connect to Vercel**:
    - Go to [vercel.com](https://vercel.com)
-   - Sign in with GitHub
+   - Sign up/Log in with your GitHub account
    - Click "Add New Project"
-   - Import your repository
-   - Vercel will auto-detect settings:
-     - Framework: Vite
-     - Build Command: `npm run build`
-     - Output Directory: `dist`
-     - Install Command: `npm install`
+   - Import your GitHub repository
+   - Vercel will auto-detect your Vite project
+   - Click "Deploy"
 
-3. **Important**: If your repo root contains the `hs` folder:
+3. **Automatic Deployments**:
+   - Every time you push to GitHub, Vercel will automatically deploy your changes
+   - You'll get a production URL and preview URLs for each deployment
+
+4. **Important**: If your repo root contains a subfolder:
    - Go to Project Settings → General
-   - Set **Root Directory** to: `hs`
+   - Set **Root Directory** to your project folder
    - Click Save
    - Redeploy
 
-4. **Deploy**: Click "Deploy" (or it will auto-deploy)
-
-### Option 2: Manual via Vercel CLI
+### Method 2: Manual via Vercel CLI
 
 ```bash
-cd hs
 npm install -g vercel
 vercel
 ```
 
 Follow the prompts to deploy.
+
+For production:
+```bash
+vercel --prod
+```
 
 ## Build Settings (Auto-detected by Vercel)
 
@@ -77,7 +88,7 @@ Follow the prompts to deploy.
 - **Build Command**: `npm run build`
 - **Output Directory**: `dist`
 - **Install Command**: `npm install`
-- **Node.js Version**: 18.x (from .nvmrc)
+- **Node.js Version**: 20.x (from package.json engines)
 
 ## Environment Variables
 
@@ -88,6 +99,8 @@ If your app needs environment variables:
    - Production
    - Preview
    - Development (optional)
+
+**For the contact form backend**, you'll need to deploy the server separately (see `DEPLOYMENT_VPS.md` for full-stack deployment).
 
 ## Troubleshooting
 
@@ -116,6 +129,23 @@ If your app needs environment variables:
 - ✅ Asset optimization enabled
 - ✅ Compression enabled
 
+### Root Directory Issues
+
+**If your repository structure is:**
+```
+repo-root/
+  your-project-folder/
+    src/
+    package.json
+    ...
+```
+
+**Solution:**
+1. Go to Vercel Dashboard → Settings → General
+2. Set **Root Directory** to: `your-project-folder`
+3. Click Save
+4. Redeploy
+
 ## Verification Checklist
 
 Before deploying, ensure:
@@ -123,7 +153,7 @@ Before deploying, ensure:
 - [x] `vercel.json` exists in project root
 - [x] `package.json` has build script
 - [x] `vite.config.js` has correct base path
-- [x] `.nvmrc` specifies Node 18
+- [x] Node.js version is 20.19+ (check package.json engines)
 - [x] All dependencies are in `package.json`
 - [x] Build works locally (`npm run build`)
 - [x] `dist` folder is generated after build
@@ -139,6 +169,19 @@ After successful deployment:
 4. **Check performance** - Use Lighthouse
 5. **Set up custom domain** (optional) - In Vercel project settings
 
+## Current Configuration Summary
+
+```
+✅ Framework: Vite
+✅ Build: npm run build
+✅ Output: dist/
+✅ Node: 20.19+
+✅ Routing: SPA (React Router)
+✅ Security: Headers configured
+✅ Performance: Optimized
+✅ Caching: Configured
+```
+
 ## Support
 
 If deployment still fails:
@@ -149,20 +192,5 @@ If deployment still fails:
 4. Check Node.js version compatibility
 5. Review Vercel status: https://www.vercel-status.com/
 
-## Current Configuration Summary
-
-```
-✅ Framework: Vite
-✅ Build: npm run build
-✅ Output: dist/
-✅ Node: 18.x
-✅ Routing: SPA (React Router)
-✅ Security: Headers configured
-✅ Performance: Optimized
-✅ Caching: Configured
-```
-
 Your project is ready for Vercel deployment! 🚀
-
-
 
