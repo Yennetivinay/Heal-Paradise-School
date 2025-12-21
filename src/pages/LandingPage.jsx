@@ -12,7 +12,7 @@ import videoSrc from '../assets/Hero vid.mp4';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 // Import gallery images
-import galleryImage1 from '../assets/Landing page images/wecareforourchildren.JPG';
+import weCareImage from '../assets/Landing page images/wecareforourchildren.jpg';
 import galleryImage2 from '../assets/Landing page images/2-min.JPG';
 import galleryImage3 from '../assets/Landing page images/3-min.JPG';
 import galleryImage4 from '../assets/Landing page images/4-min.JPG';
@@ -372,7 +372,7 @@ const LandingPage = () => {
           }>
             <Gallery images={[
               {
-                url: galleryImage1,
+                url: weCareImage,
                 title: "Empowering Young Minds",
                 description: "Engaging with students in outdoor learning environment"
               },
