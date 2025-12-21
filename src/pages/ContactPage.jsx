@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  MapPin, 
-  Phone, 
-  Mail, 
-  Clock, 
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
   Send,
   MessageSquare,
   Globe,
@@ -57,7 +57,7 @@ const ContactPage = () => {
       if (import.meta.env.VITE_API_URL) {
         return import.meta.env.VITE_API_URL;
       }
-      
+
       // In development, try to detect the server IP
       if (import.meta.env.DEV) {
         // Get the current hostname (works for both localhost and network IP)
@@ -67,11 +67,11 @@ const ContactPage = () => {
           return `http://${hostname}:3001`;
         }
       }
-      
-      // Default fallback
-      return 'http://localhost:3001';
+
+      // Default fallback (Production) - use relative path to let Nginx proxy handle it
+      return '';
     };
-    
+
     const API_URL = getApiUrl();
 
     try {
@@ -103,13 +103,13 @@ const ContactPage = () => {
         setSubmitMessage(data.message || 'Thank you for contacting us! We will get back to you soon.');
         setShowModal(true);
         setIsSubmitting(false); // Hide loading state immediately
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: ''
-    });
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: ''
+        });
       } else {
         // API returned error - show popup
         setSubmitStatus('error');
@@ -149,7 +149,7 @@ const ContactPage = () => {
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
           <Sparkles className="absolute top-10 right-10 w-20 h-20 text-white/20 animate-pulse" />
         </div>
-        
+
         <div className="relative max-w-7xl mx-auto px-6 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -270,11 +270,10 @@ const ContactPage = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full px-6 py-3 bg-gradient-to-r from-brand-600 to-brand-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 ${
-                      isSubmitting
+                    className={`w-full px-6 py-3 bg-gradient-to-r from-brand-600 to-brand-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 ${isSubmitting
                         ? 'opacity-70 cursor-not-allowed'
                         : 'hover:scale-105'
-                    }`}
+                      }`}
                   >
                     {isSubmitting ? (
                       <>
@@ -283,8 +282,8 @@ const ContactPage = () => {
                       </>
                     ) : (
                       <>
-                    <Send className="w-5 h-5" />
-                    <span>Send Message</span>
+                        <Send className="w-5 h-5" />
+                        <span>Send Message</span>
                       </>
                     )}
                   </button>
@@ -315,7 +314,7 @@ const ContactPage = () => {
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className="text-lg font-bold text-slate-900 mb-2">Visit Us</h3>
-                      <a 
+                      <a
                         href="https://maps.app.goo.gl/LCqzYAUXTDHkaz8U7"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -468,11 +467,10 @@ const ContactPage = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             transition={{ type: "spring", duration: 0.5 }}
-            className={`relative max-w-md w-full rounded-2xl shadow-2xl overflow-hidden ${
-              submitStatus === 'success'
+            className={`relative max-w-md w-full rounded-2xl shadow-2xl overflow-hidden ${submitStatus === 'success'
                 ? 'bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200'
                 : 'bg-gradient-to-br from-red-50 to-rose-50 border-2 border-red-200'
-            }`}
+              }`}
           >
             {/* Close Button */}
             <button
@@ -489,11 +487,10 @@ const ContactPage = () => {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", delay: 0.2, stiffness: 200 }}
-                className={`mx-auto mb-6 w-20 h-20 rounded-full flex items-center justify-center ${
-                  submitStatus === 'success'
+                className={`mx-auto mb-6 w-20 h-20 rounded-full flex items-center justify-center ${submitStatus === 'success'
                     ? 'bg-green-100'
                     : 'bg-red-100'
-                }`}
+                  }`}
               >
                 {submitStatus === 'success' ? (
                   <CheckCircle className="w-12 h-12 text-green-600" />
@@ -507,9 +504,8 @@ const ContactPage = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className={`text-2xl font-bold mb-3 ${
-                  submitStatus === 'success' ? 'text-green-800' : 'text-red-800'
-                }`}
+                className={`text-2xl font-bold mb-3 ${submitStatus === 'success' ? 'text-green-800' : 'text-red-800'
+                  }`}
               >
                 {submitStatus === 'success' ? 'Message Sent Successfully!' : 'Oops! Something Went Wrong'}
               </motion.h3>
@@ -519,9 +515,8 @@ const ContactPage = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className={`text-base mb-6 leading-relaxed ${
-                  submitStatus === 'success' ? 'text-green-700' : 'text-red-700'
-                }`}
+                className={`text-base mb-6 leading-relaxed ${submitStatus === 'success' ? 'text-green-700' : 'text-red-700'
+                  }`}
               >
                 {submitMessage}
               </motion.p>
@@ -532,11 +527,10 @@ const ContactPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
                 onClick={() => setShowModal(false)}
-                className={`px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 ${
-                  submitStatus === 'success'
+                className={`px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 ${submitStatus === 'success'
                     ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white'
                     : 'bg-gradient-to-r from-red-600 to-rose-600 text-white'
-                }`}
+                  }`}
               >
                 {submitStatus === 'success' ? 'Got it!' : 'Try Again'}
               </motion.button>
