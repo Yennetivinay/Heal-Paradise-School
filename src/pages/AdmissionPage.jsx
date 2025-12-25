@@ -152,8 +152,7 @@ const AdmissionPage = () => {
       {/* Video Section - Admission Process Guide */}
       <section ref={videoContainerRef} className="py-12 md:py-16 lg:py-20 bg-gradient-to-b from-white to-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Video Guide Title - TEMPORARILY HIDDEN (uncomment when video is ready) */}
-          {/*
+          {/* Video Guide Title */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -170,10 +169,8 @@ const AdmissionPage = () => {
               Watch our step-by-step guide to understand how to fill out the admission application form
             </p>
           </motion.div>
-          */}
 
-          {/* Video Container - TEMPORARILY HIDDEN (uncomment when video is ready) */}
-          {/* 
+          {/* Video Container */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -182,23 +179,17 @@ const AdmissionPage = () => {
           >
             <div className="relative bg-slate-900 rounded-2xl shadow-2xl overflow-hidden">
               <div className="aspect-video w-full">
-                <video
-                  ref={videoRef}
-                  className="w-full h-full object-cover"
-                  controls
-                  controlsList="nodownload"
-                  preload="none"
-                  loading="lazy"
-                  poster="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=450&fit=crop&auto=format&q=75"
-                >
-                  <source src="YOUR_VIDEO_URL_HERE" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+                <iframe
+                  className="w-full h-full"
+                  src="https://www.youtube.com/embed/m0tyxgFoI2g?rel=0&modestbranding=1"
+                  title="Admission Process Video Guide"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
             </div>
           </motion.div>
-          */}
 
           {/* Instructions Section */}
           <motion.div

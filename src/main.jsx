@@ -12,7 +12,7 @@ import './index.css'
 const root = createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <App/>
+    <App />
   </BrowserRouter>
 );
 // Initialize Lenis
@@ -20,16 +20,13 @@ const lenis = new Lenis({
   autoRaf: true,
 });
 
-// Listen for the scroll event and log the event data
-lenis.on('scroll', (e) => {
-  console.log(e);
-});
+
 // Defer non-critical initialization to improve TTI
 if ('requestIdleCallback' in window) {
   requestIdleCallback(() => {
     // Optimize animations after initial render
     optimizeAnimations();
-    
+
     // Initialize Web Vitals tracking (non-blocking)
     trackWebVitals();
   }, { timeout: 2000 });
