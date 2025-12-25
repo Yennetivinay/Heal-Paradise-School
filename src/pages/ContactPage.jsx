@@ -66,6 +66,8 @@ const ContactPage = () => {
         if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
           return `http://${hostname}:3001`;
         }
+        // Fallback for localhost
+        return 'http://localhost:3001';
       }
 
       // Default fallback (Production) - use relative path to let Nginx proxy handle it
@@ -74,10 +76,11 @@ const ContactPage = () => {
 
     const API_URL = getApiUrl();
 
+    let timeoutId;
     try {
       // Use AbortController for timeout (10 seconds max)
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 10000);
+      timeoutId = setTimeout(() => controller.abort(), 10000);
 
       const response = await fetch(`${API_URL}/api/contact`, {
         method: 'POST',
@@ -94,7 +97,7 @@ const ContactPage = () => {
         signal: controller.signal,
       });
 
-      clearTimeout(timeoutId);
+      if (timeoutId) clearTimeout(timeoutId);
       const data = await response.json();
 
       if (data.success) {
@@ -118,7 +121,7 @@ const ContactPage = () => {
         setIsSubmitting(false);
       }
     } catch (error) {
-      clearTimeout();
+      if (timeoutId) clearTimeout(timeoutId);
       console.error('API Error:', error);
       setSubmitStatus('error');
       if (error.name === 'AbortError') {
@@ -271,8 +274,8 @@ const ContactPage = () => {
                     type="submit"
                     disabled={isSubmitting}
                     className={`w-full px-6 py-3 bg-gradient-to-r from-brand-600 to-brand-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 ${isSubmitting
-                        ? 'opacity-70 cursor-not-allowed'
-                        : 'hover:scale-105'
+                      ? 'opacity-70 cursor-not-allowed'
+                      : 'hover:scale-105'
                       }`}
                   >
                     {isSubmitting ? (
@@ -468,8 +471,8 @@ const ContactPage = () => {
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             transition={{ type: "spring", duration: 0.5 }}
             className={`relative max-w-md w-full rounded-2xl shadow-2xl overflow-hidden ${submitStatus === 'success'
-                ? 'bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200'
-                : 'bg-gradient-to-br from-red-50 to-rose-50 border-2 border-red-200'
+              ? 'bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200'
+              : 'bg-gradient-to-br from-red-50 to-rose-50 border-2 border-red-200'
               }`}
           >
             {/* Close Button */}
@@ -488,8 +491,8 @@ const ContactPage = () => {
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", delay: 0.2, stiffness: 200 }}
                 className={`mx-auto mb-6 w-20 h-20 rounded-full flex items-center justify-center ${submitStatus === 'success'
-                    ? 'bg-green-100'
-                    : 'bg-red-100'
+                  ? 'bg-green-100'
+                  : 'bg-red-100'
                   }`}
               >
                 {submitStatus === 'success' ? (
@@ -528,8 +531,8 @@ const ContactPage = () => {
                 transition={{ delay: 0.5 }}
                 onClick={() => setShowModal(false)}
                 className={`px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 ${submitStatus === 'success'
-                    ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white'
-                    : 'bg-gradient-to-r from-red-600 to-rose-600 text-white'
+                  ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white'
+                  : 'bg-gradient-to-r from-red-600 to-rose-600 text-white'
                   }`}
               >
                 {submitStatus === 'success' ? 'Got it!' : 'Try Again'}
